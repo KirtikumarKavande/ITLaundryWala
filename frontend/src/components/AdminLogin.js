@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 
 const AdminLogin = () => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const handleSignIn=(e)=>{
+    e.preventDefault()
+    const obj={
+      email:emailRef.current.value,
+      password:passwordRef.current.value
+    }
+    console.log(obj)
+  }
   return (
     <div className="mt-16">
       <section className="bg-gray-50 dark:bg-gray-900 ">
@@ -10,7 +20,10 @@ const AdminLogin = () => {
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 SIGN IN
               </h1>
-              <form className="space-y-4 md:space-y-6" >
+              <form className="space-y-4 md:space-y-6"   
+                onSubmit={handleSignIn}
+              
+              >
                 <div>
                   <label
                     for="email"
@@ -25,6 +38,7 @@ const AdminLogin = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
+                    ref={emailRef}
                   />
                 </div>
                 <div>
@@ -41,6 +55,7 @@ const AdminLogin = () => {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    ref={passwordRef}
                   />
                 </div>
                 <div className="flex items-center justify-between">
