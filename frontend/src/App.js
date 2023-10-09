@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootComponent from "./components/RootComponent";
 import AdminLogin from "./components/AdminLogin";
 import About from "./components/About";
+import  { Toaster } from 'react-hot-toast';
 
 export default function App() {
   const router = createBrowserRouter([
@@ -34,6 +35,7 @@ export default function App() {
 
   return (
     <>
+    <Toaster/>
       <RouterProvider router={router} />
     </>
   );

@@ -1,10 +1,20 @@
 import React from "react";
+import { BASE_URL } from "../utilities/constant";
+const usepostDataToDb = async (url,obj) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${url}`,
+    {
+      method:"POST",
+      body:JSON.stringify(obj),
+      headers:{"content-type": "application/json"}
 
-const usepostDataToDb = async () => {
-  const res = await fetch();
-  const data =await res.json();
+    });
+    const data = await res.json();
 
-  return data
+    return data;
+  } catch (err) {
+    return { statusCode: 400, message: "something went wrong" };
+  }
 };
 
 export default usepostDataToDb;

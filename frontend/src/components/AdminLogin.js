@@ -1,16 +1,29 @@
 import React, { useRef } from "react";
+import usepostDataToDb from "./hooks/usepostDataToDb";
+import toast from "react-hot-toast";
 
 const AdminLogin = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const handleSignIn=(e)=>{
-    e.preventDefault()
-    const obj={
-      email:emailRef.current.value,
-      password:passwordRef.current.value
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    const obj = {
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
+    };
+
+    try {
+      const res = await usepostDataToDb("login", obj);
+      if (res.success) {
+        toast.success(res.message)
+        
+      } else {
+        toast.error(res.message)
+      }
+    } catch (err) {
+
     }
-    console.log(obj)
-  }
+  };
   return (
     <div className="mt-16">
       <section className="bg-gray-50 dark:bg-gray-900 ">
@@ -20,10 +33,7 @@ const AdminLogin = () => {
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 SIGN IN
               </h1>
-              <form className="space-y-4 md:space-y-6"   
-                onSubmit={handleSignIn}
-              
-              >
+              <form className="space-y-4 md:space-y-6" onSubmit={handleSignIn}>
                 <div>
                   <label
                     for="email"
