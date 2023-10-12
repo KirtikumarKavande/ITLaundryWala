@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import usepostDataToDb from "./hooks/usepostDataToDb";
 import toast from "react-hot-toast";
 import OtpModel from "./utilities/Otpmodel";
+import usegetDataFromDB from "./hooks/usegetDataFromDb";
+import SendOtp from "./utilities/SendOtp";
 
 const AdminLogin = () => {
   const [isShowOtpModel, setIsShowOtpModel] = useState(false);
-  console.log(">>>>",isShowOtpModel)
+  console.log(">>>>", isShowOtpModel);
   const emailRef = useRef();
   const passwordRef = useRef();
   const handleSignIn = async (e) => {
@@ -19,10 +21,20 @@ const AdminLogin = () => {
       const res = await usepostDataToDb("login", obj);
       if (res.success) {
         setIsShowOtpModel(!isShowOtpModel);
+        const resotp = await SendOtp();
+        try {
+          if (resotp) {
+            toast.success(resotp.message);
+          }
+        } catch (err) {
+          toast.error(resotp.err);
+        }
       } else {
         toast.error(res.message);
       }
-    } catch (err) {}
+    } catch (err) {
+      toast.error(err);
+    }
   };
   return (
     <div className="mt-16">
@@ -30,7 +42,12 @@ const AdminLogin = () => {
         <div className="flex  flex-col items-center justify-center px-6 py-8 mx-auto  lg:py-0">
           <div className="w-full mt-20 bg-white  rounded-lg shadow dark:border md:mt-11 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6  space-y-4 md:space-y-6 sm:p-8">
-              {isShowOtpModel && (<OtpModel setIsShowOtpModel={setIsShowOtpModel} isShowOtpModel={isShowOtpModel} />)}
+              {isShowOtpModel && (
+                <OtpModel
+                  setIsShowOtpModel={setIsShowOtpModel}
+                  isShowOtpModel={isShowOtpModel}
+                />
+              )}
 
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 SIGN IN

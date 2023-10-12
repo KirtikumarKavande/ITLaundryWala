@@ -26,6 +26,7 @@
         "jsonwebtoken": "^9.0.1",
         "mongodb": "^6.1.0",
         "mongoose": "^7.5.3",
+        "sib-api-v3-sdk": "^8.5.0",
         "uuid": "^9.0.0"
     }
 }

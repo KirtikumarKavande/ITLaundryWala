@@ -5,14 +5,20 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const user = require("./Routes/user");
-const dotenv = require("dotenv");
-dotenv.config();
+const otp = require("./Routes/otpVarification");
 
+const dotenv = require("dotenv");
+const result =dotenv.config();
+
+if (result.error) {
+  console.error("Error loading .env file:", result.error);
+}
 const app = express();
 app.use(cors());
 
 app.use(bodyParser.json({ extended: false }));
 app.use(user);
+app.use(otp)
 
 // app.use(expense);
 

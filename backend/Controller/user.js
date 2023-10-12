@@ -1,6 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const auth = require("../Admincreditial");
+require('dotenv').config();
+
 // const Auth = require("../models/");
 const generateAccessToken = (email) => {
   return jwt.sign({ emailId: email }, process.env.JWT_KEY);
@@ -17,7 +19,7 @@ const login = async (req, res, next) => {
       res.status(200).json({
         success: true,
         statusCode: 200,
-        message: "Sign in Success",
+        message: "Sign In Successfully",
         token: generateAccessToken(auth.ADMIN_MANGER.email),
       });
     } else {

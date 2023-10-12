@@ -6,6 +6,7 @@ import RootComponent from "./components/RootComponent";
 import AdminLogin from "./components/AdminLogin";
 import About from "./components/About";
 import  { Toaster } from 'react-hot-toast';
+import AdminPannel from "./components/AdminPannel";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,10 @@ export default function App() {
         {
           path: "/about",
           element: <About />,
+        },
+        {
+          path: "/admin",
+          element: <AdminPannel />,
         },
       ],
     },
