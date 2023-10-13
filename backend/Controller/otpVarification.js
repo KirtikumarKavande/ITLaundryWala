@@ -1,6 +1,7 @@
 require("dotenv").config();
 const SendinblueApiV3Sdk = require("sib-api-v3-sdk");
 SendinblueAPIKey = process.env.SENDINBLUE_API_KEY;
+
 SendinblueApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   SendinblueAPIKey;
 function generateRandomOTP() {
@@ -9,19 +10,14 @@ function generateRandomOTP() {
   const randomOTP = Math.floor(Math.random() * (max - min + 1)) + min;
   return randomOTP.toString().padStart(4, "0");
 }
-let otp 
-
-
+let otp;
 
 const otpVarify = async (req, res, next) => {
-
   try {
     console.log("otp verifi", req.body.otp, otp);
 
     if (Number(req.body.otp) === Number(otp)) {
-      res
-        .status(200)
-        .json({ success: true, message: "Sign-in Successfully" });
+      res.status(200).json({ success: true, message: "Sign-in Successfully" });
     } else {
       res.status(400).json({ success: false, message: "Invalid OTP" });
     }
@@ -32,10 +28,9 @@ const otpVarify = async (req, res, next) => {
 };
 
 const emailForOtp = async (req, res, next) => {
-  
   try {
     //  er.parmeshwar1998@gmail.com
-     otp = generateRandomOTP();
+    otp = generateRandomOTP();
 
     const subject = "OTP Verification";
     const sender = { email: "itlaundrywala@gmail.com", name: "ITLaundryWala" };
@@ -50,21 +45,21 @@ const emailForOtp = async (req, res, next) => {
         htmlContent: htmlContent,
       })
 
-
       .then(
-    
         function (data) {
-          res.status(200).json({ success: true, message: "OTP Sent Successfully" });
+          res
+            .status(200)
+            .json({ success: true, message: "OTP Sent Successfully" });
         },
         function (error) {
           res.status(400).json(error);
         }
-      ).then(()=>{
+      )
+      .then(() => {
         setTimeout(() => {
-          otp="";
-        }, 60000)
-      })
-
+          otp = "";
+        }, 60000);
+      });
   } catch (err) {
     res.status(400).json({ success: false, message: err });
   }
