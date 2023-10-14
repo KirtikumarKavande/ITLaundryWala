@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const newUser=require("./Routes/newUser")
 const user = require("./Routes/user");
 const otp = require("./Routes/otpVarification");
 
@@ -19,6 +19,7 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 app.use(bodyParser.json({ extended: false }));
 app.use(user);
 app.use(otp)
+app.use(newUser)
 
 // app.use(expense);
 
