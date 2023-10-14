@@ -1,13 +1,12 @@
 import React from "react";
-import usegetDataFromDB from "../hooks/usegetDataFromDb";
+import useGetDataFromDB from "../hooks/useGetDataFromDb";
 import toast from "react-hot-toast";
 
 const SendOtp = async () => {
-  const otpRes = await usegetDataFromDB("otpmail");
+  const getDataFromDB=useGetDataFromDB()
+  const otpRes = await getDataFromDB("otpmail");
   return otpRes;
-  // if (otpRes.success) {
-  //  return toast.success(otpRes.message);
-  // }
+ 
 };
 
 export default SendOtp;

@@ -1,11 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
-import usepostDataToDb from "../hooks/usepostDataToDb";
+import usePostDataToDb from "../hooks/usePostDataToDb";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import SendOtp from "./SendOtp";
+import { useDispatch, useSelector } from "react-redux";
+import { userStatus } from "../../store/userSlice";
 
 export function OtpModel(props) {
+  const postDatatoDb = usePostDataToDb();
+  const dispatch = useDispatch();
+  const token = useSelector((store) => store.user.token);
   const navigate = useNavigate();
   const [getOtp, setGetOtp] = useState({});
 
@@ -49,9 +54,14 @@ export function OtpModel(props) {
     keys.forEach((key, index) => {
       sum = sum + getOtp[key];
     });
-    const res = await usepostDataToDb("otp", { otp: Number(sum) });
+    const res = await postDatatoDb("otp", { otp: Number(sum) });
     if (res.success) {
       toast.success(res.message);
+
+      localStorage.setItem("jwtToken", token);
+
+      dispatch(userStatus("user"));
+      localStorage.setItem("activeUser", "user");
       navigate("/admin");
     } else {
       toast.error(res.message);
@@ -59,7 +69,7 @@ export function OtpModel(props) {
 
     console.log("sum", Number({ otp: sum }));
   };
-  const resendOTP = async() => {
+  const resendOTP = async () => {
     inputRef0.current.value = "";
     inputRef1.current.value = "";
     inputRef2.current.value = "";

@@ -1,20 +1,23 @@
-import React from "react";
 import { BASE_URL } from "../utilities/constant";
-const usepostDataToDb = async (url,obj) => {
-  try {
-    const res = await fetch(`${BASE_URL}/${url}`,
-    {
-      method:"POST",
-      body:JSON.stringify(obj),
-      headers:{"content-type": "application/json"}
+import { useSelector } from "react-redux";
 
-    });
-    const data = await res.json();
+const usePostDataToDb = () => {
+  const token = useSelector((store) => store.user.token);
+  const postDatatoDb = async (url, obj) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${url}`, {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: { "content-type": "application/json", Authorization: token },
+      });
+      const data = await res.json();
 
-    return data;
-  } catch (err) {
-    return { statusCode: 400, message: "something went wrong" };
-  }
+      return data;
+    } catch (err) {
+      return { statusCode: 400, message: "something went wrong" };
+    }
+  };
+  return postDatatoDb;
 };
 
-export default usepostDataToDb;
+export default usePostDataToDb;

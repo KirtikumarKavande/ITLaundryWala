@@ -1,25 +1,29 @@
 import React, { useRef, useState } from "react";
-import usepostDataToDb from "./hooks/usepostDataToDb";
+import usePostDataToDb from "./hooks/usePostDataToDb";
 import toast from "react-hot-toast";
 import OtpModel from "./utilities/Otpmodel";
-import usegetDataFromDB from "./hooks/usegetDataFromDb";
+// import useGetDataFromDB from "./hooks/useGetDataFromDb";
 import SendOtp from "./utilities/SendOtp";
+import {useDispatch} from 'react-redux'
+import { getToken } from "../store/userSlice";
 
 const AdminLogin = () => {
+  const postDatatoDb= usePostDataToDb()
+ const dispatch= useDispatch()
   const [isShowOtpModel, setIsShowOtpModel] = useState(false);
-  console.log(">>>>", isShowOtpModel);
   const emailRef = useRef();
   const passwordRef = useRef();
   const handleSignIn = async (e) => {
     e.preventDefault();
-    const obj = {
+    const obj = { 
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
 
     try {
-      const res = await usepostDataToDb("login", obj);
+      const res = await postDatatoDb("login", obj);
       if (res.success) {
+        dispatch(getToken(res.token))
         setIsShowOtpModel(!isShowOtpModel);
         const resotp = await SendOtp();
         try {
@@ -27,13 +31,16 @@ const AdminLogin = () => {
             toast.success(resotp.message);
           }
         } catch (err) {
-          toast.error(resotp.err);
+          toast.error(err.message);
+          console.log(">>>>>>",err.message)
         }
       } else {
         toast.error(res.message);
       }
     } catch (err) {
-      toast.error(err);
+      toast.error(err.message);
+      console.log(">>>>>>",err.message)
+
     }
   };
   return (
