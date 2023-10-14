@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 const SendOtp = async () => {
   const getDataFromDB=useGetDataFromDB()
-  const otpRes = await getDataFromDB("otpmail");
+  const otpRes = await getDataFromDB('otpmail');
   return otpRes;
  
 };

@@ -7,8 +7,9 @@ const usePostDataToDb = () => {
     try {
       const res = await fetch(`${BASE_URL}/${url}`, {
         method: "POST",
+        credentials: 'include',
         body: JSON.stringify(obj),
-        headers: { "content-type": "application/json", Authorization: token },
+        headers: { "content-type": "application/json", "authorization":token },
       });
       const data = await res.json();
 

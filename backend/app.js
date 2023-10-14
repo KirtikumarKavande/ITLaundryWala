@@ -14,7 +14,7 @@ if (result.error) {
   console.error("Error loading .env file:", result.error);
 }
 const app = express();
-app.use(cors());
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
 app.use(bodyParser.json({ extended: false }));
 app.use(user);

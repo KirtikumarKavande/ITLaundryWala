@@ -14,7 +14,6 @@ let otp;
 
 const otpVarify = async (req, res, next) => {
   try {
-    console.log("otp verifi", req.body.otp, otp);
 
     if (Number(req.body.otp) === Number(otp)) {
       res.status(200).json({ success: true, message: "Sign-in Successfully" });
@@ -30,7 +29,7 @@ const otpVarify = async (req, res, next) => {
 const emailForOtp = async (req, res, next) => {
   try {
     //  er.parmeshwar1998@gmail.com
-    otp = generateRandomOTP();
+    otp = generateRandomOTP().trim();
 
     const subject = "OTP Verification";
     const sender = { email: "itlaundrywala@gmail.com", name: "ITLaundryWala" };

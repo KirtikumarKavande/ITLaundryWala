@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import usePostDataToDb from "./hooks/usePostDataToDb";
+import usePostDataToDb from "../components/hooks/usePostDataToDb";
+
 import toast from "react-hot-toast";
 import OtpModel from "./utilities/Otpmodel";
 // import useGetDataFromDB from "./hooks/useGetDataFromDb";

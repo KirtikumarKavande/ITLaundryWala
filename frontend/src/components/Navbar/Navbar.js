@@ -103,13 +103,63 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               )}
+
+              {user === "user" && (
+                <li>
+                  <NavLink
+                    to="/adduser"
+                    style={({ isActive }) => ({
+                      color: isActive ? "white" : "",
+                      backgroundColor: isActive ? "orange" : "",
+                      paddingLeft: isActive ? "5px" : "",
+                      paddingRight: isActive ? "5px" : "",
+                    })}
+                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Add New User
+                  </NavLink>
+                </li>
+              )}
+              {user === "user" && (
+                <li>
+                  <NavLink
+                    to="/existinguser"
+                    style={({ isActive }) => ({
+                      color: isActive ? "white" : "",
+                      backgroundColor: isActive ? "orange" : "",
+                      paddingLeft: isActive ? "5px" : "",
+                      paddingRight: isActive ? "5px" : "",
+                    })}
+                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Existing User
+                  </NavLink>
+                </li>
+              )}
+              {user === "user" && (
+                <li>
+                  <NavLink
+                    to="/"
+                    style={({ isActive }) => ({
+                      color: isActive ? "white" : "",
+                      backgroundColor: isActive ? "orange" : "",
+                      paddingLeft: isActive ? "5px" : "",
+                      paddingRight: isActive ? "5px" : "",
+                    })}
+                    className="block py-2 pl-3 px-5  text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    History
+                  </NavLink>
+                </li>
+              )}
+
               {user === "user" && (
                 <li>
                   <button
-                    className="p-1 rounded-sm  bg-red-400"
+                    className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                     onClick={LogoutUser}
                   >
-                    Logout
+                    Sign Out
                   </button>
                 </li>
               )}

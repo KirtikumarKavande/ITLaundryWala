@@ -1,7 +1,13 @@
+const express = require('express');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const auth = require("../Admincreditial");
 require('dotenv').config();
+
+
+const app = express();
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 
 // const Auth = require("../models/");
 const generateAccessToken = (email) => {
@@ -16,6 +22,8 @@ const login = async (req, res, next) => {
       auth.ADMIN_MANGER.email === email &&
       auth.ADMIN_MANGER.password === password
     ) {
+
+      res.cookie('myCookie', 'Hello from the server!', { maxAge: 900000,  });
       res.status(200).json({
         success: true,
         statusCode: 200,
