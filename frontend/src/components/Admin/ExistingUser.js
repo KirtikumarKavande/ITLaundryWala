@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
 
-console.log(userDetails,"userDetails")
+  console.log(userDetails, "userDetails");
   const postDataToDb = usePostDataToDb();
   const [isshowError, setIsShowError] = useState(false);
 
@@ -46,12 +46,12 @@ console.log(userDetails,"userDetails")
 
   return (
     <div>
-      <form className="w-full -ml-7 max-w-lg mt-24  ">
+      <form className=" mt-40 -ml-8 w-full md:-ml-7 max-w-lg md:mt-24  ">
         <div className="flex ">
-          <div className="md:flex md:items-center mb-6">
+          <div className="md:flex md:items-center mt-1 md:mb-6">
             <div className="md:w-1/3">
               <label
-                className="`block text-black font-bold ml-12 md:text-right mb-1 md:mb-0 pr-4 "
+                className="`block text-black font-bold ml-16 md:text-right mb-1 md:mb-0 pr-4 "
                 for="inline-full-name"
               >
                 CustomerID
@@ -75,7 +75,7 @@ console.log(userDetails,"userDetails")
               />
             </div>
           </div>
-          <div className="md:flex md:items-center mb-6 -ml-10">
+          <div className=" ml-7 md:flex md:items-center md:mb-6 md:-ml-14">
             <div className="">
               <label
                 className="block  text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -99,10 +99,10 @@ console.log(userDetails,"userDetails")
           </div>
         </div>
 
-        <div className="md:flex md:items-center mb-6">
+        <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-6">
           <div className="md:w-1/3">
             <label
-              className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block text-black font-bold md:text-right mb-1 md:mb-0 md:pr-4"
               for="inline-full-name"
             >
               Mobile Number
@@ -126,10 +126,10 @@ console.log(userDetails,"userDetails")
           </div>
         </div>
 
-        <div className="md:flex md:items-center mb-6">
+        <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-6">
           <div className="md:w-1/3">
             <label
-              className="block text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
+              className="block text-black font-bold md:text-right mb-1 md:mb-0 md:pr-4"
               for="inline-full-name"
             >
               Address
@@ -137,7 +137,7 @@ console.log(userDetails,"userDetails")
           </div>
           <div className="md:w-2/3">
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
               id="inline-full-name"
               type="text"
               name="address"
@@ -148,17 +148,8 @@ console.log(userDetails,"userDetails")
             />
           </div>
         </div>
-        <div className="md:flex md:items-center">
-          <div className="md:w-1/3"></div>
-          <div className="md:w-2/3">
-            <button
-              className="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-              type="button"
-            >
-              Sign Up
-            </button>
-          </div>
-        </div>
+
+
       </form>
     </div>
   );
