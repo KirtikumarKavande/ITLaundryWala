@@ -9,13 +9,16 @@ import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useEffect, useRef, useState } from "react";
 import useData from "../hooks/useData";
 import useGetDataFromDB from "../hooks/useGetDataFromDb";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addUserdetails } from "../../store/newUserDetails";
 
 function AddNewUser() {
+  const dispatch=useDispatch()
   const [getCustomerId, setGetCustomerId] = useState();
   const { userDetails, handleChange } = useData({});
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   console.log(userDetails);
   const postDataToDb = usePostDataToDb();
 
@@ -31,16 +34,20 @@ function AddNewUser() {
 
   const handleAddNewUser = async (e) => {
     e.preventDefault();
-    const res = await postDataToDb("addnewuser", {...userDetails,customerID:getCustomerId});
-    try{
-      if(res.success)
-      {
-        navigate('/existinguser')
-        toast.success("User Added successfully")
+    const res = await postDataToDb("addnewuser", {
+      ...userDetails,
+      customerID: getCustomerId,
+    });
+    try {
+      if (res.success) {
+        dispatch(addUserdetails({...userDetails,customerId:getCustomerId}))
+        navigate("/existinguser");
+        toast.success("User Added successfully");
+      } else {
+        toast.error(res.message);
       }
-    }catch(e)
-    {
-toast.error("something went wrong")
+    } catch (e) {
+      toast.error("something went wrong");
     }
   };
   return (
@@ -72,6 +79,7 @@ toast.error("something went wrong")
               label="Mobile Number"
               name="mobileNumber"
               onChange={handleChange}
+              maxLength={10}
             />
 
             <Input

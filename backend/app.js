@@ -6,6 +6,8 @@ const cors = require("cors");
 const newUser=require("./Routes/newUser")
 const user = require("./Routes/user");
 const otp = require("./Routes/otpVarification");
+const existinguser = require("./Routes/existingUser");
+
 
 const dotenv = require("dotenv");
 const result =dotenv.config();
@@ -20,6 +22,7 @@ app.use(bodyParser.json({ extended: false }));
 app.use(user);
 app.use(otp)
 app.use(newUser)
+app.use(existinguser)
 
 // app.use(expense);
 
