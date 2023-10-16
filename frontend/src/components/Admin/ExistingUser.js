@@ -43,9 +43,9 @@ const ExistingUser = () => {
 
   return (
     <div>
-      <form className=" mt-40 -ml-8 w-full md:-ml-7 max-w-lg md:mt-24  ">
+      <form className=" mt-40 -ml-8 w-full md:-ml-7 max-w-lg md:mt-20  ">
         <div className="flex ">
-          <div className="md:flex md:items-center mt-1 md:mb-6">
+          <div className="md:flex md:items-center mt-1 md:mb-3">
             <div className="md:w-1/3">
               <label
                 className="`block text-black font-bold ml-16 md:text-right mb-1 md:mb-0 pr-4 "
@@ -72,7 +72,7 @@ const ExistingUser = () => {
               />
             </div>
           </div>
-          <div className=" ml-7 md:flex md:items-center md:mb-6 md:-ml-14">
+          <div className=" ml-7 md:flex md:items-center md:mb-3 md:-ml-14">
             <div className="">
               <label
                 className="block  text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
@@ -96,7 +96,7 @@ const ExistingUser = () => {
           </div>
         </div>
 
-        <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-6">
+        <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-3">
           <div className="md:w-1/3">
             <label
               className="block text-black font-bold md:text-right mb-1 md:mb-0 md:pr-4"
@@ -123,7 +123,7 @@ const ExistingUser = () => {
           </div>
         </div>
 
-        <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-6">
+        <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-3">
           <div className="md:w-1/3">
             <label
               className="block text-black font-bold md:text-right mb-1 md:mb-0 md:pr-4"
