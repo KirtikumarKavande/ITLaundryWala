@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useSelector } from "react-redux";
+import WashType from "../Clothes/WashType";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
 
-  console.log(userDetails, "userDetails");
   const postDataToDb = usePostDataToDb();
   const [isshowError, setIsShowError] = useState(false);
 
@@ -25,10 +25,7 @@ const ExistingUser = () => {
     if (e.keyCode === 13) {
       if (formData.customerId) {
         customerDetails = { customerId: +e.target.value };
-
-        console.log("kk1");
       } else {
-        console.log("kk2");
         customerDetails = { mobileNumber: +e.target.value };
       }
       try {
@@ -148,9 +145,8 @@ const ExistingUser = () => {
             />
           </div>
         </div>
-
-
       </form>
+      <WashType/>
     </div>
   );
 };

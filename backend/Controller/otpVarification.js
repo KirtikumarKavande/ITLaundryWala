@@ -1,7 +1,12 @@
 require("dotenv").config();
+const express = require('express');
+
+const app = express();
+
 const SendinblueApiV3Sdk = require("sib-api-v3-sdk");
 SendinblueAPIKey = process.env.SENDINBLUE_API_KEY;
-
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 SendinblueApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   SendinblueAPIKey;
 function generateRandomOTP() {
@@ -14,8 +19,9 @@ let otp;
 
 const otpVarify = async (req, res, next) => {
   try {
-
     if (Number(req.body.otp) === Number(otp)) {
+      res.cookie("isloggedIn", true, { maxAge: 900000 });
+
       res.status(200).json({ success: true, message: "Sign-in Successfully" });
     } else {
       res.status(400).json({ success: false, message: "Invalid OTP" });

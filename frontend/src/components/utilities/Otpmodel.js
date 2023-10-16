@@ -45,7 +45,6 @@ export function OtpModel(props) {
   function closeModal() {
     setIsShowOtpModel(false);
   }
-  console.log("good to go", getOtp);
 
   const handleOtpsubmit = async (e) => {
     e.preventDefault();

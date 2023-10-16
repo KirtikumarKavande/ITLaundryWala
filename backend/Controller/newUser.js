@@ -28,7 +28,6 @@ const newUser = async (req, res) => {
 const getId = async (req, res) => {
   try {
     const count = await User.countDocuments();
-    console.log(count);
 
     res.status(200).json({ success: true, message: count });
   } catch (err) {

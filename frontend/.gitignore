@@ -4,12 +4,14 @@
 /node_modules
 /.pnp
 .pnp.js
+src/components/utilities/washmenu.js
 
 # testing
 /coverage
 
 # production
 /build
+
 
 # misc
 .DS_Store
