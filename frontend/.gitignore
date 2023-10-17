@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 src/components/utilities/washmenu.js
+src/components/utilities/clothTypes.js
 
 # testing
 /coverage

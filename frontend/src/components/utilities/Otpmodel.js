@@ -20,13 +20,7 @@ export function OtpModel(props) {
   const inputRef1 = useRef();
   const inputRef2 = useRef();
   const inputRef3 = useRef();
-  console.log(
-    inputRef0.current?.value +
-      inputRef1.current?.value +
-      inputRef2.current?.value +
-      inputRef3.current?.value
-  );
-
+ 
   const array = [inputRef0, inputRef1, inputRef2, inputRef3];
 
   const handleChange = (e, item, index) => {
@@ -35,7 +29,6 @@ export function OtpModel(props) {
     };
     setGetOtp({ ...getOtp, ...otpobj });
 
-    console.log("state", e.target.value);
 
     if (e.target.value && index < array.length - 1) {
       array[index + 1].current.focus();
@@ -66,7 +59,6 @@ export function OtpModel(props) {
       toast.error(res.message);
     }
 
-    console.log("sum", Number({ otp: sum }));
   };
   const resendOTP = async () => {
     inputRef0.current.value = "";

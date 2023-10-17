@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useSelector } from "react-redux";
 import WashType from "../Clothes/WashType";
+import ClothType from "../Clothes/ClothType";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
@@ -19,7 +20,6 @@ const ExistingUser = () => {
   useEffect(() => {
     setFormData(userDetails);
   }, []);
-  console.log("formData", formData);
   const handleCustomerId = async (e) => {
     let customerDetails;
     if (e.keyCode === 13) {
@@ -147,6 +147,7 @@ const ExistingUser = () => {
         </div>
       </form>
       <WashType/>
+      <ClothType/>
     </div>
   );
 };

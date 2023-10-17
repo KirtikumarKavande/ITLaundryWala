@@ -19,14 +19,12 @@ function AddNewUser() {
   const [getCustomerId, setGetCustomerId] = useState();
   const { userDetails, handleChange } = useData({});
   const navigate = useNavigate();
-  console.log(userDetails);
   const postDataToDb = usePostDataToDb();
 
   const getDataFromDB = useGetDataFromDB();
   const dbConnection = async () => {
     const user = await getDataFromDB("userid");
     setGetCustomerId(+user?.message + 1);
-    console.log("yyyyy", user);
   };
   useEffect(() => {
     dbConnection();

@@ -12,7 +12,9 @@ const authenticate = (req, res, next) => {
     }
   } catch (err) {
     console.log(err);
-    return res.status(401).json({ success: "false" ,message: "Something went wrong"});
+    return res
+      .status(401)
+      .json({ success: "false", message: "Something went wrong" });
   }
 };
 

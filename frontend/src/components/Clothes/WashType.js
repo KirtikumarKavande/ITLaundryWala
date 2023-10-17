@@ -7,7 +7,6 @@ const WashType = () => {
     selectedmenu: {},
     totalPrice: 0,
   });
-  console.log(menu.selectedmenu.price * menu.weight);
 
   useEffect(() => {
     setMenu({ ...menu, totalPrice: menu?.selectedmenu?.price * menu.weight });

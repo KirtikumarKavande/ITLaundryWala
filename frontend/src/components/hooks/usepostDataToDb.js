@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const usePostDataToDb = () => {
   const token = useSelector((store) => store.user.token);
+  
   const postDatatoDb = async (url, obj) => {
     try {
       const res = await fetch(`${BASE_URL}/${url}`, {

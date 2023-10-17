@@ -2,6 +2,7 @@ require("dotenv").config();
 const SendinblueApiV3Sdk = require("sib-api-v3-sdk");
 SendinblueAPIKey = process.env.SENDINBLUE_API_KEY;
 
+
 SendinblueApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   SendinblueAPIKey;
 function generateRandomOTP() {
@@ -20,7 +21,6 @@ const otpVarify = async (req, res, next) => {
     } else {
       res.status(400).json({ success: false, message: "Invalid OTP" });
     }
-    console.log("otp got fro frontend", req.body);
   } catch (err) {
     res.status(400).json({ success: false, message: err });
   }

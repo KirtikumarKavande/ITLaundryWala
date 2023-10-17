@@ -7,7 +7,7 @@ const useGetDataFromDB = () => {
     try {
       const res = await fetch(`${BASE_URL}/${url}`, {
         method: "GET",
-        credentials: 'include',
+        // credentials: 'include',
         headers: { "content-type": "application/json","authorization":localStorage.getItem("jwtToken") },
       });
       const data = await res.json();
