@@ -1,70 +1,110 @@
-import React, { useEffect, useRef, useState } from "react";
-import { clothTypeData } from "../utilities/clothTypes";
+import React from "react";
+import SelectClothType from "./SelectClothType";
+
 const ClothType = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [showSuggestion, setShowSuggestion] = useState(false);
-  const [SelectesClothType, setSelectesClothType] = useState("");
-  console.log(activeIndex);
-  const [cloth, setCloth] = useState(clothTypeData);
-  const handleChangeForClothType = (e) => {
-    setSelectesClothType(e.target.value);
-  };
-
-  useEffect(() => {
-    const data = clothTypeData.filter((item) => {
-      if (
-        item?.type?.toLowerCase()?.includes(SelectesClothType.toLowerCase()) ||
-        Number(item.id) === Number(SelectesClothType)
-      ) {
-        return item?.type;
-      }
-    });
-    setCloth(data);
-  }, [SelectesClothType]);
-
-  const handleKeyDown = (e) => {
-    if (e.key === "ArrowDown" && activeIndex < cloth.length - 1) {
-      setActiveIndex(activeIndex + 1);
-    } else if (e.key === "ArrowUp" && activeIndex > 0) {
-      setActiveIndex(activeIndex - 1);
-    } else if (e.key === "Enter") {
-      setSelectesClothType(cloth[activeIndex]?.type);
-      setShowSuggestion(false)
-    }
-  };
-
-  //   console.log(cloth[activeIndex]?.type);
   return (
     <div>
-      <input
-        onFocus={() => {
-          setShowSuggestion(true);
-        }}
-        onChange={handleChangeForClothType}
-        value={SelectesClothType}
-        onKeyDown={handleKeyDown}
-        className="
-      bg-gray-200 ml-16 appearance-none border-2    border-gray-200 rounded w-32 h-8 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
-      />
-      {showSuggestion && (
-        <ul className="bg-white w-[210px] space-y-2 ml-8 md:w-[200px] my-2 text-base overflow-y-scroll h-32 flex-col  border  md:ml-16 border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          {cloth.map((item, index) => {
-            return (
-              <li
-                onClick={() => {
-                  setSelectesClothType(item.type);
-                  setShowSuggestion(false)
-                }}
-                className={` h-5 pl-2 cursor-pointer ${
-                  activeIndex === index ? "bg-orange-300" : ""
-                }`}
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-10 ">
+        <table className="w-[65vw] text-sm text-left f text-black  dark:text-black">
+          <thead className="text-xs  text-black uppercase bg-[#23B0C4] dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="pl-10 py-6 ">
+                Sr.No.
+              </th>
+              <th scope="col" className="pl-8 py-6">
+                ClothType
+              </th>
+              <th scope="col" className="py-6 pl-28">
+                quality
+              </th>
+              <th scope="col" className="pl-16 py-6 ">
+              Amount
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr className="border-b bg-[#FFFFFF] dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                className="py-4 pl-10  font-medium text-black whitespace-nowrap dark:text-white"
               >
-                {item?.type || null}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+                2
+              </th>
+              <td className="py-4  absolute z-50">
+                {" "}
+                <SelectClothType />
+              </td>
+              <td className="py-4 pl-16">
+                {" "}
+                <input
+                  className="
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+                />
+              </td>
+              <td className="py-4 pl-7">
+                {" "}
+                <input
+                  className="
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+                />
+              </td>
+            </tr>
+            <tr className="border-b bg-[#FFFFFF] dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                className="py-4 pl-10  font-medium text-black whitespace-nowrap dark:text-white"
+              >
+                2
+              </th>
+              <td className="py-4  absolute z-40">
+                {" "}
+                <SelectClothType />
+              </td>
+              <td className="py-4 pl-16">
+                {" "}
+                <input
+                  className="
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+                />
+              </td>
+              <td className="py-4 pl-7">
+                {" "}
+                <input
+                  className="
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+                />
+              </td>
+            </tr>
+            <tr className="border-b bg-[#FFFFFF] dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                className="py-4 pl-10  font-medium text-black whitespace-nowrap dark:text-white"
+              >
+                2
+              </th>
+              <td className="py-4 absolute z-auto">
+                {" "}
+                <SelectClothType />
+              </td>
+              <td className="py-4 pl-16">
+                {" "}
+                <input
+                  className="
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+                />
+              </td>
+              <td className="py-4 pl-7">
+                {" "}
+                <input
+                  className="
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
