@@ -14,6 +14,7 @@ const generateAccessToken = (email) => {
   return jwt.sign({ emailId: email }, process.env.JWT_KEY);
 };
 
+
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
