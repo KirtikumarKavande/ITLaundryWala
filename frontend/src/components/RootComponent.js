@@ -1,16 +1,20 @@
-import React from 'react'
-import Navbar from './Navbar/Navbar'
-import { Outlet } from 'react-router-dom'
-import MobileNavbar from './Navbar/MobileNavbar'
+import React from "react";
+import Navbar from "./Navbar/Navbar";
+import { Outlet } from "react-router-dom";
+import MobileNavbar from "./Navbar/MobileNavbar";
+import { useSelector } from "react-redux";
 
 const RootComponent = () => {
+  const user = useSelector((store) => store.user.isLoggedIn)
+  console.log("user status",user)
   return (
     <>
-    <Navbar/>
-    <MobileNavbar/>
-    <Outlet/>
-    </>
-  )
-}
+      {user !== "user" && <Navbar />}
+      {user !== "user" && <MobileNavbar />}
 
-export default RootComponent
+      <Outlet />
+    </>
+  );
+};
+
+export default RootComponent;

@@ -13,9 +13,10 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUserdetails } from "../../store/newUserDetails";
+import CardContainer from "../utilities/Card";
 
 function AddNewUser() {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch();
   const [getCustomerId, setGetCustomerId] = useState();
   const { userDetails, handleChange } = useData({});
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ function AddNewUser() {
     });
     try {
       if (res.success) {
-        dispatch(addUserdetails({...userDetails,customerId:getCustomerId}))
+        dispatch(addUserdetails({ ...userDetails, customerId: getCustomerId }));
         navigate("/existinguser");
         toast.success("User Added successfully");
       } else {
@@ -49,19 +50,18 @@ function AddNewUser() {
     }
   };
   return (
-    <>
+    <CardContainer>
       <Card color="transparent" shadow={false}>
-        <Typography
-          variant="h4"
-          color="blue-gray "
-          className="text-center mt-8"
-        >
-          New Customer
-        </Typography>
         <form
-          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 mx-auto"
+          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 mx-auto bg-white p-11 rounded-lg"
           onSubmit={handleAddNewUser}
         >
+          <Typography
+            variant="h4"
+            className="text-center  mb-10"
+          >
+            New Customer
+          </Typography>
           <div className="mb-4 flex flex-col gap-6">
             <Input
               size="lg"
@@ -78,6 +78,7 @@ function AddNewUser() {
               name="mobileNumber"
               onChange={handleChange}
               maxLength={10}
+              className="focus:"
             />
 
             <Input
@@ -93,7 +94,7 @@ function AddNewUser() {
           </Button>
         </form>
       </Card>
-    </>
+    </CardContainer>
   );
 }
 export default AddNewUser;

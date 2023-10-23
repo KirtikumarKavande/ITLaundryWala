@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { washMenu } from "../utilities/washmenu";
 
 const WashType = () => {
+  
   const [menu, setMenu] = useState({
     weight: 0,
     selectedmenu: {},

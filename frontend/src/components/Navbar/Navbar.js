@@ -104,7 +104,7 @@ const Navbar = () => {
                 </li>
               )}
 
-              {user === "user" && (
+              {/* {user === "user" && (
                 <li>
                   <NavLink
                     to="/adduser"
@@ -162,7 +162,7 @@ const Navbar = () => {
                     Sign Out
                   </button>
                 </li>
-              )}
+              )} */}
             </ul>
           </div>
         </div>

@@ -3,6 +3,13 @@ import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useSelector } from "react-redux";
 import WashType from "../Clothes/WashType";
 import ClothType from "../Clothes/ClothType";
+import { AiOutlineHome } from "react-icons/ai";
+import { GoPeople } from "react-icons/go";
+import { MdGroupAdd } from "react-icons/md";
+import { FaPeopleArrows } from "react-icons/fa6";
+import { MdWorkHistory } from "react-icons/md";
+import { Link } from "react-router-dom";
+import CardContainer from "../utilities/Card";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
@@ -42,8 +49,14 @@ const ExistingUser = () => {
   };
 
   return (
-    <div>
-      <form className=" mt-40 -ml-8 w-full md:-ml-7 max-w-lg md:mt-20  ">
+    <div className="bg-blue-700  py-10  ">
+<CardContainer>
+
+
+
+</CardContainer>
+
+      {/* <form className="  -ml-8 w-full md:-ml-7 max-w-lg mt-40 md:mt-0  ">
         <div className="flex ">
           <div className="md:flex md:items-center mt-1 md:mb-3">
             <div className="md:w-1/3">
@@ -146,8 +159,8 @@ const ExistingUser = () => {
           </div>
         </div>
       </form>
-      <WashType/>
-      <ClothType/>
+      <WashType />
+      <ClothType /> */}
     </div>
   );
 };
