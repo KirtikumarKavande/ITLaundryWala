@@ -51,9 +51,9 @@ function AddNewUser() {
   };
   return (
     <CardContainer>
-      <Card color="transparent" shadow={false}>
+      <Card color="transparent" shadow={false} className="pb-11" >
         <form
-          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 mx-auto bg-white p-11 rounded-lg"
+          className="mt-2 mb-2  w-[30vw]  mx-auto bg-white p-11 rounded-lg"
           onSubmit={handleAddNewUser}
         >
           <Typography

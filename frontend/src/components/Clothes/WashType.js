@@ -14,12 +14,12 @@ const WashType = () => {
   }, [menu.weight, menu.selectedmenu.price]);
   return (
     <>
-      <div className="flex-auto md:flex mt-3 md:mt-0">
+      <div className="flex-auto md:flex mt-3 md:mt-0 pl-28">
         <label
           for="countries"
-          className=" block mb-1 md:mb-2 text-base ml-9 md:mt-2 font -medium  text-black font-bold dark:text-white"
+          className=" block mb-1 md:mb-2 text-base ml-14 md:mt-2 font -medium  text-black font-bold dark:text-white"
         >
-          Wash Types
+          Wash Type
         </label>
 
         <select
@@ -30,7 +30,7 @@ const WashType = () => {
 
             setMenu({ ...menu, selectedmenu: selectedMenuDetails });
           }}
-          className="bg-gray-200 w-[310px] ml-8 md:w-[339px]  border  md:ml-4 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="bg-gray-200 w-[310px] ml-8 md:w-[342px]  border  md:ml-[22px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option>Choose a Wash Type</option>
           <>
@@ -41,7 +41,7 @@ const WashType = () => {
         </select>
       </div>
 
-      <div className="flex mt-3 ">
+      <div className="flex mt-3 ml-32">
         <div className="md:flex md:items-center  md:mb-6">
           <div className="md:w-1/3">
             <label
@@ -73,7 +73,7 @@ const WashType = () => {
           </div>
           <div className="md:w-2/3">
             <input
-              className="bg-gray-200 ml-8 md:ml-0 w-32 appearance-none border-2 border-gray-200 rounded  py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="bg-gray-200 ml-8 md:ml-1 w-32 appearance-none border-2 border-gray-200 rounded  py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               disabled

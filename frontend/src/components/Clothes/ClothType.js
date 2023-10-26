@@ -9,7 +9,7 @@ const ClothType = () => {
   let zIndex = NUMBER_OF_CLOTH_TYPE.length;
   return (
     <div>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-10 ">
+      <div className="relative flex overflow-x-auto  sm:rounded-lg px-10  justify-center">
         <table className="w-[65vw] text-sm text-left f text-black  dark:text-black">
           <thead className="text-xs  text-black uppercase bg-[#23B0C4] dark:bg-gray-700 dark:text-gray-400">
             <tr>
