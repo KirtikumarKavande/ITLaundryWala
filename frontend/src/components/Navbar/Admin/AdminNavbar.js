@@ -8,10 +8,9 @@ import { Link } from "react-router-dom";
 import { NavList } from "./NavList";
 
 const AdminNavbar = () => {
-  const kk = <AiOutlineHome size={30} />;
   return (
     <div>
-      <div className=" h-52 ">
+      <div className=" h-36 md:h-52 ">
         <div className="h-1/3   flex justify-between items-center ">
           <div>
             <a href="https://flowbite.com/" className="flex items-center">
@@ -30,13 +29,14 @@ const AdminNavbar = () => {
         <div className="flex justify-center">
           {NavList.map((item) => {
             return (
-              <Link to={item.path}
-                className="max-h-2/3 mt-3 p-6  flex items-center ml-4 
+              <Link
+                to={item.path}
+                className="max-h-2/3  mt-3 py-2 md:p-6  flex items-center ml-1 md:ml-4 
                       flex-col text-white w-24  justify-center    hover:bg-white hover:text-blue-400  hover:rounded-md
                       "
               >
-                <div className=" ">{item.icon}</div>
-                <div className=" mt-4 font-semibold  ">{item.name}</div>
+                <div className=" w-0 h-4 md:w-auto md:h-auto pr-7 md:pr-0">{item.icon}</div>
+                <div className=" mt-4 text-sm md:font-semibold  ">{item.name}</div>
               </Link>
             );
           })}

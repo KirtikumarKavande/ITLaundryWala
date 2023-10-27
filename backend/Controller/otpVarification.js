@@ -2,7 +2,6 @@ require("dotenv").config();
 const SendinblueApiV3Sdk = require("sib-api-v3-sdk");
 SendinblueAPIKey = process.env.SENDINBLUE_API_KEY;
 
-
 SendinblueApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   SendinblueAPIKey;
 function generateRandomOTP() {
@@ -15,7 +14,6 @@ let otp;
 
 const otpVarify = async (req, res, next) => {
   try {
-
     if (Number(req.body.otp) === Number(otp)) {
       res.status(200).json({ success: true, message: "Sign-in Successfully" });
     } else {

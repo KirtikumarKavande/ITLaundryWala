@@ -51,112 +51,98 @@ const ExistingUser = () => {
   return (
     <div className="bg-blue-700   ">
       <CardContainer>
-        <form className="  max-w-lg  ml-[103px] ">
-          <div className="flex ">
-            <div className="md:flex  mt-1 md:mb-3">
-              <div className="md:w-1/3">
-                <label
-                  className="`block text-black font-bold ml-16 md:text-right mb-1 md:mb-0 pr-4 "
-                  for="inline-full-name"
-                >
-                  CustomerID
-                </label>
+        <div className="w-full">
+          <form className="px-6">
+            <div className="w-full flex ">
+              <div className="w-1/3">
+                <div>
+                  <label>CustomerId</label>
+                </div>
+                <div>
+                  <input
+                    className={`bg-gray-200  appearance-none border-2 border-gray-200 rounded w-24 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black  ${
+                      isshowError
+                        ? "border border-red-900 focus:border-red-600"
+                        : ""
+                    }`}
+                    type="text"
+                    onChange={(e) => {
+                      setFormData({ ...formData, customerId: e.target.value });
+                    }}
+                    onKeyDown={handleCustomerId}
+                    name="customerId"
+                    value={formData?.customerId}
+                  />
+                </div>
               </div>
-              <div className="md:w-2/3">
-                <input
-                  className={`bg-gray-200 ml-16 appearance-none border-2 border-gray-200 rounded w-24 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500  ${
-                    isshowError
-                      ? "border border-red-900 focus:border-red-600"
-                      : ""
-                  }`}
-                  id="inline-full-name"
-                  type="text"
-                  onChange={(e) => {
-                    setFormData({ ...formData, customerId: e.target.value });
-                  }}
-                  onKeyDown={handleCustomerId}
-                  name="customerId"
-                  value={formData?.customerId}
-                />
-              </div>
-            </div>
-            <div className=" ml-7 md:flex md:items-center md:mb-3 md:-ml-14">
-              <div className="">
-                <label
-                  className="block  text-black font-bold md:text-right mb-1 md:mb-0 pr-4"
-                  for="inline-full-name"
-                >
-                  Name
-                </label>
-              </div>
-              <div className="md:w-2/3">
-                <input
-                  className="bg-gray-200 w-44 appearance-none border-2 border-gray-200 rounded  py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  id="inline-full-name"
-                  type="text"
-                  name="name"
-                  value={formData?.name}
-                  onChange={(e) => {
-                    setFormData({ ...formData, name: e.target.value });
-                  }}
-                />
-              </div>
-            </div>
-          </div>
 
-          <div className="md:flex md:items-center ml-16 md:ml-0 mt-2 md:mt-0 md:mb-3">
-            <div className="md:w-1/3">
-              <label
-                className="block text-black font-bold md:text-right mb-1 md:mb-0  md:pr-4"
-                for="inline-full-name"
-              >
-                Mobile Num
-              </label>
+              <div className="w-2/3 pl-2">
+                <div>
+                  <label>Name</label>
+                </div>
+                <div>
+                  <input
+                    className="bg-gray-200 w-full appearance-none border-2 border-gray-200 rounded  py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black "
+                    id="inline-full-name"
+                    type="text"
+                    name="name"
+                    value={formData?.name}
+                    onChange={(e) => {
+                      setFormData({ ...formData, name: e.target.value });
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="md:w-2/3">
-              <input
-                className={`bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500  ${
-                  isshowError
-                    ? "border border-red-900 focus:border-red-600"
-                    : ""
-                }`}
-                id="inline-full-name"
-                type="text"
-                onKeyDown={handleCustomerId}
-                name="mobileNumber"
-                maxLength={10}
-                value={formData?.mobileNumber}
-                onChange={(e) => {
-                  setFormData({ ...formData, mobileNumber: e.target.value });
-                }}
-              />
-            </div>
-          </div>
 
-          <div className="md:flex md:items-center ml-14 md:ml-0 mt-2 md:mt-0 md:mb-3">
-            <div className="md:w-1/3">
-              <label
-                className="block text-black font-bold mr-0.5 md:text-right mb-1 md:mb-0 md:pr-10"
-                for="inline-full-name"
-              >
-                Address
-              </label>
+            <div className="w-full mt-2  md:mt-3">
+              <div>
+                <label>Mobile Num</label>
+                <div>
+                  <input
+                    className={`bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black  ${
+                      isshowError
+                        ? "border border-red-900 focus:border-red-600"
+                        : ""
+                    }`}
+                    id="inline-full-name"
+                    type="text"
+                    onKeyDown={handleCustomerId}
+                    name="mobileNumber"
+                    maxLength={10}
+                    value={formData?.mobileNumber}
+                    onChange={(e) => {
+                      setFormData({
+                        ...formData,
+                        mobileNumber: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-            <div className="md:w-2/3">
-              <input
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
-                id="inline-full-name"
-                type="text"
-                name="address"
-                value={formData?.address}
-                onChange={(e) => {
-                  setFormData({ ...formData, address: e.target.value });
-                }}
-              />
+            <div className="w-full mt-2 md:mt-3">
+              <div>
+                <label>Address</label>
+                <div>
+                  <input
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black "
+                    id="inline-full-name"
+                    type="text"
+                    name="address"
+                    value={formData?.address}
+                    onChange={(e) => {
+                      setFormData({ ...formData, address: e.target.value });
+                    }}
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
+
         
+
         <WashType />
         <ClothType />
       </CardContainer>

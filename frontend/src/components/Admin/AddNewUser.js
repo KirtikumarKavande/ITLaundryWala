@@ -53,7 +53,7 @@ function AddNewUser() {
     <CardContainer>
       <Card color="transparent" shadow={false} className="pb-11" >
         <form
-          className="mt-2 mb-2  w-[30vw]  mx-auto bg-white p-11 rounded-lg"
+          className="mt-2 mb-2    mx-auto bg-white p-11 rounded-lg"
           onSubmit={handleAddNewUser}
         >
           <Typography

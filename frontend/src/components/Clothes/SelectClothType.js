@@ -44,7 +44,7 @@ const SelectClothType = () => {
         value={SelectesClothType}
         onKeyDown={handleKeyDown}
         className="
-      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36 h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
+      bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36  h-8 py-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
       />
       {showSuggestion && (
         <ul className="bg-white w-[210px] space-y-2 ml-8 md:w-[200px] my-2 md:-ml-8 text-base overflow-y-scroll h-32 flex-col  border  border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
