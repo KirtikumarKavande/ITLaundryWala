@@ -11,7 +11,7 @@ const AdminNavbar = () => {
   return (
     <div>
       <div className=" h-36 md:h-52 ">
-        <div className="h-1/3   flex justify-between items-center ">
+        <div className="h-1/3   flex justify-between items-center bg-blue-600 ">
           <div>
             <a href="https://flowbite.com/" className="flex items-center">
               <img
@@ -24,7 +24,7 @@ const AdminNavbar = () => {
               </div>
             </a>
           </div>
-          <div>admin name</div>
+          <div><img width="48" height="48" className="pr-2" src="https://img.icons8.com/fluency/48/000000/administrator-male.png" alt="administrator-male"/></div>
         </div>
         <div className="flex justify-center">
           {NavList.map((item) => {

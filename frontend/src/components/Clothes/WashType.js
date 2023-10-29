@@ -12,11 +12,33 @@ const WashType = () => {
     setMenu({ ...menu, totalPrice: menu?.selectedmenu?.price * menu.weight });
   }, [menu.weight, menu.selectedmenu.price]);
   return (
-    <>
+    <div >
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div className="flex-auto md:flex mt-2 md:mt-3   w-full px-6 ">
         <label
           for="countries"
-          className=" block  md:mb-2 text-base  md:mt-2 font -medium  text-black  dark:text-white"
+          className=" block font-serif md:mb-2 text-base  md:mt-2 font -medium  text-black  dark:text-white"
         >
           Wash Type
         </label>
@@ -47,7 +69,7 @@ const WashType = () => {
       <div className="w-full flex px-6 mt-2 ">
         <div className="w-2/4">
           <div>
-            <label>Weight</label>
+            <label className="font-serif">Weight</label>
           </div>
           <div>
             <input
@@ -64,7 +86,7 @@ const WashType = () => {
 
         <div className="w-2/4 ">
           <div>
-            <label>Amount</label>
+            <label className="font-serif">Amount</label>
           </div>
           <div>
             <input
@@ -78,7 +100,7 @@ const WashType = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

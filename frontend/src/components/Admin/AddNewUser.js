@@ -51,15 +51,12 @@ function AddNewUser() {
   };
   return (
     <CardContainer>
-      <Card color="transparent" shadow={false} className="pb-11" >
+      <Card color="transparent" shadow={false} className="pb-11">
         <form
           className="mt-2 mb-2    mx-auto bg-white p-11 rounded-lg"
           onSubmit={handleAddNewUser}
         >
-          <Typography
-            variant="h4"
-            className="text-center  mb-10"
-          >
+          <Typography variant="h4" className="text-center  mb-10">
             New Customer
           </Typography>
           <div className="mb-4 flex flex-col gap-6">
