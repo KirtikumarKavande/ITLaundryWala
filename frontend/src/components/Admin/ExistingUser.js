@@ -8,6 +8,7 @@ import CardContainer from "../utilities/Card";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
+  const [TypeofSelectedWashType,setTypeofSelectedWashType]=useState()
 
   const postDataToDb = usePostDataToDb();
   const [isshowError, setIsShowError] = useState(false);
@@ -49,7 +50,7 @@ const ExistingUser = () => {
         <div className="w-full">
           <form className="px-6 md:w-[600px] ">
             <div className="w-full  flex  ">
-              <div className="w-1/3 md:w-5/12    md:flex">
+              <div className="w-1/3 md:w-5/12   md:flex md:items-center">
                 <label className="font-serif md:w-6/12  md:px-2 ">
                   Customer ID
                 </label>
@@ -72,7 +73,7 @@ const ExistingUser = () => {
                 </div>
               </div>
 
-              <div className="w-2/3 md:w-7/12  md:flex pl-2 md:pl-0">
+              <div className="w-2/3 md:w-7/12  md:flex pl-2 md:pl-0 md:items-center">
                 <label className="font-serif md:w-2/12">Name</label>
                 <div>
                   <input
@@ -89,7 +90,7 @@ const ExistingUser = () => {
               </div>
             </div>
 
-            <div className="w-full  mt-2 md:flex md:mt-3">
+            <div className="w-full  mt-2 md:flex md:mt-3 md:items-center">
               <label className="font-serif md:w-1/6 md:mx-3">Mobile Num</label>
 
               <input
@@ -113,7 +114,7 @@ const ExistingUser = () => {
               />
             </div>
 
-            <div className="w-full mt-2 md:flex md:mt-3">
+            <div className="w-full mt-2 md:flex md:mt-3 md:items-center">
               <label className="font-serif md:w-1/6 md:mx-3">Address</label>
 
               <input
@@ -127,12 +128,13 @@ const ExistingUser = () => {
                 }}
               />
             </div>
-
+           
           </form>
         </div>
+          <WashType setTypeofSelectedWashType={setTypeofSelectedWashType}/>
+            <ClothType TypeofSelectedWashType={TypeofSelectedWashType} />
 
-        <WashType />
-        <ClothType />
+      
       </CardContainer>
     </div>
   );

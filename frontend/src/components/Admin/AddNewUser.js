@@ -56,33 +56,37 @@ function AddNewUser() {
           className="mt-2 mb-2    mx-auto bg-white p-11 rounded-lg"
           onSubmit={handleAddNewUser}
         >
-          <Typography variant="h4" className="text-center  mb-10">
+          <Typography variant="h4" className="text-center  mb-10 ">
             New Customer
           </Typography>
           <div className="mb-4 flex flex-col gap-6">
             <Input
-              size="lg"
+              className="md:w-72"
               label="Customer ID"
               name="customerID"
               onChange={handleChange}
               value={getCustomerId}
             />
 
-            <Input size="lg" label="Name" name="name" onChange={handleChange} />
             <Input
-              size="lg"
+              className="md:w-72"
+              label="Name"
+              name="name"
+              onChange={handleChange}
+            />
+            <Input
               label="Mobile Number"
               name="mobileNumber"
               onChange={handleChange}
               maxLength={10}
-              className="focus:"
+              className="md:w-72"
             />
 
             <Input
-              size="lg"
               label="Address"
               name="address"
               onChange={handleChange}
+              className="md:w-72"
             />
           </div>
 

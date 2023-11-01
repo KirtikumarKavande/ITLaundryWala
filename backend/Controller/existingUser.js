@@ -14,3 +14,4 @@ const userDetails = async (req, res) => {
 };
 
 module.exports = { userDetails };
+
