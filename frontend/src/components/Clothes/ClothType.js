@@ -1,14 +1,72 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SelectClothType from "./SelectClothType";
 import { NUMBER_OF_CLOTH_TYPE } from "../utilities/constant";
 import { MdAddCircleOutline } from "react-icons/md";
 import DeliveryDates from "./DeliveryDates";
+import { useDispatch } from "react-redux";
+import { updateClothDetails } from "../../store/ClothDetailsSlice";
 
 const ClothType = (props) => {
-  const { TypeofSelectedWashType } = props;
-  console.log(">>>>>typewash", TypeofSelectedWashType);
+  const { selectedWashType, finalAmountOfWashType } = props;
+  const dispatch = useDispatch();
+  const [clothType, setClothType] = useState([]);
+  console.log("clothType", clothType);
   const [numberOFCloth, setNumberOFCloth] = useState(NUMBER_OF_CLOTH_TYPE);
+  const [totalAmount, setTotalAmount] = useState(0);
   let zIndex = NUMBER_OF_CLOTH_TYPE.length;
+  const [selectedClothTypeIndex, setSelectedClothTypeIndex] = useState(0);
+  console.log("selectedClothTypeIndex", selectedClothTypeIndex);
+  let updatedClothType = [];
+
+  const getClothTypeAndPrice = (price, clothItem) => {
+    updatedClothType = [...clothType];
+    updatedClothType[selectedClothTypeIndex] = {
+      ...updatedClothType[selectedClothTypeIndex],
+      price: price,
+    };
+    updatedClothType[selectedClothTypeIndex] = {
+      ...updatedClothType[selectedClothTypeIndex],
+      cloth: clothItem,
+    };
+    setClothType(updatedClothType);
+  };
+
+  const quantity = (index, e) => {
+    updatedClothType = [...clothType];
+
+    updatedClothType[index] = {
+      ...updatedClothType[index],
+      quantity: e.target.value,
+    };
+    updatedClothType[index] = {
+      ...updatedClothType[index],
+      amount: updatedClothType[index].quantity * updatedClothType[index].price,
+    };
+
+    console.log("kirti", updatedClothType[index].price);
+    if (clothType[index].amount) {
+      setTotalAmount(
+        totalAmount +
+          updatedClothType[index].quantity * +updatedClothType[index].price -
+          +clothType[index].amount
+      );
+    } else {
+      setTotalAmount(
+        totalAmount +
+          updatedClothType[index].quantity * +updatedClothType[index].price
+      );
+    }
+
+    setClothType(updatedClothType);
+  };
+
+  useEffect(() => {
+    console.log("running....")
+    dispatch(updateClothDetails({clothType}));
+  }, [clothType]);
+
+  console.log("clothType", clothType);
+
   return (
     <div>
       <div className="px-1 md:px-[10vw] relative overflow-x-auto shadow-md sm:rounded-lg mt-7 md:pt-12 rounded-xl">
@@ -33,7 +91,7 @@ const ClothType = (props) => {
               >
                 <span className="md:pl-8">Qty</span>
               </th>
-              {TypeofSelectedWashType === "perPiece" && (
+              {selectedWashType?.type === "perPiece" && (
                 <th
                   scope="col"
                   className=" px-4 text-white text-center md:px-auto py-3 "
@@ -51,15 +109,30 @@ const ClothType = (props) => {
                   <td
                     className="px-1  py-4 z-50 absolute"
                     style={{ zIndex: Math.abs(zIndex--) }}
+                    onFocus={() => {
+                      setSelectedClothTypeIndex(index);
+                    }}
                   >
-                    <SelectClothType key={item} />
+                    <SelectClothType
+                      key={item}
+                      selectedWashType={selectedWashType}
+                      getClothTypeAndPrice={getClothTypeAndPrice}
+                    />
                   </td>
                   <td className="px-3 md:px-auto  py-4">
-                    <input className="bg-gray-200 text-center appearance-none border-2  text-base text-black border-gray-200 rounded w-14 md:w-36 h-8 py-2  leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                    <input
+                      onChange={(e) => {
+                        quantity(index, e);
+                      }}
+                      className="bg-gray-200 text-center appearance-none border-2  text-base text-black border-gray-200 rounded w-14 md:w-36 h-8 py-2  leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                    />
                   </td>
-                  {TypeofSelectedWashType === "perPiece" && (
+                  {selectedWashType?.type === "perPiece" && (
                     <td className="px-3 md:px-auto text-center py-4">
-                      <input className="bg-gray-200 appearance-none border-2  border-gray-200 rounded md:w-36 w-14 h-8 py-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                      <input
+                        value={clothType[index]?.amount}
+                        className="bg-gray-200 text-base text-center appearance-none border-2  border-gray-200 rounded md:w-36 w-14 h-8 py-2 text-black text-md leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                      />
                     </td>
                   )}
                 </tr>
@@ -78,7 +151,11 @@ const ClothType = (props) => {
         </table>
       </div>
 
-      <DeliveryDates />
+      <DeliveryDates
+        totalAmount={totalAmount}
+        selectedWashType={selectedWashType}
+        finalAmountOfWashType={finalAmountOfWashType}
+      />
     </div>
   );
 };

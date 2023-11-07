@@ -8,7 +8,8 @@ import CardContainer from "../utilities/Card";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
-  const [TypeofSelectedWashType,setTypeofSelectedWashType]=useState()
+  const [finalAmountOfWashType, setFinalAmountOfWashType] = useState(0);
+  const [selectedWashType, setSelectedWashType] = useState();
 
   const postDataToDb = usePostDataToDb();
   const [isshowError, setIsShowError] = useState(false);
@@ -20,6 +21,8 @@ const ExistingUser = () => {
     address: "",
   });
 
+
+  
   useEffect(() => {
     setFormData(userDetails);
   }, []);
@@ -40,8 +43,6 @@ const ExistingUser = () => {
         }
       } catch (err) {}
     }
-
-    console.log(customerDetails);
   };
 
   return (
@@ -57,7 +58,7 @@ const ExistingUser = () => {
 
                 <div className="md:w-6/12">
                   <input
-                    className={`bg-gray-200  appearance-none border-2 border-gray-200 rounded w-24 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black  ${
+                    className={`bg-gray-200  appearance-none border-2 border-gray-200 rounded w-24 py-2 px-4 text-black font-base leading-tight focus:outline-none focus:bg-white focus:border-black  ${
                       isshowError
                         ? "border border-red-900 focus:border-red-600"
                         : ""
@@ -77,7 +78,7 @@ const ExistingUser = () => {
                 <label className="font-serif md:w-2/12">Name</label>
                 <div>
                   <input
-                    className="bg-gray-200 w-full md:w-9/12    appearance-none border-2 border-gray-200 rounded  py-2 px-2  text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black "
+                    className="bg-gray-200 w-full md:w-9/12    appearance-none border-2 border-gray-200 rounded  py-2 px-2  text-black font-base leading-tight focus:outline-none focus:bg-white focus:border-black "
                     id="inline-full-name"
                     type="text"
                     name="name"
@@ -94,7 +95,7 @@ const ExistingUser = () => {
               <label className="font-serif md:w-1/6 md:mx-3">Mobile Num</label>
 
               <input
-                className={`bg-gray-200 appearance-none border-2 md:w-[329px]  border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black  ${
+                className={`bg-gray-200 appearance-none border-2 md:w-[329px]  border-gray-200 rounded w-full py-2 px-4 text-black font-base leading-tight focus:outline-none focus:bg-white focus:border-black  ${
                   isshowError
                     ? "border border-red-900 focus:border-red-600"
                     : ""
@@ -118,7 +119,7 @@ const ExistingUser = () => {
               <label className="font-serif md:w-1/6 md:mx-3">Address</label>
 
               <input
-                className="bg-gray-200 appearance-none border-2 md:w-[329px]  border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-black"
+                className="bg-gray-200 appearance-none border-2 md:w-[329px]  border-gray-200 rounded w-full py-2 px-4 text-black font-base leading-tight focus:outline-none focus:bg-white focus:border-black"
                 id="inline-full-name"
                 type="text"
                 name="address"
@@ -128,13 +129,16 @@ const ExistingUser = () => {
                 }}
               />
             </div>
-           
           </form>
         </div>
-          <WashType setTypeofSelectedWashType={setTypeofSelectedWashType}/>
-            <ClothType TypeofSelectedWashType={TypeofSelectedWashType} />
-
-      
+        <WashType
+          setSelectedWashType={setSelectedWashType}
+          setFinalAmountOfWashType={setFinalAmountOfWashType}
+        />
+        <ClothType
+          selectedWashType={selectedWashType}
+          finalAmountOfWashType={finalAmountOfWashType}
+        />
       </CardContainer>
     </div>
   );

@@ -7,6 +7,7 @@ const newUser=require("./Routes/newUser")
 const user = require("./Routes/user");
 const otp = require("./Routes/otpVarification");
 const existinguser = require("./Routes/existingUser");
+const clothDetails=require("./Routes/clothDetails")
 
 
 const dotenv = require("dotenv");
@@ -23,6 +24,7 @@ app.use(user);
 app.use(otp)
 app.use(newUser)
 app.use(existinguser)
+app.use(clothDetails)
 
 // app.use(expense);
 

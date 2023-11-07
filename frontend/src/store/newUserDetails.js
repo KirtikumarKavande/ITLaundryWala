@@ -11,5 +11,5 @@ const UserDetails = createSlice({
   },
 });
 
-export const {addUserdetails}=UserDetails.actions
-export default UserDetails
+export const { addUserdetails } = UserDetails.actions;
+export default UserDetails;
