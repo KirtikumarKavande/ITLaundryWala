@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import usePostDataToDb from "../hooks/usePostDataToDb";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import WashType from "../Clothes/WashType";
 import ClothType from "../Clothes/ClothType";
 
 import CardContainer from "../utilities/Card";
+import { updateClothDetails } from "../../store/ClothDetailsSlice";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
+const dispatch= useDispatch()
+
   const [finalAmountOfWashType, setFinalAmountOfWashType] = useState(0);
   const [selectedWashType, setSelectedWashType] = useState();
 
@@ -24,6 +27,7 @@ const ExistingUser = () => {
 
   
   useEffect(() => {
+
     setFormData(userDetails);
   }, []);
   const handleCustomerId = async (e) => {
@@ -35,7 +39,9 @@ const ExistingUser = () => {
         customerDetails = { mobileNumber: +e.target.value };
       }
       try {
+        
         const res = await postDataToDb("userdetails", customerDetails);
+        dispatch(updateClothDetails({customerId:formData.customerId}))
         if (res.success) {
           setFormData(res.message);
         } else {

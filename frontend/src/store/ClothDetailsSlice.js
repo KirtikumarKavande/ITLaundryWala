@@ -5,10 +5,10 @@ const clothDetailsSlice = createSlice({
   initialState: {
     washType: "",
     weight: 0,
-    amount: 0,
     clothType: { clothName: "", quantity: 0 },
     pickupDate: "",
     deliveryDate: "",
+    payment: false,
   },
   reducers: {
     updateClothDetails(state, action) {

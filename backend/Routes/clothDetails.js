@@ -1,8 +1,8 @@
 const express = require("express");
-const cloth = require("../Controller/clothDetails");
+const cloth = require("../Controller/orderDetails");
+const auth = require("../middleware/Auth");
 
 const router = express.Router();
 
-//add auth middalware
-router.post("/clothdetails", cloth.clothDetails);
+router.post("/orderdetails", auth.authenticate, cloth.orderDetails);
 module.exports = router;

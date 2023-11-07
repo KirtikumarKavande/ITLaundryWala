@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
+import usePostDataToDb from "../hooks/usePostDataToDb";
+import InvoiceBarcode from "./InvoiceBarcode";
+import ReviewOrder from "../Admin/ReviewOrder";
 
 const DeliveryDates = (props) => {
   const { totalAmount, selectedWashType, finalAmountOfWashType } = props;
- const dispatch=useDispatch()
+  const dispatch = useDispatch();
+  const postDataToDB = usePostDataToDb();
   console.log("selectedWashType", selectedWashType);
   const currentDate = new Date();
 
@@ -14,21 +18,28 @@ const DeliveryDates = (props) => {
     }-${currentDate.getFullYear()}`
   );
 
-  const pickupDate=()=>{
-  return  `${currentDate.getDate()}-${
+  const pickupDate = () => {
+    return `${currentDate.getDate()}-${
       currentDate.getMonth() + 1
-    }-${currentDate.getFullYear()}`
-  }
-  
+    }-${currentDate.getFullYear()}`;
+  };
 
-  useEffect(()=>{
-    dispatch(updateClothDetails({pickupDate:pickupDate(),deliveryDate:deliveryDate,amountForPerPeice:totalAmount},))
-  },[deliveryDate,totalAmount])
+  useEffect(() => {
+    dispatch(
+      updateClothDetails({
+        pickupDate: pickupDate(),
+        deliveryDate: deliveryDate,
+        amountForPerPeice: totalAmount,
+      })
+    );
+  }, [deliveryDate, totalAmount]);
 
   //  19/10/2023
   const ChangeDeliveryDate = (e) => {
     setDeliveryDate(e.target.value);
   };
+
+  
   return (
     <div>
       <div className="w-full flex pt-3 px-5 md:px-60">
@@ -69,7 +80,11 @@ const DeliveryDates = (props) => {
           </div>
           <div>
             <input
-              value={selectedWashType?.type === "perPiece" ? totalAmount : finalAmountOfWashType}
+              value={
+                selectedWashType?.type === "perPiece"
+                  ? totalAmount
+                  : finalAmountOfWashType
+              }
               className="bg-gray-200   md:w-[120px] md:text-center w-[20vw] appearance-none border-2 border-gray-200 rounded  py-2 px-2 text-black font-base leading-tight focus:outline-none focus:bg-white focus:border-black "
               id="inline-full-name"
               type="text"
@@ -78,14 +93,8 @@ const DeliveryDates = (props) => {
           </div>
         </div>
       </div>
-      <div className=" flex  justify-center space-x-12 md:space-x-6  pb-5 ">
-        <button className=" text-sm bg-white hover:bg-blue-500 text-black font-semibold hover:text-white py-2 px-6 border border-blue-500 hover:border-transparent rounded">
-          INVOICE
-        </button>
-        <button className="text-sm bg-white hover:bg-blue-500 text-black font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-          BARCODE
-        </button>
-      </div>
+     <InvoiceBarcode/>
+     <ReviewOrder/>
     </div>
   );
 };
