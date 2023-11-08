@@ -1,94 +1,89 @@
-import React from 'react'
+import React from "react";
+import { FaRegEye } from "react-icons/fa";
 
 const ReviewOrder = () => {
   return (
-    
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="px-6 py-3">
-                    Product name
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Color
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-               
-            </tr>
+    <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-[10vw]">
+      <table className="w-full text-sm text-left text-gray-500  ">
+        <thead className="text-xs text-white uppercase  bg-blue-600 dark:bg-gray-700 dark:text-gray-400">
+          <tr className="text-white ">
+            <th scope="col" className="px-6 py-3 text-base">
+              Order
+            </th>
+            <th scope="col" className="px-6 py-3 text-base">
+              Review
+            </th>
+            <th scope="col" className="px-6 py-3 text-base">
+              Amount
+            </th>
+            <th scope="col" className="px-6 py-3 text-base">
+              Payment
+            </th>
+            <th scope="col" className="px-6 py-3 text-base">
+              Status
+            </th>
+          </tr>
         </thead>
-        <tbody>
-            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-               
-            </tr>
-            <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-               
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                
-            </tr>
-            <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Google Pixel Phone
-                </th>
-                <td class="px-6 py-4">
-                    Gray
-                </td>
-                <td class="px-6 py-4">
-                    Phone
-                </td>
-                <td class="px-6 py-4">
-                    $799
-                </td>
-                
-            </tr>
-            
+        <tbody className="text-white">
+          <tr className=" bg-blue-500 border-b">
+            <td className="px-6 py-4 text-base font-semibold">Order 1</td>
+
+            <td className="px-6 py-4 text-center">
+              <FaRegEye size={25} />
+            </td>
+            <td className="px-6 py-4 font-bold text-lg text-white">
+              
+              &nbsp; &#x20B9; 250
+            </td>
+            <td className="px-6 py-4">
+              <button className=" text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
+                Paid
+              </button>
+            </td>
+            <td className="px-6 py-4 font-bold text-base">UNDELIVERED</td>
+          </tr>
+          <tr className=" border-b bg-[#3D9FE6]">
+            <td className="px-6 py-4 font-semibold text-base">Order 2</td>
+
+            <td className="px-6 py-4 text-center">
+              <FaRegEye size={25} />
+            </td>
+
+            <td className="px-6 py-4 font-bold text-lg text-white">
+              
+              &nbsp; &#x20B9; 250
+            </td>
+            <td className="px-6 py-4">
+              <button className=" text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
+                Paid
+              </button>
+            </td>
+            <td className="px-6 py-4 text-black font-bold text-base ">
+              DELIVERED
+            </td>
+          </tr>
+          <tr className="bg-blue-500 border-b">
+            <td className="px-6 py-4 font-semibold text-base">Order 3</td>
+
+            <td className="px-6 py-4 text-center">
+              <FaRegEye size={25} />
+            </td>
+
+            <td className="px-6 py-4 font-bold text-lg text-white">
+              
+              &nbsp; &#x20B9; 250
+            </td>
+            <td className="px-6 py-4">
+              <button className=" text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white  py-2 px-8 border border-blue-500 hover:border-transparent rounded">
+                Paid
+              </button>
+            </td>
+            <td className="px-6 py-4 font-bold text-base">UNDELIVERED</td>
+          </tr>
         </tbody>
-    </table>
-</div>
+      </table>
+    </div>
+  );
+};
 
-  )
-}
-
-export default ReviewOrder
+export default ReviewOrder;

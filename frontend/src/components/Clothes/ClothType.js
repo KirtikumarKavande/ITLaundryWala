@@ -43,17 +43,16 @@ const ClothType = (props) => {
       amount: updatedClothType[index].quantity * updatedClothType[index].price,
     };
 
-    console.log("kirti", updatedClothType[index].price);
-    if (clothType[index].amount) {
+    if (clothType[index]?.amount) {
       setTotalAmount(
         totalAmount +
           updatedClothType[index].quantity * +updatedClothType[index].price -
-          +clothType[index].amount
+          +clothType[index]?.amount
       );
     } else {
       setTotalAmount(
         totalAmount +
-          updatedClothType[index].quantity * +updatedClothType[index].price
+          updatedClothType[index]?.quantity * +updatedClothType[index].price
       );
     }
 
@@ -61,8 +60,8 @@ const ClothType = (props) => {
   };
 
   useEffect(() => {
-    console.log("running....")
-    dispatch(updateClothDetails({clothType}));
+    console.log("running....");
+    dispatch(updateClothDetails({ clothType }));
   }, [clothType]);
 
   console.log("clothType", clothType);
