@@ -6,6 +6,7 @@ import ClothType from "../Clothes/ClothType";
 
 import CardContainer from "../utilities/Card";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
+import  { updateExistingUserDetails } from "../../store/UserDetails";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
@@ -24,7 +25,7 @@ const dispatch= useDispatch()
     address: "",
   });
 
-
+  
   
   useEffect(() => {
 
@@ -43,6 +44,8 @@ const dispatch= useDispatch()
         const res = await postDataToDb("userdetails", customerDetails);
         dispatch(updateClothDetails({customerId:formData.customerId}))
         if (res.success) {
+    dispatch(updateExistingUserDetails(res.message))
+
           setFormData(res.message);
         } else {
           setIsShowError(true);

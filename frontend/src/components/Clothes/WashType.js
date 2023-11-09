@@ -1,16 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { washMenu } from "../utilities/washmenu";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
 
 const WashType = (props) => {
   const { setSelectedWashType, setFinalAmountOfWashType } = props;
+  const orderHistory = useSelector((store) => store.orderHistoryDetails);
+
   const dispatch = useDispatch();
   const [menu, setMenu] = useState({
     weight: null,
     selectedmenu: {},
-    totalPrice: 0,
+    totalPrice: null,
   });
+
+
+
+  // useEffect(()=>{
+  //   if(orderHistory.isShowOrderHistory){
+  // setMenu({totalPrice:122,weight:123,selectedmenu:{item:"SHOES"}})
+
+  //   }
+  // },[orderHistory.isShowOrderHistory])
 
   useEffect(() => {
     dispatch(
@@ -24,7 +35,6 @@ const WashType = (props) => {
 
   useEffect(() => {
     const selectedMenuPrice = +menu.selectedmenu.price;
-    const selectedMenuItem = menu.selectedmenu.item;
 
     const newTotalPrice = selectedMenuPrice * menu.weight || 0;
 
@@ -35,6 +45,8 @@ const WashType = (props) => {
 
     setSelectedWashType(menu.selectedmenu);
   }, [menu.weight, menu.selectedmenu?.price, menu.selectedmenu?.item]);
+
+  console.log("watchMenu", menu);
 
   return (
     <div>
@@ -54,6 +66,7 @@ const WashType = (props) => {
 
             setMenu({ ...menu, selectedmenu: selectedMenuDetails });
           }}
+          value={menu?.selectedmenu?.item}
           className="bg-gray-200 w-full md:w-[329px] md:ml-4  border   border-gray-300 text-black font-base  rounded-md focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option>Choose a Wash Type</option>
@@ -81,7 +94,7 @@ const WashType = (props) => {
               }}
               style={{ "-webkit-appearance": "none" }}
               name="weightw"
-              value={menu.weight}
+              value={menu?.weight}
               type="text"
             />
           </div>

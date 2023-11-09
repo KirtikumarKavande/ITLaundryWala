@@ -1,87 +1,106 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
+import useGetDataFromDB from "../hooks/useGetDataFromDb";
+import { useDispatch, useSelector } from "react-redux";
+import usePostDataToDb from "../hooks/usePostDataToDb";
+import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const ReviewOrder = () => {
+  const customerDetails = useSelector((state) => state.existingUserDetails);
+  const dispatch = useDispatch();
+  const getDataFromDB = useGetDataFromDB();
+  const postDataToDb = usePostDataToDb();
+  const [orderDetails, setOrderDetails] = useState([]);
+  const fetchData = async () => {
+    try {
+      const data = await getDataFromDB(
+        `orderdetails/${customerDetails?.customerId}`
+      );
+      setOrderDetails(data.message);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (customerDetails.customerId > 0) {
+      fetchData();
+    }
+  }, [customerDetails.customerId]);
+
+  const deliveryStatus = (item) => {
+    setOrderDetails([...orderDetails]);
+    item.delivered = false;
+    postDataToDb(`orderdetails/${item._id}`, {});
+  };
+
+  const ViewUserHistory = (item) => {
+    dispatch(updateOrderHistoryDetails({ ...item, isShowOrderHistory: true }));
+  };
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-[10vw]">
-      <table className="w-full text-sm text-left text-gray-500  ">
-        <thead className="text-xs text-white uppercase  bg-blue-600 dark:bg-gray-700 dark:text-gray-400">
-          <tr className="text-white ">
-            <th scope="col" className="px-6 py-3 text-base">
-              Order
-            </th>
-            <th scope="col" className="px-6 py-3 text-base">
-              Review
-            </th>
-            <th scope="col" className="px-6 py-3 text-base">
-              Amount
-            </th>
-            <th scope="col" className="px-6 py-3 text-base">
-              Payment
-            </th>
-            <th scope="col" className="px-6 py-3 text-base">
-              Status
-            </th>
-          </tr>
-        </thead>
-        <tbody className="text-white">
-          <tr className=" bg-blue-500 border-b">
-            <td className="px-6 py-4 text-base font-semibold">Order 1</td>
+      {orderDetails.length === 0 ? (
+        <div className="text-center mb-2"> NO Order Details Found </div>
+      ) : (
+        <table className="w-full text-sm text-left text-gray-500  ">
+          <thead className="text-xs text-white uppercase  bg-blue-600 dark:bg-gray-700 dark:text-gray-400">
+            <tr className="text-white ">
+              <th scope="col" className="px-6 py-3 text-base">
+                Order
+              </th>
+              <th scope="col" className="px-6 py-3 text-base">
+                Review
+              </th>
+              <th scope="col" className="px-6 py-3 text-base">
+                Amount
+              </th>
+              <th scope="col" className="px-6 py-3 text-base">
+                Payment
+              </th>
+              <th scope="col" className="px-6 py-3 text-base">
+                Status
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-white">
+            {orderDetails.map((item, index) => (
+              <tr key={item._id} className=" bg-blue-500 border-b">
+                <td className="px-6 py-4 text-base font-semibold">
+                  Order{index + 1}
+                </td>
 
-            <td className="px-6 py-4 text-center">
-              <FaRegEye size={25} />
-            </td>
-            <td className="px-6 py-4 font-bold text-lg text-white">
-              
-              &nbsp; &#x20B9; 250
-            </td>
-            <td className="px-6 py-4">
-              <button className=" text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
-                Paid
-              </button>
-            </td>
-            <td className="px-6 py-4 font-bold text-base">UNDELIVERED</td>
-          </tr>
-          <tr className=" border-b bg-[#3D9FE6]">
-            <td className="px-6 py-4 font-semibold text-base">Order 2</td>
-
-            <td className="px-6 py-4 text-center">
-              <FaRegEye size={25} />
-            </td>
-
-            <td className="px-6 py-4 font-bold text-lg text-white">
-              
-              &nbsp; &#x20B9; 250
-            </td>
-            <td className="px-6 py-4">
-              <button className=" text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
-                Paid
-              </button>
-            </td>
-            <td className="px-6 py-4 text-black font-bold text-base ">
-              DELIVERED
-            </td>
-          </tr>
-          <tr className="bg-blue-500 border-b">
-            <td className="px-6 py-4 font-semibold text-base">Order 3</td>
-
-            <td className="px-6 py-4 text-center">
-              <FaRegEye size={25} />
-            </td>
-
-            <td className="px-6 py-4 font-bold text-lg text-white">
-              
-              &nbsp; &#x20B9; 250
-            </td>
-            <td className="px-6 py-4">
-              <button className=" text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white  py-2 px-8 border border-blue-500 hover:border-transparent rounded">
-                Paid
-              </button>
-            </td>
-            <td className="px-6 py-4 font-bold text-base">UNDELIVERED</td>
-          </tr>
-        </tbody>
-      </table>
+                <td
+                  className="px-6 py-4 text-center "
+                  onClick={() => {
+                    ViewUserHistory(item);
+                  }}
+                >
+                  <FaRegEye size={25} />
+                </td>
+                <td className="px-6 py-4 font-bold text-lg text-white">
+                  &nbsp; &#x20B9;{" "}
+                  {item.amountForPerKg !== 0 || null
+                    ? item?.amountForPerKg
+                    : item?.amountForPerPeice}
+                </td>
+                <td
+                  className="px-6 py-4"
+                  onClick={() => {
+                    deliveryStatus(item);
+                  }}
+                >
+                  <button className="text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
+                    Paid
+                  </button>
+                </td>
+                <td className="px-6 py-4 font-bold text-base">
+                  {item?.delivered ? "DELIVERED" : "UNDELIVERED"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const RootComponent = () => {
   const user = useSelector((store) => store.user.isLoggedIn)
-  console.log("user status",user)
+  // console.log("user status",user)
   return (
     <>
       {/* {user !== "user" && <Navbar />} */}

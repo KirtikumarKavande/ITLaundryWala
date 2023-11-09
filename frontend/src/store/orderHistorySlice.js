@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const clothDetailsSlice = createSlice({
-  name: "userDetails",
+const OrderHistorySlice = createSlice({
+  name: "orderHistory",
   initialState: {
     washType: "",
     weight: 0,
@@ -9,13 +9,14 @@ const clothDetailsSlice = createSlice({
     pickupDate: "",
     deliveryDate: "",
     delivered: false,
+    isShowOrderHistory:false
   },
   reducers: {
-    updateClothDetails(state, action) {
+    updateOrderHistoryDetails(state, action) {
       return { ...state, ...action.payload };
     },
   },
 });
 
-export const { updateClothDetails } = clothDetailsSlice.actions;
-export default clothDetailsSlice;
+export const { updateOrderHistoryDetails } = OrderHistorySlice.actions;
+export default OrderHistorySlice;

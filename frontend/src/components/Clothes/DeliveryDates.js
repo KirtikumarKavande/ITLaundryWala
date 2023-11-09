@@ -9,7 +9,6 @@ const DeliveryDates = (props) => {
   const { totalAmount, selectedWashType, finalAmountOfWashType } = props;
   const dispatch = useDispatch();
   const postDataToDB = usePostDataToDb();
-  console.log("selectedWashType", selectedWashType);
   const currentDate = new Date();
 
   const [deliveryDate, setDeliveryDate] = useState(

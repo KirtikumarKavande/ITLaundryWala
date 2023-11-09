@@ -10,12 +10,10 @@ const ClothType = (props) => {
   const { selectedWashType, finalAmountOfWashType } = props;
   const dispatch = useDispatch();
   const [clothType, setClothType] = useState([]);
-  console.log("clothType", clothType);
   const [numberOFCloth, setNumberOFCloth] = useState(NUMBER_OF_CLOTH_TYPE);
   const [totalAmount, setTotalAmount] = useState(0);
   let zIndex = NUMBER_OF_CLOTH_TYPE.length;
   const [selectedClothTypeIndex, setSelectedClothTypeIndex] = useState(0);
-  console.log("selectedClothTypeIndex", selectedClothTypeIndex);
   let updatedClothType = [];
 
   const getClothTypeAndPrice = (price, clothItem) => {
@@ -60,11 +58,9 @@ const ClothType = (props) => {
   };
 
   useEffect(() => {
-    console.log("running....");
     dispatch(updateClothDetails({ clothType }));
   }, [clothType]);
 
-  console.log("clothType", clothType);
 
   return (
     <div>

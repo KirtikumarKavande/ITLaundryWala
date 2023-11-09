@@ -11,7 +11,8 @@ const orderDetailsSchema = new Schema({
   amountForPerKg: { type: Number },
   amountForPerPeice: { type: Number },
   customerId: { type: String },
-  payment: { type: Boolean, required: true },
+  delivered: { type: Boolean, required: true },
+  
 });
 
 module.exports = mongoose.model("orderDetails", orderDetailsSchema);
