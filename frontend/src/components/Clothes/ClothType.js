@@ -3,11 +3,15 @@ import SelectClothType from "./SelectClothType";
 import { NUMBER_OF_CLOTH_TYPE } from "../utilities/constant";
 import { MdAddCircleOutline } from "react-icons/md";
 import DeliveryDates from "./DeliveryDates";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
+import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const ClothType = (props) => {
   const { selectedWashType, finalAmountOfWashType } = props;
+  const orderHistory = useSelector((store) => store.orderHistoryDetails);
+
+
   const dispatch = useDispatch();
   const [clothType, setClothType] = useState([]);
   const [numberOFCloth, setNumberOFCloth] = useState(NUMBER_OF_CLOTH_TYPE);
@@ -62,6 +66,16 @@ const ClothType = (props) => {
   }, [clothType]);
 
 
+
+useEffect(()=>{
+  if(orderHistory?.clothType?.length>0){
+    setClothType(orderHistory?.clothType)
+    dispatch(updateOrderHistoryDetails({ isShowOrderHistory: false }));
+
+  }
+},[orderHistory.isShowOrderHistory])
+
+console.log("clothTypekk",clothType)
   return (
     <div>
       <div className="px-1 md:px-[10vw] relative overflow-x-auto shadow-md sm:rounded-lg mt-7 md:pt-12 rounded-xl">
@@ -86,7 +100,7 @@ const ClothType = (props) => {
               >
                 <span className="md:pl-8">Qty</span>
               </th>
-              {selectedWashType?.type === "perPiece" && (
+              {(selectedWashType?.type||orderHistory?.washType?.type) === "perPiece" && (
                 <th
                   scope="col"
                   className=" px-4 text-white text-center md:px-auto py-3 "
@@ -97,7 +111,7 @@ const ClothType = (props) => {
             </tr>
           </thead>
           <tbody>
-            {numberOFCloth.map((item, index) => {
+            {numberOFCloth?.map((item, index) => {
               return (
                 <tr className="relative text-black bg-blue-500 border-b">
                   <td className="px-2 md:text-center py-4">{item}</td>
@@ -112,17 +126,20 @@ const ClothType = (props) => {
                       key={item}
                       selectedWashType={selectedWashType}
                       getClothTypeAndPrice={getClothTypeAndPrice}
+                      value={clothType[index]?.cloth}
                     />
                   </td>
                   <td className="px-3 md:px-auto  py-4">
                     <input
+                        value={clothType[index]?.quantity}
+
                       onChange={(e) => {
                         quantity(index, e);
                       }}
                       className="bg-gray-200 text-center appearance-none border-2  text-base text-black border-gray-200 rounded w-14 md:w-36 h-8 py-2  leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     />
                   </td>
-                  {selectedWashType?.type === "perPiece" && (
+                  {(selectedWashType?.type||orderHistory?.washType?.type) === "perPiece" && (
                     <td className="px-3 md:px-auto text-center py-4">
                       <input
                         value={clothType[index]?.amount}

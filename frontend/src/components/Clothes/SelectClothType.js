@@ -4,8 +4,7 @@ import { Household } from "../utilities/Houeshold";
 import { Shoes } from "../utilities/Shoes";
 import { Press } from "../utilities/Press";
 import { DryCleaning } from "../utilities/DryCleaning";
-const SelectClothType = ({ selectedWashType,getClothTypeAndPrice }) => {
-
+const SelectClothType = ({ selectedWashType, getClothTypeAndPrice, value }) => {
   const [menuCard, setMenuCard] = useState([]);
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,7 +12,6 @@ const SelectClothType = ({ selectedWashType,getClothTypeAndPrice }) => {
   const [SelectesClothType, setSelectesClothType] = useState("");
 
   useEffect(() => {
-
     if (selectedWashType?.item === "DRY CLEANING") {
       setMenuCard(DryCleaning);
     } else if (selectedWashType?.item === "PRESS") {
@@ -62,7 +60,7 @@ const SelectClothType = ({ selectedWashType,getClothTypeAndPrice }) => {
           setShowSuggestion(true);
         }}
         onChange={handleChangeForClothType}
-        value={SelectesClothType}
+        value={SelectesClothType||value}
         onKeyDown={handleKeyDown}
         className="
       bg-gray-200  appearance-none border-2 text-center   border-gray-200 rounded w-36  h-8 py-2  text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500 "
@@ -75,7 +73,7 @@ const SelectClothType = ({ selectedWashType,getClothTypeAndPrice }) => {
                 onClick={() => {
                   setSelectesClothType(item.type);
                   setShowSuggestion(false);
-                  getClothTypeAndPrice(item.price,item.type)
+                  getClothTypeAndPrice(item.price, item.type);
                 }}
                 className={` h-5 pl-2 cursor-pointer ${
                   activeIndex === index ? "bg-orange-300" : ""

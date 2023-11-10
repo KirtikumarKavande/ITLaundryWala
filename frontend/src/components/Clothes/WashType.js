@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { washMenu } from "../utilities/washmenu";
 import { useDispatch, useSelector } from "react-redux";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
+import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const WashType = (props) => {
   const { setSelectedWashType, setFinalAmountOfWashType } = props;
@@ -14,14 +15,16 @@ const WashType = (props) => {
     totalPrice: null,
   });
 
-
-
-  // useEffect(()=>{
-  //   if(orderHistory.isShowOrderHistory){
-  // setMenu({totalPrice:122,weight:123,selectedmenu:{item:"SHOES"}})
-
-  //   }
-  // },[orderHistory.isShowOrderHistory])
+  useEffect(() => {
+    if (orderHistory.isShowOrderHistory) {
+      setMenu({
+        totalPrice: orderHistory?.amountForPerKg,
+        weight: orderHistory?.weight || 0,
+        selectedmenu: { item: orderHistory?.washType?.item },
+      });
+      dispatch(updateOrderHistoryDetails({ isShowOrderHistory: false }));
+    }
+  }, [orderHistory.isShowOrderHistory]);
 
   useEffect(() => {
     dispatch(
@@ -34,19 +37,19 @@ const WashType = (props) => {
   }, [dispatch, menu.selectedmenu, menu.weight, menu.totalPrice]);
 
   useEffect(() => {
-    const selectedMenuPrice = +menu.selectedmenu.price;
+    // if (menu?.selectedmenu?.price > 0) {
+      const selectedMenuPrice = +menu.selectedmenu.price;
 
-    const newTotalPrice = selectedMenuPrice * menu.weight || 0;
+      const newTotalPrice = selectedMenuPrice * menu.weight || 0;
 
-    if (newTotalPrice !== menu.totalPrice) {
-      setFinalAmountOfWashType(newTotalPrice);
-      setMenu({ ...menu, totalPrice: newTotalPrice });
-    }
+      if (newTotalPrice !== menu.totalPrice) {
+        setFinalAmountOfWashType(newTotalPrice);
+        setMenu({ ...menu, totalPrice: newTotalPrice });
+      }
 
-    setSelectedWashType(menu.selectedmenu);
+      setSelectedWashType(menu.selectedmenu);
+    // }
   }, [menu.weight, menu.selectedmenu?.price, menu.selectedmenu?.item]);
-
-  console.log("watchMenu", menu);
 
   return (
     <div>

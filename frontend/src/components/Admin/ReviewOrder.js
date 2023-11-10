@@ -28,15 +28,18 @@ const ReviewOrder = () => {
     }
   }, [customerDetails.customerId]);
 
-  const deliveryStatus = (item) => {
-    setOrderDetails([...orderDetails]);
-    item.delivered = false;
+  const deliveryStatus = (item, index) => {
+    let updatedOrderDetails = [...orderDetails];
+    updatedOrderDetails[index] = { ...item, delivered: true };
+    setOrderDetails(updatedOrderDetails);
     postDataToDb(`orderdetails/${item._id}`, {});
   };
 
   const ViewUserHistory = (item) => {
     dispatch(updateOrderHistoryDetails({ ...item, isShowOrderHistory: true }));
   };
+
+ 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-[10vw]">
       {orderDetails.length === 0 ? (
@@ -63,7 +66,7 @@ const ReviewOrder = () => {
             </tr>
           </thead>
           <tbody className="text-white">
-            {orderDetails.map((item, index) => (
+            {orderDetails?.map((item, index) => (
               <tr key={item._id} className=" bg-blue-500 border-b">
                 <td className="px-6 py-4 text-base font-semibold">
                   Order{index + 1}
@@ -75,7 +78,10 @@ const ReviewOrder = () => {
                     ViewUserHistory(item);
                   }}
                 >
-                  <FaRegEye size={25} />
+                  <FaRegEye
+                    size={25}
+                    className="hover:text-black hover:font-bold cursor-pointer"
+                  />
                 </td>
                 <td className="px-6 py-4 font-bold text-lg text-white">
                   &nbsp; &#x20B9;{" "}
@@ -86,7 +92,7 @@ const ReviewOrder = () => {
                 <td
                   className="px-6 py-4"
                   onClick={() => {
-                    deliveryStatus(item);
+                    deliveryStatus(item, index);
                   }}
                 >
                   <button className="text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
