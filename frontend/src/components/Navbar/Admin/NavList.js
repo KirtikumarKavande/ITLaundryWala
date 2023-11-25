@@ -30,6 +30,9 @@ export const NavList=[
         path:"/history",
         icon:<MdWorkHistory size={30}/>
     },
+    // {
+    //     path:"/invoice",
+    // }
 
 ]
 

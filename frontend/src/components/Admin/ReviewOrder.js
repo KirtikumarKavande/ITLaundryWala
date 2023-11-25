@@ -95,8 +95,8 @@ const ReviewOrder = () => {
                     deliveryStatus(item, index);
                   }}
                 >
-                  <button className="text-base bg-white hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded">
-                    Paid
+                  <button className={`text-base  ${item?.delivered?"bg-[#98E4FF]":"bg-white"}  hover:bg-red-400 text-black font-semibold hover:text-white py-2 px-8 border border-blue-500 hover:border-transparent rounded`}>
+                    {item.delivered?"Paid":"Pay"}
                   </button>
                 </td>
                 <td className="px-6 py-4 font-bold text-base">

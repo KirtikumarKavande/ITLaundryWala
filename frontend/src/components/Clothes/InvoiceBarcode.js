@@ -1,14 +1,14 @@
 import React from "react";
 import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useSelector } from "react-redux";
-import ReviewOrder from "../Admin/ReviewOrder";
 
 const InvoiceBarcode = () => {
   const postDataToDB = usePostDataToDb();
   const clothDetails = useSelector((store) => store.clothDetails);
 
-  const handleInvoice = () => {
-    postDataToDB("orderdetails", clothDetails);
+  const handleInvoice = async() => {
+   const res=await postDataToDB("orderdetails", clothDetails);
+   
   };
   return (
     <div className=" flex  justify-center space-x-12 md:space-x-6  pb-5 ">
