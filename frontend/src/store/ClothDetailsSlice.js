@@ -9,6 +9,8 @@ const clothDetailsSlice = createSlice({
     pickupDate: "",
     deliveryDate: "",
     delivered: false,
+    amountForPerKg:null,
+    amountForPerPeice: null
   },
   reducers: {
     updateClothDetails(state, action) {

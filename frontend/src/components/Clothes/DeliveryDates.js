@@ -1,33 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
-import usePostDataToDb from "../hooks/usePostDataToDb";
 import InvoiceBarcode from "./InvoiceBarcode";
 import ReviewOrder from "../Admin/ReviewOrder";
 import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const DeliveryDates = (props) => {
   const { totalAmount, selectedWashType, finalAmountOfWashType } = props;
+
   const currentDate = new Date();
 
   const dispatch = useDispatch();
   const orderHistory = useSelector((store) => store.orderHistoryDetails);
 
-const [pickupDate,setPickupDate]=useState(`${currentDate.getDate()}-${
-  currentDate.getMonth() + 1
-}-${currentDate.getFullYear()}`)
+  const [pickupDate, setPickupDate] = useState(
+    `${currentDate.getDate()}-${
+      currentDate.getMonth() + 1
+    }-${currentDate.getFullYear()}`
+  );
 
   const [deliveryDate, setDeliveryDate] = useState(
     `${currentDate.getDate() + 2}-${
       currentDate.getMonth() + 1
     }-${currentDate.getFullYear()}`
   );
-
-  // const pickupDate = () => {
-  //   return `${currentDate.getDate()}-${
-  //     currentDate.getMonth() + 1
-  //   }-${currentDate.getFullYear()}`;
-  // };
 
   useEffect(() => {
     dispatch(
@@ -46,8 +42,8 @@ const [pickupDate,setPickupDate]=useState(`${currentDate.getDate()}-${
 
   useEffect(() => {
     if (orderHistory?.deliveryDate) {
-      setDeliveryDate(orderHistory?.deliveryDate)
-      setPickupDate(orderHistory?.pickupDate)
+      setDeliveryDate(orderHistory?.deliveryDate);
+      setPickupDate(orderHistory?.pickupDate);
       dispatch(updateOrderHistoryDetails({ isShowOrderHistory: false }));
     }
   }, [orderHistory.isShowOrderHistory]);

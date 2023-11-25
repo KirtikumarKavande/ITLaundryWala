@@ -37,7 +37,7 @@ const WashType = (props) => {
   }, [dispatch, menu.selectedmenu, menu.weight, menu.totalPrice]);
 
   useEffect(() => {
-    // if (menu?.selectedmenu?.price > 0) {
+    if (menu?.selectedmenu?.price > 0) {
       const selectedMenuPrice = +menu.selectedmenu.price;
 
       const newTotalPrice = selectedMenuPrice * menu.weight || 0;
@@ -46,9 +46,8 @@ const WashType = (props) => {
         setFinalAmountOfWashType(newTotalPrice);
         setMenu({ ...menu, totalPrice: newTotalPrice });
       }
-
-      setSelectedWashType(menu.selectedmenu);
-    // }
+    }
+    setSelectedWashType(menu?.selectedmenu);
   }, [menu.weight, menu.selectedmenu?.price, menu.selectedmenu?.item]);
 
   return (

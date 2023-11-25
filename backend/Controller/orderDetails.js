@@ -1,7 +1,6 @@
 const OrderDetails = require("../models/orderDetails");
 
 const orderDetails = async (req, res) => {
-
   try {
     Order = new OrderDetails({
       ...req.body,
@@ -27,7 +26,16 @@ const getOrderDetails = async (req, res) => {
     const urlParams = req.params;
 
     if (+urlParams.id >= 0) {
-      const data = await OrderDetails.find({ customerId: urlParams.id });
+      let data = await OrderDetails.find({ customerId: urlParams.id }).sort({
+        createdAt: 1,
+      });
+      if (data.length > 4) {
+        const oldestOrder = data.shift();
+        await OrderDetails.findByIdAndDelete(oldestOrder._id);
+      }
+
+      data = data.reverse();
+
       res.status(200).json({
         statusCode: 200,
         success: true,
@@ -38,8 +46,8 @@ const getOrderDetails = async (req, res) => {
     console.log(err);
     res.status(400).json({
       statusCode: 400,
-      success: true,
-      message: "Something Went Wrong Try Again",
+      success: false,
+      message: "Something Went Wrong. Please Try Again.",
     });
   }
 };

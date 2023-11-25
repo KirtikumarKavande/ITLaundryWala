@@ -38,8 +38,8 @@ const ReviewOrder = () => {
   const ViewUserHistory = (item) => {
     dispatch(updateOrderHistoryDetails({ ...item, isShowOrderHistory: true }));
   };
+  console.log("orderDetails", orderDetails);
 
- 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-[10vw]">
       {orderDetails.length === 0 ? (
@@ -85,9 +85,9 @@ const ReviewOrder = () => {
                 </td>
                 <td className="px-6 py-4 font-bold text-lg text-white">
                   &nbsp; &#x20B9;{" "}
-                  {item.amountForPerKg !== 0 || null
-                    ? item?.amountForPerKg
-                    : item?.amountForPerPeice}
+                  {item.amountForPerPeice > 0 
+                    ? item?.amountForPerPeice
+                    : item?.amountForPerKg}
                 </td>
                 <td
                   className="px-6 py-4"

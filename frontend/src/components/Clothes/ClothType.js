@@ -11,7 +11,6 @@ const ClothType = (props) => {
   const { selectedWashType, finalAmountOfWashType } = props;
   const orderHistory = useSelector((store) => store.orderHistoryDetails);
 
-
   const dispatch = useDispatch();
   const [clothType, setClothType] = useState([]);
   const [numberOFCloth, setNumberOFCloth] = useState(NUMBER_OF_CLOTH_TYPE);
@@ -63,19 +62,16 @@ const ClothType = (props) => {
 
   useEffect(() => {
     dispatch(updateClothDetails({ clothType }));
-  }, [clothType]);
+  }, [clothType,dispatch]);
 
+  useEffect(() => {
+    if (orderHistory?.clothType?.length > 0) {
+      setClothType(orderHistory?.clothType);
+      dispatch(updateOrderHistoryDetails({ isShowOrderHistory: false }));
+    }
+  }, [orderHistory.isShowOrderHistory]);
 
-
-useEffect(()=>{
-  if(orderHistory?.clothType?.length>0){
-    setClothType(orderHistory?.clothType)
-    dispatch(updateOrderHistoryDetails({ isShowOrderHistory: false }));
-
-  }
-},[orderHistory.isShowOrderHistory])
-
-console.log("clothTypekk",clothType)
+  console.log("clothTypekk", clothType);
   return (
     <div>
       <div className="px-1 md:px-[10vw] relative overflow-x-auto shadow-md sm:rounded-lg mt-7 md:pt-12 rounded-xl">
@@ -100,7 +96,8 @@ console.log("clothTypekk",clothType)
               >
                 <span className="md:pl-8">Qty</span>
               </th>
-              {(selectedWashType?.type||orderHistory?.washType?.type) === "perPiece" && (
+              {(selectedWashType?.type || orderHistory?.washType?.type) ===
+                "perPiece" && (
                 <th
                   scope="col"
                   className=" px-4 text-white text-center md:px-auto py-3 "
@@ -131,15 +128,15 @@ console.log("clothTypekk",clothType)
                   </td>
                   <td className="px-3 md:px-auto  py-4">
                     <input
-                        value={clothType[index]?.quantity}
-
+                      value={clothType[index]?.quantity}
                       onChange={(e) => {
                         quantity(index, e);
                       }}
                       className="bg-gray-200 text-center appearance-none border-2  text-base text-black border-gray-200 rounded w-14 md:w-36 h-8 py-2  leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                     />
                   </td>
-                  {(selectedWashType?.type||orderHistory?.washType?.type) === "perPiece" && (
+                  {(selectedWashType?.type || orderHistory?.washType?.type) ===
+                    "perPiece" && (
                     <td className="px-3 md:px-auto text-center py-4">
                       <input
                         value={clothType[index]?.amount}
