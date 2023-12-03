@@ -9,7 +9,7 @@ const RootComponent = () => {
   // console.log("user status",user)
   return (
     <>
-      {/* {user !== "user" && <Navbar />} */}
+      {user !== "user" && <Navbar />}
       {/* {user !== "user" && <MobileNavbar />} */}
 
       <Outlet />

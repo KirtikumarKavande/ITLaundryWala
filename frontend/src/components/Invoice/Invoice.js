@@ -35,8 +35,8 @@ function Invoice() {
   const splitteDeliverydDate =invoiceData?.deliveryDate?.split('-')
 
   return (
-    <div className="wrapper "  >
-      <div className="receipt-box w-[900px] h-[1220px] " ref={actualReceiptRef}>
+    <div className="wrapper  "  >
+      <div className="receipt-box tracking-widest w-[900px] h-[1220px] " ref={actualReceiptRef}>
         {/* Assign the ref to the actual-receipt div */}
         <div className="actual-receipt mx-auto w-[700px]" >
           <div className="h-10 w-full"></div>
