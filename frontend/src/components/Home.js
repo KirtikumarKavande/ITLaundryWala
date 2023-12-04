@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  Collapse,
-  Button,
-  Card,
-  Typography,
-  CardBody,
-} from "@material-tailwind/react";
-const Home = () => {
-  const [open, setOpen] = React.useState(false);
 
-  const toggleOpen = () => setOpen((cur) => !cur);
+const Home = () => {
+
   return (
     <>
       <div className="w-full">
@@ -25,11 +17,7 @@ const Home = () => {
 
       <div className="w-full">
         {" "}
-        <img
-          src="/image5.jpg"
-          alt=""
-          className=" h-[73vh] mx-auto w-full "
-        />
+        <img src="/image5.jpg" alt="" className=" h-[73vh] mx-auto w-full " />
       </div>
     </>
   );

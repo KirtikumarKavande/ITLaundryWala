@@ -7,6 +7,8 @@ import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const DeliveryDates = (props) => {
   const { totalAmount, selectedWashType, finalAmountOfWashType } = props;
+  console.log("finalAmountOfWashType", finalAmountOfWashType);
+  const [isExpressDelivery, setIsExpressDelivery] = useState(false);
 
   const currentDate = new Date();
 
@@ -30,10 +32,10 @@ const DeliveryDates = (props) => {
       updateClothDetails({
         pickupDate: pickupDate,
         deliveryDate: deliveryDate,
-        amountForPerPeice: totalAmount,
+        amountForPerPeice: isExpressDelivery ? +totalAmount * 1.5 : totalAmount,
       })
     );
-  }, [deliveryDate, totalAmount]);
+  }, [deliveryDate, totalAmount, isExpressDelivery]);
 
   //  19/10/2023
   const ChangeDeliveryDate = (e) => {
@@ -48,6 +50,18 @@ const DeliveryDates = (props) => {
     }
   }, [orderHistory.isShowOrderHistory]);
 
+  const handleExpressDelivery = (e) => {
+    console.log("checked", e.target.checked);
+    if (e.target.checked) {
+      dispatch(updateClothDetails({ isExpressDelivery: true }));
+      setIsExpressDelivery(true);
+    } else {
+      dispatch(updateClothDetails({ isExpressDelivery: false }));
+
+      setIsExpressDelivery(false);
+    }
+  };
+  console.log("isExpressDelivery", isExpressDelivery);
   return (
     <div>
       <div className="w-full flex pt-3 px-5 md:px-60">
@@ -89,9 +103,13 @@ const DeliveryDates = (props) => {
           <div>
             <input
               value={
-                (selectedWashType?.type === "perPiece"
+                (selectedWashType?.type === "perPiece" && !isExpressDelivery
                   ? totalAmount
-                  : finalAmountOfWashType) ||
+                  : !isExpressDelivery? finalAmountOfWashType:null) ||
+                (selectedWashType?.type === "perPiece" && isExpressDelivery
+                  ? totalAmount * 1.5
+                  : finalAmountOfWashType * 1.5) ||
+
                 orderHistory?.amountForPerKg ||
                 orderHistory?.amountForPerPeice
               }
@@ -101,6 +119,16 @@ const DeliveryDates = (props) => {
               name="name"
             />
           </div>
+        </div>
+        <div className="flex mt-8 ">
+          <div>
+            <input
+              type="checkbox"
+              className="w-6 h-6 mr-2"
+              onChange={handleExpressDelivery}
+            />
+          </div>
+          <label className="text-lg font-semibold ">Express </label>
         </div>
       </div>
       <InvoiceBarcode />

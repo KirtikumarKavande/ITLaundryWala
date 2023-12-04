@@ -9,7 +9,7 @@ const OrderHistorySlice = createSlice({
     pickupDate: "",
     deliveryDate: "",
     delivered: false,
-    isShowOrderHistory:false
+    isShowOrderHistory:false,
   },
   reducers: {
     updateOrderHistoryDetails(state, action) {
