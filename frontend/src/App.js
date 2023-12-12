@@ -1,5 +1,5 @@
 import ContactUs from "./components/ContactUs";
-import Home from "./components/Home";
+import Home from "./components/Home/Home";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootComponent from "./components/RootComponent";
 import AdminLogin from "./components/AdminLogin";

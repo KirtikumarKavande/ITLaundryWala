@@ -7,8 +7,8 @@ import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 const WashType = (props) => {
   const { setSelectedWashType, setFinalAmountOfWashType } = props;
   const orderHistory = useSelector((store) => store.orderHistoryDetails);
-  const orderDetails=useSelector((store) => store.clothDetails);
-  console.log("orderDetails",orderDetails)
+  const orderDetails = useSelector((store) => store.clothDetails);
+  console.log("orderDetails", orderDetails);
 
   const dispatch = useDispatch();
   const [menu, setMenu] = useState({
@@ -33,10 +33,18 @@ const WashType = (props) => {
       updateClothDetails({
         washType: menu.selectedmenu,
         weight: menu.weight,
-        amountForPerKg:orderDetails.isExpressDelivery?(+menu.totalPrice*1.5):menu.totalPrice,
+        amountForPerKg: orderDetails.isExpressDelivery
+          ? +menu.totalPrice * 1.5
+          : menu.totalPrice,
       })
     );
-  }, [dispatch, menu.selectedmenu, menu.weight, menu.totalPrice,orderDetails.isExpressDelivery]);
+  }, [
+    dispatch,
+    menu.selectedmenu,
+    menu.weight,
+    menu.totalPrice,
+    orderDetails.isExpressDelivery,
+  ]);
 
   useEffect(() => {
     if (menu?.selectedmenu?.price > 0) {
