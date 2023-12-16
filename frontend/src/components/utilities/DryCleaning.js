@@ -3,6 +3,7 @@ export const DryCleaning = [
     id: 1,
     type: "Shirt",
     price: 79,
+    gender:"men"
   },
   {
     id: 2,
