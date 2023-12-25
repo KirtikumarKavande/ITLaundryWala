@@ -10,7 +10,7 @@ import { useState } from "react";
 import Modal from "./UI/Modal";
 import DryCleaning from "./method/DryCleaning";
 import OrderSummeryAndCustomerDetails from "./OrderSummeryAndCustomerDetails";
-import WashTypeButtons from "./WashTypeButtons";
+import WashTypeButtons from "./SelectWashType/WashTypeButtons";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -18,13 +18,33 @@ const Home = () => {
   function openModal() {
     setOpen(true);
   }
+  const [currentPage, setCurrentPage] = useState("washAndFoldButton");
+  console.log("currentPage",currentPage)
 
   return (
     <>
       {/* <OrderSummeryAndCustomerDetails/> */}
-      <Modal isOpen={open} setIsOpen={setOpen} headline="Please Select Wash Type">
-        <WashTypeButtons />
-      </Modal>
+      {currentPage === "washAndFoldButton" && (
+        <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          headline="Please Select Wash Type"
+        >
+          <WashTypeButtons setCurrentPage={setCurrentPage} />
+        </Modal>
+      )}
+      {
+
+        currentPage==="orderSummeryAndCustomerDetails" &&(
+          <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          headline="Please Schedule Your Order"
+        >
+          <OrderSummeryAndCustomerDetails setCurrentPage={setCurrentPage} />
+        </Modal>
+        )
+      }
 
       <div className="w-full">
         <div className="h-[68px]  bg-[#202124] flex items-center justify-center w-full">

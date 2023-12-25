@@ -9,6 +9,7 @@ const otp = require("./Routes/otpVarification");
 const existinguser = require("./Routes/existingUser");
 const clothDetails = require("./Routes/clothDetails");
 const pricing = require("./Routes/pricing");
+const printBarcode = require("./Routes/printBarcode");
 
 const dotenv = require("dotenv");
 const result = dotenv.config();
@@ -26,6 +27,8 @@ app.use(newUser);
 app.use(existinguser);
 app.use(clothDetails);
 app.use(pricing);
+app.use(printBarcode);
+
 
 // app.use(expense);
 

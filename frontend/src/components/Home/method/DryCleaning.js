@@ -3,16 +3,15 @@ import Modal from "../UI/Modal";
 import useGetDataFromDB from "../../hooks/useGetDataFromDb";
 
 const DryCleaning = () => {
-  const getDataFromDB=  useGetDataFromDB()
-    useEffect(()=>{
-        getDatafromdbFunc()
-    },[])
+  const getDataFromDB = useGetDataFromDB();
+  useEffect(() => {
+    getDatafromdbFunc();
+  }, []);
 
-    const getDatafromdbFunc=async()=>{
-        const res= await getDataFromDB('drycleaning')
-        console.log("drycleaning data",res)
-
-    }
+  const getDatafromdbFunc = async () => {
+    const res = await getDataFromDB("drycleaning");
+    console.log("drycleaning data", res);
+  };
   return (
     <Modal isOpen={true} headline="Please Select Your Cloth Type">
       <div className="bg-white w-full ">

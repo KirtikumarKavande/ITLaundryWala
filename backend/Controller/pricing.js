@@ -1,5 +1,4 @@
 const dryCleaningPricing = require("../Pricing/DryCleaning");
-console.log(dryCleaningPricing.DryCleaning)
 const dryCleaning = async (req, res) => {
   try {
     res.status(200).json({
