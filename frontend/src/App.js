@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import AddNewUser from "./components/Admin/AddNewUser";
 import ExistingUser from "./components/Admin/ExistingUser";
 import Invoice from "./components/Invoice/Invoice";
+import BarcodePrinting from "./components/Barcode/BarcodePrinting";
 
 export default function App() {
   const user = useSelector((store) => store.user.isLoggedIn);
@@ -49,6 +50,10 @@ export default function App() {
         {
           path: "/invoice",
           element: <Invoice/>,
+        },
+        {
+          path: "/barcode",
+          element: <BarcodePrinting/>,
         },
       ],
     },

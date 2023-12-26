@@ -45,9 +45,8 @@ function Invoice() {
           <div className="h-10 w-full"></div>
           <div className="container  ">
             <header className="flex justify-between items-center">
-              <h1 className="font-extrabold text-6xl">INVOICE</h1>
-              {/* <img src="/logo.jpeg" className="h-20" alt="LaundryWala Logo" /> */}
-              <div className="w-52 h-52 bg-black mr-16 rounded-full"></div>
+              <h1 className="font-extrabold text-5xl">INVOICE</h1>
+              <img src="/logo.jpg" className="h-36" alt="LaundryWala Logo" />
             </header>
 
             <main className="mt-28">
