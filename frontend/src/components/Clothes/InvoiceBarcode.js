@@ -23,7 +23,6 @@ const InvoiceBarcode = () => {
   const printBarCode = async () => {
     const transformedData = [];
 
-    // Generating entries based on clothType
     const totalItems = clothDetails.clothType.reduce(
       (total, item) => total + parseInt(item.quantity),
       0
@@ -37,17 +36,16 @@ const InvoiceBarcode = () => {
           Qty: `${count}/${totalItems}`,
           Cus_ID: `${customerInfo.customerId}`,
           W_Type: `${clothDetails?.washType?.key}`,
-          C_Type: `${item.cloth} ${i}/${item.quantity}`,
+          C_Type: `${item?.identifier||item.cloth} ${i}/${item.quantity}`,
         });
       }
     });
 
-    // Adding the last entry based on washType
     transformedData.push({
       Qty: `${count}/${totalItems}`,
       Cus_ID: `${customerInfo.customerId}`,
-      W_Type: `${clothDetails?.washType?.item}`,
-      Amount: "200rs",
+      W_Type: `${clothDetails?.washType?.key}`,
+      Amount:`${clothDetails?.amountForPerPeice>0? clothDetails?.amountForPerPeice:clothDetails?.amountForPerKg }`,
     });
     dispatch(addBarcodePrinting(transformedData))
     navigate('/barcode')

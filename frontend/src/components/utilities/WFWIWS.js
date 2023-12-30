@@ -13,75 +13,109 @@ export const WashFoldIron = [
         type: "Jeans"
     }, {
         id: 5,
-        type: "Track Pant"
+        type: "Track Pant",
+        identifier: "Track-P"
+ 
     }, {
         id: 6,
         type: "Shorts"
     }, {
         id: 7,
-        type: "Sweat-Shirt"
+        type: "Sweat-Shirt",
+        identifier: "Sweat-S"
+ 
     }, {
         id: 8,
-        type: "Kurta Plain"
+        type: "Bath Towel",
+        identifier: "Bath-Towe"
+ 
     }, {
         id: 9,
-        type: "Pajama"
+        type: "Hand Towel",
+        identifier: "Hand-Towe"
+ 
     }, {
         id: 10,
-        type: "Sweater",
-    }, {
-        id: 11,
-        type: "Bath Towel",
-    }, {
-        id: 12,
-        type: "Hand Towel"
-    }, {
-        id: 13,
         type: "Socks"
     }, {
-        id: 14,
+        id: 11,
         type: "Apron"
     }, {
-        id: 15,
+        id: 12,
         type: "Vest"
     }, {
-        id: 16,
+        id: 13,
         type: "Innerwear"
     }, {
+        id: 14,
+        type: "Handkerchief",
+        identifier: "Handkerch"
+ 
+    }, {
+        id: 15,
+        type: ""
+    }, {
+        id: 16,
+        type: ""
+    }, {
         id: 17,
-        type: "Handkerchief"
+        type: ""
     }, {
         id: 18,
-        type: "Top"
+        type: ""
     }, {
         id: 19,
-        type: "Kurti Plain"
+        type: ""
     }, {
         id: 20,
-        type: "Dress Small"
+        type: ""
     }, {
         id: 21,
-        type: "Dress Long"
+        type: "Top"
     }, {
         id: 22,
-        type: "Skirt"
+        type: "Kurti Plain",
+        identifier: "Kurti-P"
+ 
     }, {
         id: 23,
-        type: "Salwar (Pant)"
+        type: "Dress Small",
+        identifier: "Dress-S"
+ 
     }, {
         id: 24,
-        type: "Salwar Suit"
+        type: "Dress Long",
+        identifier: "Dress-L"
+ 
     }, {
         id: 25,
-        type: "Dupatta"
-    },{
+        type: "Skirt"
+    }, {
         id: 26,
-        type: "Scarf/Stole"
+        type: "Salwar (Pant)",
+        identifier: "Salwar-P"
+ 
     }, {
         id: 27,
-        type: "Gown"
+        type: "Salwar Suit",
+        identifier: "Salwar-S"
+ 
     }, {
         id: 28,
-        type: "Bikini Set"
+        type: "Dupatta"
+    }, {
+        id: 29,
+        type: "Scarf"
+    }, {
+        id: 30,
+        type: "Stole"
+    }, {
+        id: 31,
+        type: "Gown"
+    }, {
+        id: 32,
+        type: "Bikini Set",
+        identifier: "Bikini-S"
+ 
     }
 ];

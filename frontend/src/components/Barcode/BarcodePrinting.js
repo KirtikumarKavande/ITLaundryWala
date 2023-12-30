@@ -42,7 +42,7 @@ const BarcodePrinting = () => {
                   <span>Cus ID : </span> <span>{item.Cus_ID}</span>
                 </p>
                 <p>
-                  <span> W_Type :</span> <span>{item.C_Type}</span>
+                  <span> W_Type :</span> <span>{item.W_Type}</span>
                 </p>
                 <p>
                   <span> Amount :</span> <span>{item.Amount}</span>

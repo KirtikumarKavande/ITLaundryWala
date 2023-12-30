@@ -1,123 +1,157 @@
 export const Household = [
     {
         id: 1,
-        type: "Bedsheet single",
-        price: 149
+        type: "Bedsheet Single",
+        price: 149,
+        identifier: "Bedshit-S"
+ 
     }, {
         id: 2,
-        type: "Bedsheet double",
-        price: 199
+        type: "Bedsheet Double",
+        price: 199,
+        identifier: "Bedshit-D"
+ 
     }, {
         id: 3,
-        type: "Blanket single",
-        price: 199
+        type: "Blanket Single",
+        price: 199,
+        identifier: "Blanket-S"
+ 
     }, {
         id: 4,
-        type: "Blanket double",
-        price: 299
+        type: "Blanket Double",
+        price: 299,
+        identifier: "Blanket-D"
+ 
     }, {
         id: 5,
-        type: "Blanket heavy",
-        price: 399
+        type: "Blanket Heavy",
+        price: 399,
+        identifier: "Blanket-H"
+ 
     }, {
         id: 6,
-        type: "Blanket cover",
-        price: 149
+        type: "Bed Cover",
+        price: 99,
+ 
     }, {
         id: 7,
-        type: "Pillow small",
-        price: 49
+        type: "Pillow Cover-S",
+        price: 49,
+        identifier: "Pillo C-S"
+ 
     }, {
         id: 8,
-        type: "Pillow large",
-        price: 79
+        type: "Pillow Cover-L",
+        price: 79,
+        identifier: "Pillo C-L"
+ 
     }, {
         id: 9,
-        type: "Bed cover",
-        price: 149
-    }, {
-        id: 10,
         type: "Shawl",
         price: 149
+ 
+    }, {
+        id: 10,
+        type: "Hand Gloves",
+        price: 49,
+        identifier: "Hand Glov"
+ 
+ 
     }, {
         id: 11,
-        type: "Hand gloves",
-        price: 49
+        type: "Baby Blanket",
+        price: 149,
+        identifier: "Baby Blan"
+ 
     }, {
         id: 12,
-        type: "Baby blanket",
-        price: 149
+        type: "Mat Small",
+        price: 59
+ 
     }, {
         id: 13,
-        type: "Mat small",
-        price: 59
+        type: "Mat Big",
+        price: 149
+ 
     }, {
         id: 14,
-        type: "Mat big",
-        price: 149
+        type: "Table Mat",
+        price: 49
+ 
     }, {
         id: 15,
-        type: "Table mat",
-        price: 49
+        type: "Curtains S-Layer",
+        price: 249,
+        identifier: "Curtain-S"
+ 
     }, {
         id: 16,
-        type: "Cushion cover",
-        price: 49
+        type: "Curtains D-Layer",
+        price: 349,
+        identifier: "Curtain-D"
+ 
     }, {
         id: 17,
-        type: "Curtains (Single layer)",
-        price: 249
+        type: "Curtains H-Layer",
+        price: 449,
+        identifier: "Curtain-H"
+ 
     }, {
         id: 18,
-        type: "Curtains (Double layer)",
-        price: 349
+        type: "Curtains Steam-Iron",
+        price: 99,
+        identifier: "Curtain-I"
+ 
     }, {
         id: 19,
-        type: "Curtains (Heavy layer)",
-        price: 449
+        type: "Cushion Cover-S",
+        price: 49,
+        identifier: "Cushion-S"
+ 
     }, {
         id: 20,
-        type: "Curtains Steam iron",
-        price: 99
+        type: "Cushion Cover-L",
+        price: 99,
+        identifier: "Cushion-L"
+ 
     }, {
         id: 21,
-        type: "Cushion cover small",
-        price: 49
+        type: "Toy Small",
+        price: 99
     }, {
         id: 22,
-        type: "Cushion cover long",
-        price: 99
+        type: "Toy Medium",
+        price: 199,
+        identifier: "Toy Mediu"
+ 
     }, {
         id: 23,
-        type: "Toy small",
-        price: 99
-    }, {
-        id: 24,
-        type: "Toy medium",
-        price: 199
-    }, {
-        id: 25,
-        type: "Toy large",
+        type: "Toy Large",
         price: 349
     }, {
-        id: 26,
-        type: "Baby bed",
+        id: 24,
+        type: "Baby Bed",
         price: 249
     }, {
-        id: 27,
-        type: "Bag small",
+        id: 25,
+        type: "Bag Small",
         price: 99
     }, {
-        id: 28,
+        id: 26,
         type: "Bag Heavy",
         price: 149
     }, {
-        id: 29,
-        type: "Bag trekking",
-        price: 249
+        id: 27,
+        type: "Bag Treking",
+        price: 249,
+        identifier: "Treking-B"
+ 
     }, {
-        id: 30,
-        type: "Trolley bag",
-        price: 299
+        id: 28,
+        type: "Bag Trolley",
+        price: 299,
+        identifier: "Trolley-B"
+ 
     }
 ]

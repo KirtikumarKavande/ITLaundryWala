@@ -19,11 +19,12 @@ const ClothType = (props) => {
   const [selectedClothTypeIndex, setSelectedClothTypeIndex] = useState(0);
   let updatedClothType = [];
 
-  const getClothTypeAndPrice = (price, clothItem) => {
+  const getClothTypeAndPrice = (price, clothItem,identifier) => {
     updatedClothType = [...clothType];
     updatedClothType[selectedClothTypeIndex] = {
       ...updatedClothType[selectedClothTypeIndex],
       price: price,
+      identifier:identifier
     };
     updatedClothType[selectedClothTypeIndex] = {
       ...updatedClothType[selectedClothTypeIndex],
@@ -62,7 +63,7 @@ const ClothType = (props) => {
 
   useEffect(() => {
     dispatch(updateClothDetails({ clothType }));
-  }, [clothType,dispatch]);
+  }, [clothType, dispatch]);
 
   useEffect(() => {
     if (orderHistory?.clothType?.length > 0) {

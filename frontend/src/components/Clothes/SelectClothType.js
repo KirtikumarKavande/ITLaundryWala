@@ -73,7 +73,7 @@ const SelectClothType = ({ selectedWashType, getClothTypeAndPrice, value }) => {
                 onClick={() => {
                   setSelectesClothType(item.type);
                   setShowSuggestion(false);
-                  getClothTypeAndPrice(item.price, item.type);
+                  getClothTypeAndPrice(item.price, item.type,item.identifier);
                 }}
                 className={` h-5 pl-2 cursor-pointer ${
                   activeIndex === index ? "bg-orange-300" : ""
