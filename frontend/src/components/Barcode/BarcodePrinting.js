@@ -1,13 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const BarcodePrinting = () => {
+  const { barcodePrintingData } = useSelector((store) => store.BarcodePrinting);
+  console.log("barcodeData", barcodePrintingData);
+
+  useEffect(() => {
+    window.print();
+  }, []);
   return (
-    <div className="mx-[37rem] px-1 border border-red-700 min-h-screen font-semibold">
-      <p className="text-right">Qty 7/7</p>
-      <p> Cus ID: 201</p>
-      <p>W_Type : W & F</p>
-      <p>Amount: 200 Rs.</p>
-      
+    <div className="w-[150px] px-1  h-full font-semibold ">
+      {barcodePrintingData.length > 0 &&
+        barcodePrintingData?.map((item) => (
+          <div className="">
+            {item?.C_Type && (
+              <div>
+                <p className="text-right">
+                  <span>Qty</span> <span>{item.Qty}</span>
+                </p>
+                <p>
+                  <span>Cus ID: </span>
+                  <span>{item.Cus_ID} </span>
+                </p>
+                <p>
+                  {" "}
+                  <span>W_Type :</span> <span>{item.W_Type}</span>
+                </p>
+                <p>
+                  <span> C_T:</span> <span>{item.C_Type}</span>
+                </p>
+                <div> - - - - - - - - - - - - - - </div>
+              </div>
+            )}
+
+            {item?.Amount && (
+              <div className="pb-5">
+                <p className="text-right">
+                  <span>Qty</span> <span>{item.Qty}</span>
+                </p>
+                <p>
+                  <span>Cus ID : </span> <span>{item.Cus_ID}</span>
+                </p>
+                <p>
+                  <span> W_Type :</span> <span>{item.C_Type}</span>
+                </p>
+                <p>
+                  <span> Amount :</span> <span>{item.Amount}</span>
+                </p>
+                <div> - - - - - - - - - - - - - - </div>
+              </div>
+            )}
+          </div>
+        ))}
     </div>
   );
 };
