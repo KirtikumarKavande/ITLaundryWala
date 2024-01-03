@@ -6,7 +6,7 @@ import Modal from "./UI/Modal";
 import { IoMdAddCircle } from "react-icons/io";
 import { FaCircleMinus } from "react-icons/fa6";
 
-const OrderSummeryAndCustomerDetails = () => {
+const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
   const [open, setOpen] = useState(false);
 
   function openModal() {
@@ -16,6 +16,16 @@ const OrderSummeryAndCustomerDetails = () => {
     // <Modal isOpen={true} setIsOpen={setOpen} headline="Please Schedule Your Order">
 
     <div className="bg-white w-full max-h-[40rem] overflow-y-scroll ">
+      <div className="w-full flex justify-center">
+        <button
+          onClick={() => {
+            setCurrentPage("buttonList");
+          }}
+          className="h-12 mt-1 font-bold w-28 text-white bg-red-400"
+        >
+          View Menu
+        </button>
+      </div>
       <div className="mx-14">
         <div className="pt-2   text-gray-800 font-semibold">
           <div>
@@ -115,6 +125,14 @@ const OrderSummeryAndCustomerDetails = () => {
                   </button>
                 </div>
               </div>
+            </div>
+            <div className="w-full bg-gray-200 h-[2px] " />
+          </div>
+          <div>
+            <div className="w-full flex items-center  py-4">
+              <div className="w-3/12"></div>
+              <div className="w-4/12">Total Amount</div>
+              <div className="w-2/12"> &#8377;1000</div>
             </div>
             <div className="w-full bg-gray-200 h-[2px] " />
           </div>

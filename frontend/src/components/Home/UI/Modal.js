@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 const Modal = (props) => {
-    const {isOpen,setIsOpen,headline}=props
+  const { isOpen, setIsOpen, headline } = props;
 
   // const handleOpen = () => setOpen(!open);
 

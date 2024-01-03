@@ -11,6 +11,8 @@ import Modal from "./UI/Modal";
 import DryCleaning from "./method/DryCleaning";
 import OrderSummeryAndCustomerDetails from "./OrderSummeryAndCustomerDetails";
 import WashTypeButtons from "./SelectWashType/WashTypeButtons";
+import CustomerDetails from "./CustomerDetails";
+import DryCleaningMenu from "./method/DryCleaning";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -18,13 +20,13 @@ const Home = () => {
   function openModal() {
     setOpen(true);
   }
-  const [currentPage, setCurrentPage] = useState("washAndFoldButton");
-  console.log("currentPage",currentPage)
+  const [currentPage, setCurrentPage] = useState("buttonList");
+  console.log("currentPage", currentPage);
 
   return (
     <>
       {/* <OrderSummeryAndCustomerDetails/> */}
-      {currentPage === "washAndFoldButton" && (
+      {currentPage === "buttonList" && (
         <Modal
           isOpen={open}
           setIsOpen={setOpen}
@@ -33,18 +35,38 @@ const Home = () => {
           <WashTypeButtons setCurrentPage={setCurrentPage} />
         </Modal>
       )}
-      {
-
-        currentPage==="orderSummeryAndCustomerDetails" &&(
-          <Modal
+      {currentPage === "customerDetails" && (
+        <Modal
           isOpen={open}
           setIsOpen={setOpen}
+          setCurrentPage={setCurrentPage}
+          headline="Please Schedule Your Order"
+        >
+          <CustomerDetails setCurrentPage={setCurrentPage} />
+        </Modal>
+      )}
+
+      {currentPage === "dryCleaning" && (
+        <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          setCurrentPage={setCurrentPage}
+          headline="Please Schedule Your Order"
+        >
+          <DryCleaningMenu setCurrentPage={setCurrentPage} />
+        </Modal>
+      )}
+      
+      {currentPage === "orderDetailsAndCustomerDetails" && (
+        <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          setCurrentPage={setCurrentPage}
           headline="Please Schedule Your Order"
         >
           <OrderSummeryAndCustomerDetails setCurrentPage={setCurrentPage} />
         </Modal>
-        )
-      }
+      )}
 
       <div className="w-full">
         <div className="h-[68px]  bg-[#202124] flex items-center justify-center w-full">
