@@ -12,7 +12,17 @@ import DryCleaning from "./method/DryCleaning";
 import OrderSummeryAndCustomerDetails from "./OrderSummeryAndCustomerDetails";
 import WashTypeButtons from "./SelectWashType/WashTypeButtons";
 import CustomerDetails from "./CustomerDetails";
-import DryCleaningMenu from "./method/DryCleaning";
+import PerPieceClothOrderItem from "./UI/perPeiceClothOrderItem";
+import {
+  DryCleaningButtonOptions,
+  expressLaundryButtonOptions,
+  houseHoldButtonsOptions,
+  pressHoldButtonsOptions,
+} from "../utilities/constant";
+import { dryCleaningMenu } from "./Pricing/DryCleaningMenu";
+import { Household } from "./Pricing/HouseHold";
+import { Press } from "./Pricing/Press";
+import { expressLaundry } from "./Pricing/ExpressLaundry";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -53,10 +63,61 @@ const Home = () => {
           setCurrentPage={setCurrentPage}
           headline="Please Schedule Your Order"
         >
-          <DryCleaningMenu setCurrentPage={setCurrentPage} />
+          <PerPieceClothOrderItem
+            setCurrentPage={setCurrentPage}
+            buttonNames={DryCleaningButtonOptions}
+            washType={dryCleaningMenu}
+            title={"Dry Cleaning"}
+          />
         </Modal>
       )}
-      
+      {currentPage === "houseHold" && (
+        <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          setCurrentPage={setCurrentPage}
+          headline="Please Schedule Your Order"
+        >
+          <PerPieceClothOrderItem
+            setCurrentPage={setCurrentPage}
+            buttonNames={houseHoldButtonsOptions}
+            washType={Household}
+            title={"Household"}
+          />
+        </Modal>
+      )}
+      {currentPage === "press" && (
+        <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          setCurrentPage={setCurrentPage}
+          headline="Please Schedule Your Order"
+        >
+          <PerPieceClothOrderItem
+            setCurrentPage={setCurrentPage}
+            buttonNames={pressHoldButtonsOptions}
+            washType={Press}
+            title={"Steam Iron"}
+          />
+        </Modal>
+      )}
+
+{currentPage === "expressLaundry" && (
+        <Modal
+          isOpen={open}
+          setIsOpen={setOpen}
+          setCurrentPage={setCurrentPage}
+          headline="Please Schedule Your Order"
+        >
+          <PerPieceClothOrderItem
+            setCurrentPage={setCurrentPage}
+            buttonNames={expressLaundryButtonOptions}
+            washType={expressLaundry}
+            title={"Express Laundry"}
+          />
+        </Modal>
+      )}
+
       {currentPage === "orderDetailsAndCustomerDetails" && (
         <Modal
           isOpen={open}

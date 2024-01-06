@@ -8,10 +8,14 @@ const WashTypeButtons = ({ setCurrentPage }) => {
 
     if (data.item === "WASH & FOLD" || data.item === "WASH & IRON") {
       setCurrentPage("customerDetails");
-    }else if(data.item === "DRY CLEANING" )
-    {
+    } else if (data.item === "DRY CLEANING") {
       setCurrentPage("dryCleaning");
-
+    }else if (data.item === "HOUSEHOLD") {
+      setCurrentPage("houseHold");
+    }else if (data.item === "PRESS") {
+      setCurrentPage("press");
+    }else if (data.item === "EXPRESS LAUNDRY") {
+      setCurrentPage("expressLaundry");
     }
   };
   return (

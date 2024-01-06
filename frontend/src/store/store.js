@@ -5,6 +5,7 @@ import clothDetailsSlice from "./ClothDetailsSlice";
 import ExistingUserDetails from "./UserDetails";
 import OrderHistorySlice from "./orderHistorySlice";
 import BarcodePrinting from "./barcodePrintingData";
+import Cart from "./addItemToCart";
 const store = configureStore({
   reducer: {
     user: User.reducer,
@@ -12,7 +13,8 @@ const store = configureStore({
     existingUserDetails: ExistingUserDetails.reducer,
     clothDetails: clothDetailsSlice.reducer,
     orderHistoryDetails:OrderHistorySlice.reducer,
-    BarcodePrinting:BarcodePrinting.reducer
+    BarcodePrinting:BarcodePrinting.reducer,
+    cart:Cart.reducer
   },
 });
 export default store;
