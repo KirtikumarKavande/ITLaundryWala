@@ -80,9 +80,13 @@ const PerPieceClothOrderItem = (props) => {
                       <div className="w-4/12">{item.type}</div>
                       <div className="w-4/12"> &#8377;{item.price} / Piece</div>
                       <div className="w-1/12">
-                        <input type="checkbox" className="h-5 w-5" onChange={() => {
+                        <input
+                          type="checkbox"
+                          className="h-5 w-5"
+                          onChange={() => {
                             selectedSubMenu(item);
-                          }}/>
+                          }}
+                        />
                       </div>
                     </div>
                     <div className="w-full bg-gray-200 h-[2px] " />

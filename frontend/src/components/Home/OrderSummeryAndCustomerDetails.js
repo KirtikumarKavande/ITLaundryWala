@@ -9,29 +9,37 @@ import { useSelector } from "react-redux";
 
 const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
   const { cart } = useSelector((store) => store.cart);
-  useEffect(()=>{
-    setItemCart(cart)
-  },[])
-const [itemInCart,setItemCart]=useState(cart)
+  useEffect(() => {
+    setItemCart(cart);
+  }, []);
+  const [itemInCart, setItemCart] = useState(cart);
   const initialValue = 0;
-  const totalPriceOfItemInCArt = cart.reduce(
+  const totalPriceOfItemInCArt = itemInCart.reduce(
     (accumulator, item) => accumulator + item.price * item.qty,
     initialValue
   );
 
-  console.log("totalPriceOfItemInCArt", totalPriceOfItemInCArt);
-  const [open, setOpen] = useState(false);
+  const incrementQty = (item, index) => {
+    const originalCartItem = [...itemInCart];
 
-  function openModal() {
-    setOpen(true);
-  }
-  const incrementQty = (item,index) => {
-  //  const itemWhoeseQuanityIncreased=item
-  //  itemWhoeseQuanityIncreased.qty = itemWhoeseQuanityIncreased.qty + 1;
-  const originalCartItem=[...itemInCart]
+    originalCartItem[index] = { ...item, qty: item.qty + 1 };
+    setItemCart(originalCartItem);
+  };
 
-  originalCartItem[index]={...item,qty:item.qty+1}
-  setItemCart(originalCartItem)
+  const decrementCount = (item, index) => {
+    const originalCartItem = [...itemInCart];
+    let obj = { ...item };
+    obj = { ...obj, qty: obj.qty - 1 };
+
+    if (obj.qty === 0) {
+      originalCartItem.splice(index, 1);
+      setItemCart(originalCartItem);
+    } else {
+      originalCartItem[index] = obj;
+      setItemCart(originalCartItem);
+    }
+
+    // originalCartItem[index] = obj;
   };
   return (
     <div className="bg-white w-full max-h-[40rem] overflow-y-scroll ">
@@ -47,7 +55,7 @@ const [itemInCart,setItemCart]=useState(cart)
       </div>
       <div className="mx-14">
         <div className="pt-2   text-gray-800 font-semibold">
-          {itemInCart?.map((item,index) => (
+          {itemInCart?.map((item, index) => (
             <div>
               <div key={item.id} className="w-full flex items-center  py-1">
                 <div className="w-3/12">
@@ -58,17 +66,22 @@ const [itemInCart,setItemCart]=useState(cart)
                   />
                 </div>
                 <div className="w-4/12">{item.type}</div>
-                <div className="w-2/12"> &#8377;{item.price*item.qty}</div>
+                <div className="w-2/12"> &#8377;{item.price * item.qty}</div>
                 <div className="w-3/12">
                   <div className="w-24 h-10  flex justify-between items-center px-1 ">
-                    <button className="text-red-600">
+                    <button
+                      className="text-red-600"
+                      onClick={() => {
+                        decrementCount(item, index);
+                      }}
+                    >
                       <FaCircleMinus size={21} />
                     </button>
                     <span>{item.qty}</span>
                     <button
                       className="text-green-600"
                       onClick={() => {
-                        incrementQty(item,index);
+                        incrementQty(item, index);
                       }}
                     >
                       <IoMdAddCircle size={25} />
@@ -80,16 +93,17 @@ const [itemInCart,setItemCart]=useState(cart)
             </div>
           ))}
         </div>
-
-        <div className="font-bold text-gray-800">
-          <div className="w-full flex items-center h-12 py-1 ">
-            <div className="w-3/12"></div>
-            <div className="w-4/12 ">Total Amount </div>
-            <div className="w-2/12"> &#8377;{totalPriceOfItemInCArt}</div>
-            <div className="w-3/12"></div>
+        {itemInCart.length > 0 && (
+          <div className="font-bold text-gray-800">
+            <div className="w-full flex items-center h-12 py-1 ">
+              <div className="w-3/12"></div>
+              <div className="w-4/12 ">Total Amount </div>
+              <div className="w-2/12"> &#8377;{totalPriceOfItemInCArt}</div>
+              <div className="w-3/12"></div>
+            </div>
+            {/* <div className="w-full bg-gray-200 h-[2px] " /> */}
           </div>
-          {/* <div className="w-full bg-gray-200 h-[2px] " /> */}
-        </div>
+        )}
 
         <div className="  pt-4 pb-5">
           <div className="w-full flex ">

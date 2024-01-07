@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-
+ 
 const BarcodePrinting = () => {
   const { barcodePrintingData } = useSelector((store) => store.BarcodePrinting);
   console.log("barcodeData", barcodePrintingData);
-
+ 
   useEffect(() => {
     window.print();
   }, []);
@@ -27,14 +27,17 @@ const BarcodePrinting = () => {
                   <span>W_Type :</span> <span>{item.W_Type}</span>
                 </p>
                 <p>
-                  <span> C_T:</span> <span>{item.C_Type}</span>
+                  <span> C_T:</span><span>{item.C_Type}</span>
                 </p>
                 <div> - - - - - - - - - - - - - - </div>
               </div>
             )}
-
+ 
             {item?.Amount && (
-              <div className="pb-5">
+              <div >
+                <div> -  </div>
+                <div> -  </div>
+                <div className=" leading-tight">
                 <p className="text-right">
                   <span>Qty</span> <span>{item.Qty}</span>
                 </p>
@@ -47,13 +50,14 @@ const BarcodePrinting = () => {
                 <p>
                   <span> Amount :</span> <span>{item.Amount}</span>
                 </p>
-                <div> - - - - - - - - - - - - - - </div>
+                </div>
               </div>
+             
             )}
           </div>
         ))}
     </div>
   );
 };
-
+ 
 export default BarcodePrinting;
