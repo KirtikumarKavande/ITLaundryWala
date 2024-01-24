@@ -168,34 +168,6 @@ export const Press = [
         identifier: "Safari-P"
  
     }, {
-        id: 34,
-        type: "not define",
-        price: 0
-    }, {
-        id: 35,
-        type: "not define",
-        price: 0
-    }, {
-        id: 36,
-        type: "not define",
-        price: 0
-    }, {
-        id: 37,
-        type: "not define",
-        price: 0
-    }, {
-        id: 38,
-        type: "not define",
-        price: 0
-    }, {
-        id: 39,
-        type: "not define",
-        price: 0
-    }, {
-        id: 40,
-        type: "not define",
-        price: 0
-    }, {
         id: 41,
         type: "Top",
         price: 10

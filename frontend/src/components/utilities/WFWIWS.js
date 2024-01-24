@@ -52,24 +52,6 @@ export const WashFoldIron = [
         identifier: "Handkerch"
  
     }, {
-        id: 15,
-        type: ""
-    }, {
-        id: 16,
-        type: ""
-    }, {
-        id: 17,
-        type: ""
-    }, {
-        id: 18,
-        type: ""
-    }, {
-        id: 19,
-        type: ""
-    }, {
-        id: 20,
-        type: ""
-    }, {
         id: 21,
         type: "Top"
     }, {
