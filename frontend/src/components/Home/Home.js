@@ -8,7 +8,6 @@
 
 import { useState } from "react";
 import Modal from "./UI/Modal";
-import DryCleaning from "./method/DryCleaning";
 import OrderSummeryAndCustomerDetails from "./OrderSummeryAndCustomerDetails";
 import WashTypeButtons from "./SelectWashType/WashTypeButtons";
 import CustomerDetails from "./CustomerDetails";
@@ -113,7 +112,7 @@ const Home = () => {
             setCurrentPage={setCurrentPage}
             buttonNames={expressLaundryButtonOptions}
             washType={expressLaundry}
-            title={"Express Laundry"}
+            title={"Express Charges Included"}
           />
         </Modal>
       )}
@@ -146,7 +145,8 @@ const Home = () => {
 
       <div className="w-full">
         {" "}
-        <img src="/image5.jpg" alt="" className=" h-[73vh] mx-auto w-full " />
+        {/* <div  className=" h-[415px] w-[1350px] mx-auto border border-red-500  "></div> */}
+        <img src="./banner.jpg" alt="" className=" h-[430px]  mx-auto  " />
       </div>
       <div>
 

@@ -4,11 +4,11 @@ import { IoIosMenu } from "react-icons/io";
 
 const Navbar = () => {
   return (
-    <div className="h-[128px] border border-[#DBDBDB] flex items-center lg:px-[60px] w-full justify-between sticky top-0 z-1 bg-[#FFFFFF]">
+    <div className="h-[100px] border border-[#DBDBDB] flex items-center lg:px-[60px] w-full justify-between sticky top-0 z-1 bg-[#FFFFFF]">
       <div className=" w-full lg:w-8/12  flex  items-center  ">
         <div className="  w-full justify-center lg:justify-normal  flex items-center pr-6 ">
-          <div className="  ">
-            <img src="https://res.cloudinary.com/dbrirq6ck/image/upload/v1704610947/zccexr7it1fbqipe2xie.jpg" alt="logo" className=" h-[8rem]  z-10" />{" "}
+          <div className="" >
+            <img src="https://res.cloudinary.com/dbrirq6ck/image/upload/v1704610947/zccexr7it1fbqipe2xie.jpg" alt="logo" className="w-[23rem] h-[6rem]  z-10" />{" "}
           </div>
          
         </div>

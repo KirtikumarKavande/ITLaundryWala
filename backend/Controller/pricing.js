@@ -1,4 +1,4 @@
-const dryCleaningPricing = require("../Pricing/DryCleaning");
+const dryCleaningPricing = require("../");
 const dryCleaning = async (req, res) => {
   try {
     res.status(200).json({
