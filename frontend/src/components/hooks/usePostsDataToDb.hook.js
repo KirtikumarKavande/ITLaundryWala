@@ -1,7 +1,7 @@
 import { BASE_URL } from "../utilities/constant";
 import { useSelector } from "react-redux";
 
-const usePostDataToDb = () => {
+const usePostsDataToDb = () => {
   const token = useSelector((store) => store.user.token);
   
   const postDatatoDb = async (url, obj) => {
@@ -22,4 +22,4 @@ const usePostDataToDb = () => {
   return postDatatoDb;
 };
 
-export default usePostDataToDb;
+export default usePostsDataToDb;

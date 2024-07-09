@@ -1,6 +1,6 @@
 import { BASE_URL } from "../utilities/constant";
 import { useSelector } from "react-redux";
-const useGetDataFromDB = () => {
+const useGetsDataFromDB = () => {
   // const token = useSelector((store) => store.user.token);
 
   const getDataFromDB = async (url) => {
@@ -20,4 +20,4 @@ const useGetDataFromDB = () => {
   return getDataFromDB;
 };
 
-export default useGetDataFromDB;
+export default useGetsDataFromDB;

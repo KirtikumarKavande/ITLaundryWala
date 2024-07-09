@@ -5,24 +5,24 @@ import {
   Button,
   Typography,
 } from "@material-tailwind/react";
-import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useEffect, useRef, useState } from "react";
 import useData from "../hooks/useData";
-import useGetDataFromDB from "../hooks/useGetDataFromDb";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUserdetails } from "../../store/newUserDetails";
 import CardContainer from "../utilities/Card";
+import useGetsDataFromDB from "../hooks/useGetsDataFromDb.hook";
+import usePostsDataToDb from "../hooks/usePostsDataToDb.hook";
 
 function AddNewUser() {
   const dispatch = useDispatch();
   const [getCustomerId, setGetCustomerId] = useState();
   const { userDetails, handleChange } = useData({});
   const navigate = useNavigate();
-  const postDataToDb = usePostDataToDb();
+  const postDataToDb = usePostsDataToDb();
 
-  const getDataFromDB = useGetDataFromDB();
+  const getDataFromDB = useGetsDataFromDB();
   const dbConnection = async () => {
     const user = await getDataFromDB("userid");
     setGetCustomerId(+user?.message + 1);

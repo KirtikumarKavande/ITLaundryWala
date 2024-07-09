@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useDispatch, useSelector } from "react-redux";
 import WashType from "../Clothes/WashType";
 import ClothType from "../Clothes/ClothType";
@@ -7,6 +6,7 @@ import ClothType from "../Clothes/ClothType";
 import CardContainer from "../utilities/Card";
 import { updateClothDetails } from "../../store/ClothDetailsSlice";
 import  { updateExistingUserDetails } from "../../store/UserDetails";
+import usePostsDataToDb from "../hooks/usePostsDataToDb.hook";
 
 const ExistingUser = () => {
   const userDetails = useSelector((store) => store?.userDetails?.userData);
@@ -15,7 +15,7 @@ const dispatch= useDispatch()
   const [finalAmountOfWashType, setFinalAmountOfWashType] = useState(0);
   const [selectedWashType, setSelectedWashType] = useState();
 
-  const postDataToDb = usePostDataToDb();
+  const postDataToDb = usePostsDataToDb();
   const [isshowError, setIsShowError] = useState(false);
 
   const [formData, setFormData] = useState({

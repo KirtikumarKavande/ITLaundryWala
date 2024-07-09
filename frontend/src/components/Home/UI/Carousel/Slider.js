@@ -25,6 +25,7 @@ const Slider = () => {
       <SwiperSlide><img src="/slider/kfc.jpg" alt="KFC" style={{height: '435px', width: '100%', }} /></SwiperSlide>
       <SwiperSlide><img src="/slider/washnew.jpg" alt="KFC" style={{height: '435px', width: '100%', }} /></SwiperSlide>
       <SwiperSlide><img src="/slider/off.png" alt="KFC" style={{height: '435px', width: '100%', }} /></SwiperSlide>
+      <SwiperSlide><img src="/slider/banner.svg" alt="KFC" style={{height: '435px', width: '100%', }} /></SwiperSlide>
     </Swiper>
   );
 };

@@ -1,14 +1,14 @@
 import React from "react";
-import usePostDataToDb from "../hooks/usePostDataToDb";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addBarcodePrinting } from "../../store/barcodePrintingData";
+import usePostsDataToDb from "../hooks/usePostsDataToDb.hook";
 
 // import {} from ""
 
 const InvoiceBarcode = () => {
   const navigate = useNavigate();
-  const postDataToDB = usePostDataToDb();
+  const postDataToDB = usePostsDataToDb();
   const clothDetails = useSelector((store) => store.clothDetails);
   const customerInfo = useSelector((store) => store.existingUserDetails);
   const dispatch=useDispatch()
