@@ -1,15 +1,14 @@
 import React, { useRef, useState } from "react";
-import usePostDataToDb from "../components/hooks/usePostDataToDb";
 
 import toast from "react-hot-toast";
 import OtpModel from "./utilities/Otpmodel";
-// import useGetDataFromDB from "./hooks/useGetDataFromDb";
 import SendOtp from "./utilities/SendOtp";
 import {useDispatch} from 'react-redux'
 import { getToken } from "../store/userSlice";
+import usePostsDataToDb from "./hooks/usePostsDataToDb.hook";
 
 const AdminLogin = () => {
-  const postDatatoDb= usePostDataToDb()
+  const postDatatoDb= usePostsDataToDb()
  const dispatch= useDispatch()
   const [isShowOtpModel, setIsShowOtpModel] = useState(false);
   const emailRef = useRef();

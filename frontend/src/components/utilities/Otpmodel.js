@@ -1,14 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useRef, useState } from "react";
-import usePostDataToDb from "../hooks/usePostDataToDb";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import SendOtp from "./SendOtp";
 import { useDispatch, useSelector } from "react-redux";
 import { userStatus } from "../../store/userSlice";
+import usePostsDataToDb from "../hooks/usePostsDataToDb.hook";
 
 export function OtpModel(props) {
-  const postDatatoDb = usePostDataToDb();
+  const postDatatoDb = usePostsDataToDb();
   const dispatch = useDispatch();
   const token = useSelector((store) => store.user.token);
   const navigate = useNavigate();

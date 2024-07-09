@@ -1,7 +1,7 @@
-import useGetDataFromDB from "../hooks/useGetDataFromDb";
+import useGetsDataFromDB from "../hooks/useGetsDataFromDb.hook";
 
 const SendOtp = async () => {
-  const getDataFromDB=useGetDataFromDB()
+  const getDataFromDB=useGetsDataFromDB()
   const otpRes = await getDataFromDB('otpmail');
   return otpRes;
  

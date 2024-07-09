@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { FaRegEye } from "react-icons/fa";
-import useGetDataFromDB from "../hooks/useGetDataFromDb";
 import { useDispatch, useSelector } from "react-redux";
-import usePostDataToDb from "../hooks/usePostDataToDb";
 import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
+import useGetsDataFromDB from "../hooks/useGetsDataFromDb.hook";
+import usePostsDataToDb from "../hooks/usePostsDataToDb.hook";
 
 const ReviewOrder = () => {
   const customerDetails = useSelector((state) => state.existingUserDetails);
   const dispatch = useDispatch();
-  const getDataFromDB = useGetDataFromDB();
-  const postDataToDb = usePostDataToDb();
+  const getDataFromDB = useGetsDataFromDB();
+  const postDataToDb = usePostsDataToDb();
   const [orderDetails, setOrderDetails] = useState([]);
   const fetchData = async () => {
     try {
