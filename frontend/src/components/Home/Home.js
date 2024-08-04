@@ -224,7 +224,9 @@ const Home = () => {
         />
       ))}
     </div>
+    <div className="mt-4">
     <Footer/>
+    </div>
     </>
   );
 };
