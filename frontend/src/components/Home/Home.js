@@ -23,6 +23,7 @@ import ProductCard from "./UI/ProductCard";
 import WorkflowStep from "./UI/HowItWorksCard";
 import OurPromise from "./UI/OurPromise";
 import AccordionItem from "./UI/Accordian";
+import Footer from "./UI/Footer";
 
 
 const Home = () => {
@@ -223,6 +224,7 @@ const Home = () => {
         />
       ))}
     </div>
+    <Footer/>
     </>
   );
 };
