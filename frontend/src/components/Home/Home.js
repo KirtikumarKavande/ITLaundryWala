@@ -9,6 +9,7 @@ import {
   DryCleaningButtonOptions,
   expressLaundryButtonOptions,
   houseHoldButtonsOptions,
+  howItWorksSSteps,
   pressHoldButtonsOptions,
   products,
 } from "../utilities/constant";
@@ -18,6 +19,7 @@ import { Press } from "./Pricing/Press";
 import { expressLaundry } from "./Pricing/ExpressLaundry";
 import Slider from "./UI/Carousel/Slider";
 import ProductCard from "./UI/ProductCard";
+import WorkflowStep from "./UI/HowItWorksCard";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -146,6 +148,7 @@ const Home = () => {
         {/* <img src="./banner.jpg" alt="" className=" h-[430px]  mx-auto  " /> */}
         <Slider />
       </div>
+      <div className="font-bold text-3xl pl-7 pt-5 pb-2">Pricing and Services</div>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => (
@@ -153,6 +156,15 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <div className="font-bold text-3xl pl-7 pt-5 ">How it Works</div>
+
+      <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {howItWorksSSteps.map((step) => (
+          <WorkflowStep key={step.step} {...step} />
+        ))}
+      </div>
+    </div>
     </>
   );
 };

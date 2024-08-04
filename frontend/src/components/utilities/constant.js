@@ -14,3 +14,10 @@ export const products = [
     { id: 4, title: "Express Laundry", price: "Kg/piece", description: "48-72 hrs",identifier:"expressLaundry" },
     
   ];
+
+  export const howItWorksSSteps = [
+    { icon: "./gif/online-order.gif", title: "Book Order", step: 1 },
+    { icon: "./gif/pickup-truck.gif", title: "Pickup at Doorstep", step: 2 },
+    { icon:"./gif/laundry.gif", title: "Process", step: 3 },
+    { icon: "./gif/door-delivery.gif", title: "Delivery at Doorstep", step: 4 },
+  ];
