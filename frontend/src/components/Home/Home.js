@@ -22,6 +22,7 @@ import Slider from "./UI/Carousel/Slider";
 import ProductCard from "./UI/ProductCard";
 import WorkflowStep from "./UI/HowItWorksCard";
 import OurPromise from "./UI/OurPromise";
+import AccordionItem from "./UI/Accordian";
 
 
 const Home = () => {
@@ -30,11 +31,31 @@ const Home = () => {
   function openModal() {
     setOpen(true);
   }
+  const accordionItems = [
+    {
+      title: 'What services do you offer?',
+      content: 'We offer a wide range of laundry and dry cleaning services, including wash & fold, shirt service, alterations, and more. Our team is equipped to handle all your fabric care needs with expertise and care.'
+    },
+    {
+      title: 'How does the pick-up and delivery service work?',
+      content: 'Our convenient pick-up and delivery service allows you to schedule a time for us to collect your laundry from your doorstep. Once cleaned, we\'ll return your items at a time that suits you. You can easily schedule these services through our website or mobile app.'
+    },
+    {
+      title: 'What are your turnaround times?',
+      content: 'Our standard turnaround time is 48 hours for most services. However, we also offer express services for when you need your items back sooner. Same-day service is available for orders placed before 9 AM, and next-day service for orders placed before 5 PM.'
+    },
+    
+  ];
+
   const [currentPage, setCurrentPage] = useState("buttonList");
   console.log("currentPage", currentPage);
  
 
+  const [openIndex, setOpenIndex] = useState(0);
 
+  const handleToggle = (index) => {
+    setOpenIndex(openIndex === index ? -1 : index);
+  };
   
   return (
     <>
@@ -172,14 +193,14 @@ const Home = () => {
     </div>
     <div className="font-bold text-3xl pl-7 pt-5 ">Our Promises</div>
 
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 mb-8 md:mb-0">
+    <div className="container mx-auto  py-8">
+      <div className="flex flex-col lg:flex-row items-center">
+        <div className="lg:w-1/2 mb-8 lg:mb-0">
           {promises.map((feature, index) => (
             <OurPromise key={index} {...feature} />
           ))}
         </div>
-        <div className="md:w-1/2 flex justify-center">
+        <div className="lg:w-1/2 flex justify-center ">
           <img 
             src="https://www.meralaundry.in/assets/web/images/sideimg.jpg" 
             alt="Laundry service illustration" 
@@ -187,6 +208,20 @@ const Home = () => {
           />
         </div>
       </div>
+    </div>
+    <div className="font-bold text-3xl pl-7 pt-5 pb-4 ">Frequently Asked Question's</div>
+
+
+    <div className=" mx-12 rounded-lg shadow-lg overflow-hidden ">
+      {accordionItems.map((item, index) => (
+        <AccordionItem
+          key={index}
+          title={item.title}
+          content={item.content}
+          isOpen={openIndex === index}
+          onToggle={() => handleToggle(index)}
+        />
+      ))}
     </div>
     </>
   );
