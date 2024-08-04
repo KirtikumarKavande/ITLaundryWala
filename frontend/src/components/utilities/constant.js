@@ -7,3 +7,10 @@ export const DryCleaningButtonOptions=["MEN","WOMEN","SHOES"]
 export const houseHoldButtonsOptions=["HOUSEHOLD"]
 export const pressHoldButtonsOptions=["MEN","WOMEN"]
 export const expressLaundryButtonOptions=["MEN","WOMEN","PRESS","SHOES","KG"]
+export const products = [
+    { id: 1, title: "Wash &  Fold", price: "starts@69", description: "48-72 hrs" },
+    { id: 2, title: "Wash & Iron", price: "starts@99", description: "48-72 hrs" },
+    { id: 3, title: "Dry Cleaning", price: "starts@79", description: "48-72 hrs" },
+    { id: 4, title: "Express Laundry", price: "Kg/piece", description: "48-72 hrs" },
+    
+  ];
