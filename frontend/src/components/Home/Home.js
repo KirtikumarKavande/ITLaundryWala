@@ -12,6 +12,7 @@ import {
   howItWorksSSteps,
   pressHoldButtonsOptions,
   products,
+  promises,
 } from "../utilities/constant";
 import { dryCleaningMenu } from "./Pricing/DryCleaningMenu";
 import { Household } from "./Pricing/HouseHold";
@@ -20,6 +21,8 @@ import { expressLaundry } from "./Pricing/ExpressLaundry";
 import Slider from "./UI/Carousel/Slider";
 import ProductCard from "./UI/ProductCard";
 import WorkflowStep from "./UI/HowItWorksCard";
+import OurPromise from "./UI/OurPromise";
+
 
 const Home = () => {
   const [open, setOpen] = useState(false);
@@ -29,6 +32,8 @@ const Home = () => {
   }
   const [currentPage, setCurrentPage] = useState("buttonList");
   console.log("currentPage", currentPage);
+ 
+
 
   
   return (
@@ -163,6 +168,24 @@ const Home = () => {
         {howItWorksSSteps.map((step) => (
           <WorkflowStep key={step.step} {...step} />
         ))}
+      </div>
+    </div>
+    <div className="font-bold text-3xl pl-7 pt-5 ">Our Promises</div>
+
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row items-center">
+        <div className="md:w-1/2 mb-8 md:mb-0">
+          {promises.map((feature, index) => (
+            <OurPromise key={index} {...feature} />
+          ))}
+        </div>
+        <div className="md:w-1/2 flex justify-center">
+          <img 
+            src="https://www.meralaundry.in/assets/web/images/sideimg.jpg" 
+            alt="Laundry service illustration" 
+            className="w-full max-w-sm h-auto object-contain rounded-lg "
+          />
+        </div>
       </div>
     </div>
     </>

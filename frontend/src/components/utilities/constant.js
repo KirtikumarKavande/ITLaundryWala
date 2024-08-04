@@ -1,3 +1,5 @@
+import { Smile, Gauge, Leaf, Clock } from 'lucide-react';
+
 export const BASE_URL="http://localhost:4000"
 export const NUMBER_OF_CLOTH_TYPE=[1,2,3,4,5]
 export const MonthNames=['Jan','Feb','March','April','May','June','July','Aug','Sep','Oct','Nov','Dec']
@@ -20,4 +22,29 @@ export const products = [
     { icon: "./gif/pickup-truck.gif", title: "Pickup at Doorstep", step: 2 },
     { icon:"./gif/laundry.gif", title: "Process", step: 3 },
     { icon: "./gif/door-delivery.gif", title: "Delivery at Doorstep", step: 4 },
+  ];
+
+
+
+  export const promises = [
+    {
+      icon: Smile,
+      title: "Free pick & drop",
+      description: "We provide Free pick & drop facility at your doorstep."
+    },
+    {
+      icon: Gauge,
+      title: "Affordable",
+      description: "Our pricing policy is fair & transparent. What you see is what you pay!"
+    },
+    {
+      icon: Leaf,
+      title: "Quality assurance",
+      description: "We strive to give best laundry & dry cleaning experience."
+    },
+    {
+      icon: Clock,
+      title: "Convenience",
+      description: "Book your service in less than 20 seconds."
+    }
   ];
