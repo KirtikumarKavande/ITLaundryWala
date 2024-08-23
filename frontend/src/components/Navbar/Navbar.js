@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
   const navigate=useNavigate()
   return (
     <div className="h-[100px] border border-[#DBDBDB] flex items-center lg:px-[60px] w-full justify-between sticky top-0 z-1 bg-[#FFFFFF]">
@@ -29,8 +35,8 @@ const Navbar = () => {
         </span>
         <span className="font-semibold" onClick={()=>{navigate("/login")}}>Sign In</span>
       </div>
-      <IoIosMenu  size={50} className="mr-4 lg:hidden border  bg-gray-300 h-[40px]  rounded-md my-0"/>
-
+      {/* <IoIosMenu onClick={toggleNavbar} size={50} className="mr-4 lg:hidden border  bg-gray-300 h-[40px]  rounded-md my-0"/> */}
+    <MobileNavbar toggleNavbar={toggleNavbar} isOpen={isOpen}/>
     </div>
   );
 };
