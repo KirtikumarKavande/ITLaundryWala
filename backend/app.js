@@ -10,6 +10,13 @@ const existinguser = require("./Routes/existingUser");
 const clothDetails = require("./Routes/clothDetails");
 const pricing = require("./Routes/pricing");
 const printBarcode = require("./Routes/printBarcode");
+const rateLimit = require('express-rate-limit');
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200, 
+  message: 'please try again after 15 minutes'
+});
+
 
 const dotenv = require("dotenv");
 const result = dotenv.config();
@@ -19,6 +26,7 @@ if (result.error) {
 }
 const app = express();
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(limiter);
 
 app.use(bodyParser.json({ extended: false }));
 app.use(user);
