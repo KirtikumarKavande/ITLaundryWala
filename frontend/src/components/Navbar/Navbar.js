@@ -1,8 +1,10 @@
 import React from "react";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { IoIosMenu } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate=useNavigate()
   return (
     <div className="h-[100px] border border-[#DBDBDB] flex items-center lg:px-[60px] w-full justify-between sticky top-0 z-1 bg-[#FFFFFF]">
       <div className=" w-full lg:w-8/12  flex  items-center  ">
@@ -14,7 +16,7 @@ const Navbar = () => {
         </div>
         <div className="hidden lg:block">
           <ul className="flex space-x-12 text-[#202124] items-center text-base font-semibold cursor-pointer">
-            <li>Home</li>
+            <li onClick={()=>{navigate("/")}}>Home</li>
             <li>Services</li>
             <li>About </li>
           </ul>
@@ -25,7 +27,7 @@ const Navbar = () => {
         <span>
           <IoPersonCircleSharp size={25} />
         </span>
-        <span className="font-semibold">Sign In</span>
+        <span className="font-semibold" onClick={()=>{navigate("/login")}}>Sign In</span>
       </div>
       <IoIosMenu  size={50} className="mr-4 lg:hidden border  bg-gray-300 h-[40px]  rounded-md my-0"/>
 

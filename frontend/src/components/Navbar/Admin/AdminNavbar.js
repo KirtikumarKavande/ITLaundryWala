@@ -4,10 +4,19 @@ import { GoPeople } from "react-icons/go";
 import { MdGroupAdd } from "react-icons/md";
 import { FaLinesLeaning, FaPeopleArrows } from "react-icons/fa6";
 import { MdWorkHistory } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+
+import { Link, useNavigate } from "react-router-dom";
 import { NavList } from "./NavList";
 
 const AdminNavbar = () => {
+  const navigate = useNavigate()
+  function handleLogout() {
+    localStorage.clear()
+    navigate('/', { replace: true });
+    window.location.reload()
+
+  }
   return (
     <div>
       <div className=" h-36 md:h-52 ">
@@ -24,7 +33,11 @@ const AdminNavbar = () => {
               </div>
             </a>
           </div>
-          <div><img width="48" height="48" className="pr-2" src="https://img.icons8.com/fluency/48/000000/administrator-male.png" alt="administrator-male"/></div>
+          <div className="flex items-center justify-center mr-2">
+            <div><img width="48" height="48" className="pr-2" src="https://img.icons8.com/fluency/48/000000/administrator-male.png" alt="administrator-male" /></div>
+
+            <div className="cursor-pointer" onClick={handleLogout}><MdLogout size={32} color="white" /></div>
+          </div>
         </div>
         <div className="flex justify-center">
           {NavList.map((item) => {

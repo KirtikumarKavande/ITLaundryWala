@@ -54,7 +54,7 @@ export function OtpModel(props) {
 
       dispatch(userStatus("user"));
       localStorage.setItem("activeUser", "user");
-      navigate("/admin");
+      navigate("/adduser");
     } else {
       toast.error(res.message);
     }

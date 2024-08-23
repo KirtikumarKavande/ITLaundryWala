@@ -11,7 +11,6 @@ function generateRandomOTP() {
   return randomOTP.toString().padStart(4, "0");
 }
 let otp;
-
 const otpVarify = async (req, res, next) => {
   try {
     if (Number(req.body.otp) === Number(otp)) {
@@ -28,6 +27,7 @@ const emailForOtp = async (req, res, next) => {
   try {
     //  er.parmeshwar1998@gmail.com
     otp = generateRandomOTP().trim();
+
 
     const subject = "OTP Verification";
     const sender = { email: "itlaundrywala@gmail.com", name: "ITLaundryWala" };
