@@ -11,6 +11,7 @@ import AddNewUser from "./components/Admin/AddNewUser";
 import ExistingUser from "./components/Admin/ExistingUser";
 import Invoice from "./components/Invoice/Invoice";
 import BarcodePrinting from "./components/Barcode/BarcodePrinting";
+import CustomerSelfContactDetailProvider from "./context/customerSelfContactDetails/CustomerSelfContactDetailProvider";
 
 export default function App() {
   const user = useSelector((store) => store.user.isLoggedIn);
@@ -60,9 +61,9 @@ export default function App() {
   ]);
 
   return (
-    <>
+    <CustomerSelfContactDetailProvider>
       <Toaster />
       <RouterProvider router={router} />
-    </>
+    </CustomerSelfContactDetailProvider>
   );
 }

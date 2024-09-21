@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Input from "./UI/Input";
 import Select from "./UI/Select";
 import { COUNTRY_CODE, PICKUP_TIME } from "../utilities/constant";
@@ -6,6 +6,8 @@ import Modal from "./UI/Modal";
 import { IoMdAddCircle } from "react-icons/io";
 import { FaCircleMinus } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+import CustomerSelfContactDetails from "../../context/customerSelfContactDetails/customerSelfContactDetails";
+import useData from "../hooks/useData";
 
 const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
   const { cart } = useSelector((store) => store.cart);
@@ -18,6 +20,10 @@ const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
     (accumulator, item) => accumulator + item.price * item.qty,
     initialValue
   );
+  const {customerDetailPicker}=useContext(CustomerSelfContactDetails)
+
+  const {userDetails, handleChange}=useData({})
+  console.log(userDetails)
 
   const incrementQty = (item, index) => {
     const originalCartItem = [...itemInCart];
@@ -41,6 +47,10 @@ const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
 
     // originalCartItem[index] = obj;
   };
+
+  function handlePlaceOrder(){
+    customerDetailPicker(userDetails)
+  }
   return (
     <div className="bg-white w-full max-h-[40rem] overflow-y-scroll ">
       <div className="w-full flex justify-center">
@@ -108,30 +118,30 @@ const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
         <div className="  pt-4 pb-5">
           <div className="w-full flex ">
             <div className="w-1/2">
-              <Input label="Pickup Date" type={"date"} />
+              <Input label="Pickup Date" type={"date"} name={"date"} handleChange={handleChange}/>
             </div>
             <div className="w-1/2 pl-4">
               {/* <Input label="Pickup Time" type="select" /> */}
-              <Select label="Pickup Time" data={PICKUP_TIME} />
+              <Select label="Pickup Time" data={PICKUP_TIME} name="pickupTime" handleChange={handleChange}/>
             </div>
           </div>
         </div>
         <div>
-          <Input label="Name" />
+          <Input label="Name" name="name" handleChange={handleChange} />
         </div>
         <div className="flex items-center pt-4">
           <div className="w-3/12">
             <Select label="Country Code" data={COUNTRY_CODE} />
           </div>
           <div className="w-9/12 pl-4">
-            <Input label="Mobile Number" />
+            <Input label="Mobile Number" name="mobileNumber" handleChange={handleChange}/>
           </div>
         </div>
         <div className=" pt-4">
-          <Input label="Address" />
+          <Input label="Address" name="address" handleChange={handleChange} />
         </div>
         <div className="flex justify-center pt-4 pb-4">
-          <button className="pb-4 pt-4 w-48 h-14 text-white font-bold bg-red-500">
+          <button className="pb-4 pt-4 w-48 h-14 text-white font-bold bg-red-500" onClick={handlePlaceOrder}>
             Place Order
           </button>
         </div>
