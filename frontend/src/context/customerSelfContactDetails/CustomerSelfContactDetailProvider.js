@@ -12,7 +12,7 @@ const CustomerSelfContactDetailProvider = ({ children }) => {
             .min(10, 'Mobile number must be at least 10 digits')
             .required('Mobile number is required'),
         name: Yup.string().required('Name is required').max(50, 'Name is too long'),
-        date: Yup.string().required('Pickup Date is required'),
+        pickupDate: Yup.string().required('Pickup Date is required'),
         pickupTime: Yup.string().required('Pickup Time is required'),
     });
     function customerDetailPicker(data) {
@@ -20,7 +20,7 @@ const CustomerSelfContactDetailProvider = ({ children }) => {
             address: DOMPurify.sanitize(data.address),
             mobileNumber: DOMPurify.sanitize(data.mobileNumber),
             name: DOMPurify.sanitize(data.name),
-            date: DOMPurify.sanitize(data.date),
+            pickupDate: DOMPurify.sanitize(data.pickupDate),
             pickupTime: DOMPurify.sanitize(data.pickupTime),
         };
 

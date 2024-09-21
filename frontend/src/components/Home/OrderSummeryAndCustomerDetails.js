@@ -23,7 +23,6 @@ const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
   const {customerDetailPicker}=useContext(CustomerSelfContactDetails)
 
   const {userDetails, handleChange}=useData({})
-  console.log(userDetails)
 
   const incrementQty = (item, index) => {
     const originalCartItem = [...itemInCart];
@@ -118,7 +117,7 @@ const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
         <div className="  pt-4 pb-5">
           <div className="w-full flex ">
             <div className="w-1/2">
-              <Input label="Pickup Date" type={"date"} name={"date"} handleChange={handleChange}/>
+              <Input label="Pickup Date" type={"date"} name={"pickupDate"} handleChange={handleChange}/>
             </div>
             <div className="w-1/2 pl-4">
               {/* <Input label="Pickup Time" type="select" /> */}
