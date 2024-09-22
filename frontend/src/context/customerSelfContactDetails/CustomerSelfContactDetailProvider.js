@@ -3,6 +3,8 @@ import CustomerSelfContactDetails from './customerSelfContactDetails'
 import * as Yup from 'yup';
 import DOMPurify from 'dompurify';
 import { toast } from 'react-hot-toast';
+import usePostsDataToDb from '../../components/hooks/usePostsDataToDb.hook';
+import { BASE_URL } from '../../components/utilities/constant';
 
 const CustomerSelfContactDetailProvider = ({ children }) => {
     const validationSchema = Yup.object().shape({
@@ -15,6 +17,7 @@ const CustomerSelfContactDetailProvider = ({ children }) => {
         pickupDate: Yup.string().required('Pickup Date is required'),
         pickupTime: Yup.string().required('Pickup Time is required'),
     });
+    const postDatatoDb = usePostsDataToDb()
     function customerDetailPicker(data) {
         const sanitizedData = {
             address: DOMPurify.sanitize(data.address),
@@ -28,6 +31,12 @@ const CustomerSelfContactDetailProvider = ({ children }) => {
         validationSchema
             .validate(sanitizedData, { abortEarly: false })
             .then((validatedData) => {
+                fetch(`${BASE_URL}/onlineorder`,{
+                    method: "POST",
+                    credentials: 'include',
+                    body: JSON.stringify(validatedData),
+                    headers: { "content-type": "application/json", },
+                })
                 console.log('Data is valid:', validatedData);
                 // Proceed with further processing
             })
