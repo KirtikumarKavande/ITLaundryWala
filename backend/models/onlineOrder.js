@@ -38,7 +38,11 @@ const onlineOrderSchema = new Schema({
     pickupDate: {
         type: String,
         required: true
+    },
+    isUserExist:{
+        type:Boolean,
+        default:false
     }
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("OnlineOrder", onlineOrderSchema);

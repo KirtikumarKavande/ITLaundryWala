@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const OnlineOrder = require('../models/onlineOrder');
 const { body, validationResult } = require('express-validator');
 const pickUpCounter = require('../models/pickupOrderCount');
+const existingUser = require('../models/newUser');
 const xss = require('xss');
 
 const validateOnlineOrder = [
@@ -45,9 +46,17 @@ async function addOnlineOrder(req, res) {
         } else {
             pickupId = counterData.pickupId
         }
+       const data=await existingUser.findOne({ mobileNumber: sanitizedData.mobileNumber })
+        let isUserExist=false
+        if(data){
+            isUserExist=true
+        }
+
+
         let modifiedData = {
             ...sanitizedData,
-            pickupId: pickupId + 1
+            pickupId: pickupId + 1,
+            isUserExist:isUserExist
         }
 
         const newOrder = new OnlineOrder(modifiedData);
@@ -91,8 +100,32 @@ async function getAllOnlineOrders(req, res) {
     }
 }
 
+async function deleteOrdersByPickupIds(req,res) {
+
+    const pickupIds = req.body.pickupIds;
+    console.log("pickupIds", pickupIds);
+    try {
+        // Use deleteMany with the $in operator to match pickupIds
+        await OnlineOrder.deleteMany({
+            pickupId: { $in: pickupIds }
+        });
+        res.status(200).json({
+            message: 'All online orders fetched successfully',
+            statusCode: 200
+        });
+
+    } catch (error) {
+        console.error("Error deleting orders:", error);
+        res.status(500).json({
+            message: 'Failed to fetch online orders',
+            error: error.message
+        });
+    }
+}
+
 module.exports = {
     addOnlineOrder,
     validateOnlineOrder,
-    getAllOnlineOrders
+    getAllOnlineOrders,
+    deleteOrdersByPickupIds
 };

@@ -7,7 +7,7 @@ import { MdWorkHistory } from "react-icons/md";
 export const NavList=[
     {
         name:"Home",
-        path:"/",
+        path:"/existinguser",
         icon:<AiOutlineHome size={30}/>
     },
     {
