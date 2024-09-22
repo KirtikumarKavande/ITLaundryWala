@@ -27,22 +27,34 @@ const CustomerSelfContactDetailProvider = ({ children }) => {
             pickupTime: DOMPurify.sanitize(data.pickupTime),
         };
 
-        // Validate the sanitized data
         validationSchema
             .validate(sanitizedData, { abortEarly: false })
-            .then((validatedData) => {
-                fetch(`${BASE_URL}/onlineorder`,{
-                    method: "POST",
-                    credentials: 'include',
-                    body: JSON.stringify(validatedData),
-                    headers: { "content-type": "application/json", },
-                })
-                console.log('Data is valid:', validatedData);
-                // Proceed with further processing
+            .then(async (validatedData) => {
+                try {
+                    let res = await fetch(`${BASE_URL}/onlineorder`, {
+                        method: "POST",
+                        credentials: 'include',
+                        body: JSON.stringify(validatedData),
+                        headers: { "content-type": "application/json", },
+                    })
+                    let data =await res.json()
+                    console.log("kk",data)
+                    if (data.statusCode === 201) {
+                        toast.success("Order Placed Successfully")
+                        setTimeout(()=>{
+                            window.location.reload()
+                        },1000)
+                    } else {
+                        toast.error("Please enter valid data")
+                    }
+                } catch (error) {
+                    toast.error("Please enter valid data")
+
+                }
+
             })
             .catch((validationErrors) => {
                 validationErrors.inner.forEach((error) => {
-                    // Display error message using React Hot Toast
                     toast.error(error.message);
                 });
             });

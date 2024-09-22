@@ -66,7 +66,8 @@ async function addOnlineOrder(req, res) {
 
         res.status(201).json({
             message: 'Online order added successfully',
-            order: savedOrder
+            order: savedOrder,
+            statusCode: 201
         });
     } catch (error) {
         console.error('Error adding online order:', error);
