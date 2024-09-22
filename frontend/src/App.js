@@ -12,6 +12,7 @@ import ExistingUser from "./components/Admin/ExistingUser";
 import Invoice from "./components/Invoice/Invoice";
 import BarcodePrinting from "./components/Barcode/BarcodePrinting";
 import CustomerSelfContactDetailProvider from "./context/customerSelfContactDetails/CustomerSelfContactDetailProvider";
+import OnlineOrderDetails from "./components/Admin/OnlineOrderDetails";
 
 export default function App() {
   const user = useSelector((store) => store.user.isLoggedIn);
@@ -55,6 +56,10 @@ export default function App() {
         {
           path: "/barcode",
           element: <BarcodePrinting/>,
+        },
+        {
+          path: "/request",
+          element: <OnlineOrderDetails/>,
         },
       ],
     },
