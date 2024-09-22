@@ -23,7 +23,7 @@ export default function App() {
       children: [
         {
           path: "/",
-          element: <Home />,
+          element: user === "user" ? <AddNewUser/> : <Home />,
         },
         {
           path: "/contact",
