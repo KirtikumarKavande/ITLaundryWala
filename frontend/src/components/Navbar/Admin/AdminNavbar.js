@@ -1,9 +1,5 @@
 import React from "react";
-import { AiOutlineHome } from "react-icons/ai";
-import { GoPeople } from "react-icons/go";
-import { MdGroupAdd } from "react-icons/md";
-import { FaLinesLeaning, FaPeopleArrows } from "react-icons/fa6";
-import { MdWorkHistory } from "react-icons/md";
+
 import { MdLogout } from "react-icons/md";
 
 import { Link, useNavigate } from "react-router-dom";

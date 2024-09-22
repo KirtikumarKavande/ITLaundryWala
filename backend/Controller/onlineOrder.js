@@ -27,7 +27,6 @@ const sanitizeAndValidate = (req) => {
     };
 };
 
-// Enhanced controller function to add a new online order
 async function addOnlineOrder(req, res) {
     try {
         console.log("req.body", req.body);
@@ -39,28 +38,27 @@ async function addOnlineOrder(req, res) {
                 throw new Error(`Invalid input type for ${key}`);
             }
         }
-        const counterData =  await pickUpCounter.findById("8308405964416101")
+        const counterData = await pickUpCounter.findById("8308405964416101")
         let pickupId
         if (!counterData) {
-            pickupId=0
-        }else{
+            pickupId = 0
+        } else {
             pickupId = counterData.pickupId
         }
-       let modifiedData={
-        ...sanitizedData,
-        pickupId:pickupId+1
-       }
+        let modifiedData = {
+            ...sanitizedData,
+            pickupId: pickupId + 1
+        }
 
         const newOrder = new OnlineOrder(modifiedData);
 
         const savedOrder = await newOrder.save();
 
         if (savedOrder) {
-            // Increment the pickup count by 1
             await pickUpCounter.findByIdAndUpdate(
-                { _id: '8308405964416101' }, // Replace 'counterId' with the actual ID of your counter document
-                { $inc: { pickupId: 1 } }, // Increment the 'count' field by 1
-                { new: true, upsert: true } // Create the document if it doesn't exist
+                { _id: '8308405964416101' },
+                { $inc: { pickupId: 1 } },
+                { new: true, upsert: true }
             );
         }
 
@@ -77,8 +75,24 @@ async function addOnlineOrder(req, res) {
         });
     }
 }
+async function getAllOnlineOrders(req, res) {
+    try {
+        const orders = await OnlineOrder.find(); // Fetch all documents from the OnlineOrder collection
+        res.status(200).json({
+            message: 'All online orders fetched successfully',
+            orders
+        });
+    } catch (error) {
+        console.error('Error fetching online orders:', error);
+        res.status(500).json({
+            message: 'Failed to fetch online orders',
+            error: error.message
+        });
+    }
+}
 
 module.exports = {
     addOnlineOrder,
-    validateOnlineOrder
+    validateOnlineOrder,
+    getAllOnlineOrders
 };
