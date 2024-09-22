@@ -1,30 +1,11 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-// Counter schema
-const counterSchema = new Schema({
-    _id: { type: String, required: true },
-    seq: { type: Number, default: 0 }
-});
+const { Schema } = require("mongoose");
 
-const Counter = mongoose.model('Counter', counterSchema);
-
-// Function to get the next pickUpId
-async function getNextPickUpId() {
-    const counter = await Counter.findByIdAndUpdate(
-        { _id: 'pickUpId' },
-        { $inc: { seq: 1 } },
-        { new: true, upsert: true }
-    );
-    return counter.seq;
-}
-
-// Modified onlineOrderSchema
 const onlineOrderSchema = new Schema({
-    pickUpId: {
+    pickupId: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     address: {
         type: String,
@@ -60,14 +41,4 @@ const onlineOrderSchema = new Schema({
     }
 });
 
-// Pre-save middleware to set pickUpId
-onlineOrderSchema.pre('save', async function(next) {
-    if (!this.pickUpId) {
-        this.pickUpId = await getNextPickUpId();
-    }
-    next();
-});
-
-const OnlineOrder = mongoose.model("OnlineOrder", onlineOrderSchema);
-
-module.exports = OnlineOrder;
+module.exports = mongoose.model("OnlineOrder", onlineOrderSchema);
