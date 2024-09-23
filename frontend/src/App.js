@@ -43,23 +43,23 @@ export default function App() {
         },
         {
           path: "/adduser",
-          element: <AddNewUser/>,
+          element: user === "user" ? <AddNewUser /> : <Home />,
         },
         {
           path: "/existinguser",
-          element: <ExistingUser/>,
+          element: user === "user" ? <ExistingUser /> : <Home />,
         },
         {
           path: "/invoice",
-          element: <Invoice/>,
+          element: user === "user" ? <Invoice /> : <Home />,
         },
         {
           path: "/barcode",
-          element: <BarcodePrinting/>,
+          element:  user === "user" ? <BarcodePrinting /> : <Home />,
         },
         {
           path: "/request",
-          element: <OnlineOrderDetails/>,
+          element: user === "user" ? <OnlineOrderDetails /> : <Home />,
         },
       ],
     },
