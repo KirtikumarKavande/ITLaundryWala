@@ -35,11 +35,11 @@ const login = async (req, res, next) => {
       auth.ADMIN_MANGER.password === password
     ) {
 
-      res.cookie('token', generateAccessToken(auth.ADMIN_MANGER.email), {
-        httpOnly: true,           // Prevents JavaScript access to the cookie
-        sameSite: 'lax',          // Suitable for local development
-        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-      });
+      // res.cookie('token', generateAccessToken(auth.ADMIN_MANGER.email), {
+      //   httpOnly: true,           // Prevents JavaScript access to the cookie
+      //   sameSite: 'lax',          // Suitable for local development
+      //   maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      // });
       res.status(200).json({
         success: true,
         statusCode: 200,

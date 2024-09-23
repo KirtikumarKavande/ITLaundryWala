@@ -1,6 +1,10 @@
 require("dotenv").config();
 const SendinblueApiV3Sdk = require("sib-api-v3-sdk");
 SendinblueAPIKey = process.env.SENDINBLUE_API_KEY;
+const auth = require("../Admincreditial");
+const jwt = require("jsonwebtoken");
+
+
 
 SendinblueApiV3Sdk.ApiClient.instance.authentications["api-key"].apiKey =
   SendinblueAPIKey;
@@ -10,15 +14,24 @@ function generateRandomOTP() {
   const randomOTP = Math.floor(Math.random() * (max - min + 1)) + min;
   return randomOTP.toString().padStart(4, "0");
 }
+const generateAccessToken = (email) => {
+  return jwt.sign({ emailId: email }, process.env.ACCESS_KEY);
+};
 let otp;
 const otpVarify = async (req, res, next) => {
   try {
     if (Number(req.body.otp) === Number(otp)) {
+      res.cookie('token', generateAccessToken(auth.ADMIN_MANGER.email), {
+        httpOnly: true,           // Prevents JavaScript access to the cookie
+        sameSite: 'lax',          // Suitable for local development
+        maxAge: 1 * 24 * 60 * 60 * 1000 // 7 days
+      });
       res.status(200).json({ success: true, message: "Sign-in Successfully" });
     } else {
       res.status(400).json({ success: false, message: "Invalid OTP" });
     }
   } catch (err) {
+    console.log(err)
     res.status(400).json({ success: false, message: err });
   }
 };
