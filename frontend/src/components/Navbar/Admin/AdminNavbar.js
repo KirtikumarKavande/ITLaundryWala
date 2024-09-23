@@ -4,13 +4,23 @@ import { MdLogout } from "react-icons/md";
 
 import { Link, useNavigate } from "react-router-dom";
 import { NavList } from "./NavList";
+import usePostsDataToDb from "../../hooks/usePostsDataToDb.hook";
 
 const AdminNavbar = () => {
   const navigate = useNavigate()
-  function handleLogout() {
-    localStorage.clear()
-    navigate('/', { replace: true });
-    window.location.reload()
+  const postDataToDb = usePostsDataToDb()
+
+  async function handleLogout() {
+    const res = await postDataToDb("logout", {})
+    
+    if (res.statusCode === 200) {
+      navigate('/',);
+      localStorage.clear()
+      window.location.reload()
+    }
+
+
+
 
   }
   return (

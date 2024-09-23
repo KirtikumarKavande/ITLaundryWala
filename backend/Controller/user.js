@@ -5,15 +5,26 @@ const auth = require("../Admincreditial");
 require('dotenv').config();
 
 
-const app = express();
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
 
 // const Auth = require("../models/");
 const generateAccessToken = (email) => {
-  return jwt.sign({ emailId: email }, process.env.JWT_KEY);
+  return jwt.sign({ emailId: email }, process.env.ACCESS_KEY);
 };
+async function logout(req,res) {
+  try {
 
+    res.clearCookie('token', {
+      httpOnly: true,  // Same options as when setting the cookie
+      sameSite: 'lax', // Ensure the options match when you set the cookie
+    });
+
+    res.status(200).json({ message: "Logout successful", statusCode: 200 });
+
+  } catch (error) {
+    res.status(400).json({ message: "something went wrong" });
+
+  }
+}
 
 const login = async (req, res, next) => {
   try {
@@ -24,12 +35,16 @@ const login = async (req, res, next) => {
       auth.ADMIN_MANGER.password === password
     ) {
 
-      res.cookie('myCookie', 'Hello from the server!', { maxAge: 900000,  });
+      res.cookie('token', generateAccessToken(auth.ADMIN_MANGER.email), {
+        httpOnly: true,           // Prevents JavaScript access to the cookie
+        sameSite: 'lax',          // Suitable for local development
+        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+      });
       res.status(200).json({
         success: true,
         statusCode: 200,
         message: "Sign In Successfully",
-        token: generateAccessToken(auth.ADMIN_MANGER.email),
+        // token: generateAccessToken(auth.ADMIN_MANGER.email),
       });
     } else {
       res
@@ -41,4 +56,4 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { login };
+module.exports = { login,logout };

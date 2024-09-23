@@ -12,6 +12,8 @@ const pricing = require("./Routes/pricing");
 const printBarcode = require("./Routes/printBarcode");
 const rateLimit = require('express-rate-limit');
 const onlineOrderDetails=require("./Routes/onlineOrderCustomerDetails")
+const cookieParser = require('cookie-parser');
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 200, 
@@ -26,9 +28,13 @@ if (result.error) {
   console.error("Error loading .env file:", result.error);
 }
 const app = express();
+app.use(cookieParser());
+
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+
 app.use(limiter);
 app.use(bodyParser.json({ extended: false }));
+
 app.use(user);
 app.use(otp);
 app.use(newUser);
@@ -37,7 +43,6 @@ app.use(clothDetails);
 app.use(pricing);
 app.use(printBarcode);
 app.use(onlineOrderDetails)
-
 // app.use(expense);
 
 mongoose

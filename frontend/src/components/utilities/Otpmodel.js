@@ -20,7 +20,7 @@ export function OtpModel(props) {
   const inputRef1 = useRef();
   const inputRef2 = useRef();
   const inputRef3 = useRef();
- 
+
   const array = [inputRef0, inputRef1, inputRef2, inputRef3];
 
   const handleChange = (e, item, index) => {
@@ -49,9 +49,6 @@ export function OtpModel(props) {
     const res = await postDatatoDb("otp", { otp: Number(sum) });
     if (res.success) {
       toast.success(res.message);
-
-      localStorage.setItem("jwtToken", token);
-
       dispatch(userStatus("user"));
       localStorage.setItem("activeUser", "user");
       navigate("/adduser");

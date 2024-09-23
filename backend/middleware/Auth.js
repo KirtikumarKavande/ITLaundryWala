@@ -6,7 +6,8 @@ require("dotenv").config();
 const authenticate = (req, res, next) => {
   try {
     const token = req.header("Authorization");
-    const user = jwt.verify(token, process.env.JWT_KEY);
+    // const user = jwt.verify(token, process.env.ACCESS_KEY);
+    const user = jwt.verify(req.cookies.token, process.env.ACCESS_KEY);
     if (user.email === auth.email) {
       req.user = user;
       next();
