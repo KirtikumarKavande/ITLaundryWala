@@ -3,22 +3,21 @@ import CardContainer from '../utilities/Card'
 import { CheckSquare, CloudFog } from 'lucide-react';
 import { BASE_URL } from '../utilities/constant';
 import OnlineOrderList from './OnlineOrderList';
+import useGetsDataFromDB from '../hooks/useGetsDataFromDb.hook';
 
 const OnlineOrderDetails = () => {
     const [orders, setOrders] = useState([]);
     const [checkedItem, setCheckedItem] = useState([])
+   const getDataFromDB= useGetsDataFromDB()
 
 
     console.log(orders)
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch(`${BASE_URL}/onlineorder`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch orders');
-                }
-                const data = await response.json();
-                setOrders(data.orders);
+                const response = await getDataFromDB("onlineorder");
+                console.log("cool",response)
+                setOrders(response.orders);
             } catch (error) {
                 console.log(error)
             }

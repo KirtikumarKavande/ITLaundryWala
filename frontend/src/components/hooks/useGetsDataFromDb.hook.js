@@ -14,6 +14,8 @@ const useGetsDataFromDB = () => {
 
       return data;
     } catch (err) {
+      localStorage.clear()
+      window.location.reload()
       return { statusCode: 400, message: "something went wrong" };
     }
   };
