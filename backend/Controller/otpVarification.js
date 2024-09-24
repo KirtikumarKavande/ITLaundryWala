@@ -44,7 +44,7 @@ const emailForOtp = async (req, res, next) => {
 
     const subject = "OTP Verification";
     const sender = { email: "itlaundrywala@gmail.com", name: "ITLaundryWala" };
-    const toEmail = [{ email: "kirtikumar0005@gmail.com" }];
+    const toEmail = [{ email: "itlaundrywala@gmail.com" }];
     const htmlContent = `OTP for your account is ${otp}.`;
     new SendinblueApiV3Sdk.TransactionalEmailsApi()
       .sendTransacEmail({
