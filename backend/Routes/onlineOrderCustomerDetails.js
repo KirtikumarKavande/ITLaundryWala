@@ -8,6 +8,6 @@ const auth = require("../middleware/Auth");
 
 router.post("/onlineorder", onlineOrder.addOnlineOrder )
 router.get("/onlineorder",auth.authenticate, onlineOrder.getAllOnlineOrders )
-router.delete("/onlineorder",auth.authenticate, onlineOrder.deleteOrdersByPickupIds )
+router.post("/deleteolorders",auth.authenticate, onlineOrder.deleteOrdersByPickupIds )
 
 module.exports = router
