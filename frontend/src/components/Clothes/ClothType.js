@@ -140,6 +140,8 @@ const ClothType = (props) => {
                     "perPiece" && (
                     <td className="px-3 md:px-auto text-center py-4">
                       <input
+                        readOnly
+                        disabled
                         value={clothType[index]?.amount}
                         className="bg-gray-200 text-base text-center appearance-none border-2  border-gray-200 rounded md:w-36 w-14 h-8 py-2 text-black text-md leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       />
