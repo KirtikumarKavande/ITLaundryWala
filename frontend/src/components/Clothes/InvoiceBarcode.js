@@ -14,6 +14,7 @@ const InvoiceBarcode = () => {
   const dispatch=useDispatch()
 
   const handleInvoice = async () => {
+    console.log("bharat",clothDetails);
     const res = await postDataToDB("orderdetails", clothDetails);
     if (res.success) {
       navigate("/invoice");
@@ -35,7 +36,7 @@ const InvoiceBarcode = () => {
         transformedData.push({
           Qty: `${count}/${totalItems}`,
           Cus_ID: `${customerInfo.customerId}`,
-          W_Type: `${clothDetails?.washType?.key}`,
+          W_Type: `${clothDetails?.washType?.item}`,
           C_Type: `${item?.identifier||item.cloth} ${i}/${item.quantity}`,
         });
       }

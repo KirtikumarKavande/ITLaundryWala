@@ -9,6 +9,7 @@ const userDetails = async (req, res) => {
       res.status(400).json({ success: false, message: "User Not Found" });
     }
   } catch (err) {
+    console.log(error)
     res.status(400).json({ success: false, err: err });
   }
 };

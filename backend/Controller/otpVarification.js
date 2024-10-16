@@ -40,7 +40,7 @@ const emailForOtp = async (req, res, next) => {
   try {
     //  er.parmeshwar1998@gmail.com
     otp = generateRandomOTP().trim();
-
+console.log(otp)
 
     const subject = "OTP Verification";
     const sender = { email: "itlaundrywala@gmail.com", name: "ITLaundryWala" };
@@ -71,6 +71,7 @@ const emailForOtp = async (req, res, next) => {
         }, 60000);
       });
   } catch (err) {
+    console.log(error)
     res.status(400).json({ success: false, message: err });
   }
 };

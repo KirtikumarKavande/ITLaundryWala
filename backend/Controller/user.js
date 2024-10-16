@@ -21,6 +21,7 @@ async function logout(req,res) {
     res.status(200).json({ message: "Logout successful", statusCode: 200 });
 
   } catch (error) {
+    console.log(error)
     res.status(400).json({ message: "something went wrong" });
 
   }
@@ -52,6 +53,7 @@ const login = async (req, res, next) => {
         .json({ success: false, message: "Email or Password is Invalid" });
     }
   } catch (err) {
+    console.log(error)
     res.status(400).json({ success: false, message: err });
   }
 };
