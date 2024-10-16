@@ -67,6 +67,9 @@ const SelectClothType = ({ selectedWashType, getClothTypeAndPrice, value }) => {
         onFocus={() => {
           setShowSuggestion(true);
         }}
+        onBlur={(()=>{
+          setShowSuggestion(false);
+        })}
         onChange={handleChangeForClothType}
         value={SelectesClothType || value}
         onKeyDown={handleKeyDown}
