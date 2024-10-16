@@ -143,6 +143,7 @@ const dispatch= useDispatch()
         <WashType
           setSelectedWashType={setSelectedWashType}
           setFinalAmountOfWashType={setFinalAmountOfWashType}
+          selectedWashType={selectedWashType}
         />
         <ClothType
           selectedWashType={selectedWashType}

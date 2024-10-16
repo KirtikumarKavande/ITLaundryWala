@@ -5,10 +5,10 @@ import { updateClothDetails } from "../../store/ClothDetailsSlice";
 import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const WashType = (props) => {
-  const { setSelectedWashType, setFinalAmountOfWashType } = props;
+  const { setSelectedWashType, setFinalAmountOfWashType, selectedWashType } = props;
   const orderHistory = useSelector((store) => store.orderHistoryDetails);
   const orderDetails = useSelector((store) => store.clothDetails);
-  console.log("orderDetails", orderDetails);
+  console.log("deep", selectedWashType);
 
   const dispatch = useDispatch();
   const [menu, setMenu] = useState({
@@ -104,10 +104,11 @@ const WashType = (props) => {
               onChange={(e) => {
                 setMenu({ ...menu, weight: e.target.value });
               }}
-              style={{ "-webkit-appearance": "none" }}
+              style={{ "-webkit-appearance": "none", textAlign: "center" }}
               name="weightw"
               value={menu?.weight}
               type="text"
+              disabled={(selectedWashType?.item?.trim() === "WASH & IRON" || selectedWashType?.item?.trim() === "WASH & FOLD") ? false : true}
             />
           </div>
         </div>
@@ -123,6 +124,8 @@ const WashType = (props) => {
               type="text"
               name="amount"
               value={menu.totalPrice || 0}
+              style={{ "-webkit-appearance": "none", textAlign: "center" }}
+              readOnly
               disabled
             />
           </div>
