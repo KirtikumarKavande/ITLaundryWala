@@ -76,6 +76,8 @@ const DeliveryDates = (props) => {
               type="text"
               name="name"
               value={pickupDate}
+              disabled
+              readOnly
             />
           </div>
         </div>
@@ -102,6 +104,8 @@ const DeliveryDates = (props) => {
           </div>
           <div>
             <input
+            disabled
+            readOnly
               value={
                 (selectedWashType?.type === "perPiece" && !isExpressDelivery
                   ? totalAmount
