@@ -175,7 +175,7 @@ const Home = () => {
         {/* <img src="./banner.jpg" alt="" className=" h-[430px]  mx-auto  " /> */}
         <Slider />
       </div>
-      <div className="font-bold text-3xl pl-7 pt-5 pb-2">Pricing and Services</div>
+      <div className="font-bold text-3xl pl-7 pt-5 pb-2 text-center">PRICING AND SERVICES</div>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product) => (
@@ -183,7 +183,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="font-bold text-3xl pl-7 pt-5 ">How it Works</div>
+      <div className="font-bold text-3xl pl-7 pt-5 text-center ">HOW IT WORKS</div>
 
       <div className="container mx-auto px-4 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -192,7 +192,7 @@ const Home = () => {
         ))}
       </div>
     </div>
-    <div className="font-bold text-3xl pl-7 pt-5 ">Our Promises</div>
+    <div className="font-bold text-3xl pl-7 pt-5 text-center ">OUR PROMISES</div>
 
     <div className="container mx-auto  py-8">
       <div className="flex flex-col lg:flex-row items-center">
@@ -210,7 +210,7 @@ const Home = () => {
         </div>
       </div>
     </div>
-    <div className="font-bold text-3xl pl-7 pt-5 pb-4 ">Frequently Asked Question's</div>
+    <div className="font-bold text-3xl pl-7 pt-5 pb-4 text-center "> FREQUENTLY ASKED QUESTIONS </div>
 
 
     <div className=" mx-12 rounded-lg shadow-lg overflow-hidden ">
