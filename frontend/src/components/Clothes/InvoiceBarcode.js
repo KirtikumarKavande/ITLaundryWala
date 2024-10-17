@@ -40,7 +40,7 @@ const InvoiceBarcode = () => {
         transformedData.push({
           Qty: `${count}/${totalItems}`,
           Cus_ID: `${customerInfo.customerId}`,
-          W_Type: `${clothDetails?.washType?.item}`,
+          W_Type: `${clothDetails?.washType?.key}`,
           C_Type: `${item?.identifier || item.cloth} ${i}/${item.quantity}`,
         });
       }
