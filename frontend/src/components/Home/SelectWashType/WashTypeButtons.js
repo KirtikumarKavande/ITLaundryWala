@@ -3,7 +3,6 @@ import { washTypeButtonMenu } from "./WashTypeButtonMenu.js";
 
 const WashTypeButtons = ({ setCurrentPage }) => {
   const selectedWashType = (data) => {
-    console.log(data);
     
     if (data.item === "WASH & FOLD" || data.item === "WASH & IRON") {
       setCurrentPage("customerDetails");

@@ -38,7 +38,6 @@ const CustomerSelfContactDetailProvider = ({ children }) => {
                         headers: { "content-type": "application/json", },
                     })
                     let data =await res.json()
-                    console.log("kk",data)
                     if (data.statusCode === 201) {
                         toast.success("Order Placed Successfully")
                         setTimeout(()=>{

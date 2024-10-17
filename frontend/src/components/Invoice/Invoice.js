@@ -6,7 +6,6 @@ import { MonthNames } from "../utilities/constant";
 function Invoice() {
   const invoiceData = useSelector((store) => store.clothDetails);
   const userDetails = useSelector((store) => store.existingUserDetails);
-  console.log("invoiceData", invoiceData);
   const [loader, setLoader] = useState(false);
   const actualReceiptRef = useRef(null); // Using useRef for the element reference
 

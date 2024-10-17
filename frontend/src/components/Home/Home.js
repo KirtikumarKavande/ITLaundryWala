@@ -49,7 +49,6 @@ const Home = () => {
   ];
 
   const [currentPage, setCurrentPage] = useState("buttonList");
-  console.log("currentPage", currentPage);
  
 
   const [openIndex, setOpenIndex] = useState(0);

@@ -37,8 +37,6 @@ const PerPieceClothOrderItem = (props) => {
           </div>
           <div className="pt-2 h-[30rem] overflow-y-scroll text-gray-800 font-semibold">
             {washType.map((item) => {
-              console.log("long", item);
-              console.log("long", selectedSubCategory);
               if (item.subCategory === selectedSubCategory) {
                 return (
                   <div>

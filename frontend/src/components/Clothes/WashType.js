@@ -8,7 +8,6 @@ const WashType = (props) => {
   const { setSelectedWashType, setFinalAmountOfWashType, selectedWashType } = props;
   const orderHistory = useSelector((store) => store.orderHistoryDetails);
   const orderDetails = useSelector((store) => store.clothDetails);
-  console.log("deep", selectedWashType);
 
   const dispatch = useDispatch();
   const [menu, setMenu] = useState({

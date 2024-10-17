@@ -14,7 +14,6 @@ const InvoiceBarcode = () => {
   const dispatch=useDispatch()
 
   const handleInvoice = async () => {
-    console.log("bharat",clothDetails);
     const res = await postDataToDB("orderdetails", clothDetails);
     if (res.success) {
       navigate("/invoice");
@@ -51,7 +50,6 @@ const InvoiceBarcode = () => {
     dispatch(addBarcodePrinting(transformedData))
     navigate('/barcode')
 
-    console.log(transformedData);
     // await postDataToDB("generate-and-print", transformedData);
   };
   return (
