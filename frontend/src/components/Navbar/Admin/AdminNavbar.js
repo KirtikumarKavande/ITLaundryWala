@@ -48,9 +48,10 @@ const AdminNavbar = () => {
           </div>
         </div>
         <div className="flex justify-center">
-          {NavList.map((item) => {
+          {NavList.map((item,index) => {
             return (
               <Link
+              key={index}
                 to={item.path}
                 className="max-h-2/3  mt-3 py-2 md:p-6  flex items-center ml-1 md:ml-4 
                       flex-col text-white w-24  justify-center    hover:bg-white hover:text-blue-400  hover:rounded-md

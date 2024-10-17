@@ -106,8 +106,8 @@ function Invoice() {
                     </tr>
                   </thead>
                   <tbody>
-                    {invoiceData?.clothType.map((item) => (
-                      <tr className="text-center">
+                    {invoiceData?.clothType.map((item,index) => (
+                      <tr className="text-center" key={index}>
                         <td className="px-2 py-1">{item?.cloth}</td>
                         <td className="px-2 py-1">
                           {invoiceData?.washType?.key}

@@ -68,8 +68,8 @@ const OnlineOrderDetails = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map((item) => (
-                                <OnlineOrderList item={item} checkedItem={checkedItem} setCheckedItem={setCheckedItem} />
+                            {orders.map((item,index) => (
+                                <OnlineOrderList item={item} checkedItem={checkedItem} setCheckedItem={setCheckedItem} key={index} />
                             ))}
                         </tbody>
                     </table>

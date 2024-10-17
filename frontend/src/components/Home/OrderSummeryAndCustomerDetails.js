@@ -65,7 +65,7 @@ const OrderSummeryAndCustomerDetails = ({ setCurrentPage }) => {
       <div className="mx-14">
         <div className="pt-2   text-gray-800 font-semibold">
           {itemInCart?.map((item, index) => (
-            <div>
+            <div key={index}>
               <div key={item.id} className="w-full flex items-center  py-1">
                 <div className="w-3/12">
                   <img

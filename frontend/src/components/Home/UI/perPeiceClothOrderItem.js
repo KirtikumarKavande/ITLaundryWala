@@ -19,8 +19,9 @@ const PerPieceClothOrderItem = (props) => {
       <div className="bg-white w-full ">
         <div className="mx-14">
           <div className="flex pt-2 space-x-2 justify-center pb-4">
-            {buttonNames.map((item) => (
+            {buttonNames?.map((item,key) => (
               <button
+              key={key}
                 className={`w-32 bg-gray-200 h-12 rounded font-bold text-sm ${
                   item === selectedSubCategory ? "bg-red-400 text-white" : ""
                 }  `}
@@ -36,10 +37,10 @@ const PerPieceClothOrderItem = (props) => {
             {title} {selectedSubCategory === "KG" ? "(per kg)" : "(per piece)"}
           </div>
           <div className="pt-2 h-[30rem] overflow-y-scroll text-gray-800 font-semibold">
-            {washType.map((item) => {
+            {washType?.map((item,index) => {
               if (item.subCategory === selectedSubCategory) {
                 return (
-                  <div>
+                  <div key={index}>
                     <div className="w-full flex items-center  py-1">
                       <div className="w-3/12">
                         <img
@@ -93,8 +94,8 @@ const PerPieceClothOrderItem = (props) => {
               }
             })}
             {selectedSubCategory === "KG" &&
-              expressLaundryTypes.map((item) => (
-                <div>
+              expressLaundryTypes?.map((item,index) => (
+                <div key={index}>
                   <div className="w-full flex items-center  py-1">
                     <div className="w-3/12">
                       <img

@@ -40,6 +40,7 @@ const emailForOtp = async (req, res, next) => {
   try {
     //  er.parmeshwar1998@gmail.com
     otp = generateRandomOTP().trim();
+    console.log(otp)
     const subject = "OTP Verification";
     const sender = { email: "itlaundrywala@gmail.com", name: "ITLaundryWala" };
     const toEmail = [{ email: "itlaundrywala@gmail.com" }];

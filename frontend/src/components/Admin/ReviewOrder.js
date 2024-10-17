@@ -66,7 +66,7 @@ const ReviewOrder = () => {
           </thead>
           <tbody className="text-white">
             {orderDetails.length>0 &&orderDetails?.map((item, index) => (
-              <tr key={item._id} className=" bg-blue-500 border-b">
+              <tr key={item._id}  className=" bg-blue-500 border-b">
                 <td className="px-6 py-4 text-base font-semibold">
                   Order{index + 1}
                 </td>

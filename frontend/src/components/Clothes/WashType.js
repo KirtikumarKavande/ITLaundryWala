@@ -82,9 +82,9 @@ const WashType = (props) => {
         >
           <option>Choose a Wash Type</option>
           <>
-            {washMenu.map((menu) => {
+            {washMenu.map((menu,index) => {
               return (
-                <option className="font-semibold" value={menu.item}>
+                <option className="font-semibold" value={menu.item} key={index}>
                   {menu.item}
                 </option>
               );

@@ -110,7 +110,7 @@ const ClothType = (props) => {
           <tbody>
             {numberOFCloth?.map((item, index) => {
               return (
-                <tr className="relative text-black bg-blue-500 border-b">
+                <tr className="relative text-black bg-blue-500 border-b" key={index}>
                   <td className="px-2 md:text-center py-4">{item}</td>
                   <td
                     className="px-1  py-4 z-50 absolute"

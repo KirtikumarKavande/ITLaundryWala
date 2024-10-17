@@ -1,4 +1,4 @@
-const WorkflowStep = ({ icon, title, step }) => (
+const WorkflowStep = ({ icon, title, step, }) => (
     <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center text-center border border-gray-100">
         <div className=" p-3 mb-4">
             <img src={icon} alt={title} className="h-28"/>

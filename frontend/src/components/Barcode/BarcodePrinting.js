@@ -10,8 +10,8 @@ const BarcodePrinting = () => {
   return (
     <div className="w-[150px] px-1  h-full font-semibold ">
       {barcodePrintingData.length > 0 &&
-        barcodePrintingData?.map((item) => (
-          <div className="">
+        barcodePrintingData?.map((item,index) => (
+          <div className="" key={index}>
             {item?.C_Type && (
               <div>
                 <p className="text-right">
