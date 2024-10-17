@@ -24,7 +24,7 @@ const otpVarify = async (req, res, next) => {
       res.cookie('token', generateAccessToken(auth.ADMIN_MANGER.email), {
         httpOnly: true,           // Prevents JavaScript access to the cookie
         sameSite: 'lax',          // Suitable for local development
-        maxAge: 1 * 24 * 60 * 60 * 1000 // 7 days
+        maxAge: 24 * 60 * 60 * 1000 // 1 day
       });
       res.status(200).json({ success: true, message: "Sign-in Successfully" });
     } else {

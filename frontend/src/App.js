@@ -31,7 +31,7 @@ export default function App() {
         },
         {
           path: "/login",
-          element: <AdminLogin />,
+          element: user === "user" ? <AddNewUser/> : <AdminLogin />,
         },
         {
           path: "/about",

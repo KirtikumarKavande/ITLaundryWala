@@ -14,9 +14,11 @@ const AdminNavbar = () => {
     const res = await postDataToDb("logout", {})
     
     if (res.statusCode === 200) {
-      navigate('/',);
       localStorage.clear()
-      window.location.reload()
+      navigate("/");
+      setTimeout(() => {
+        window.location.reload()
+      },1000)
     }
 
 
