@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { WashFoldIron } from "../utilities/WFWIWS";
 import { Household } from "../utilities/Houeshold";
 import { Shoes } from "../utilities/Shoes";
@@ -10,6 +10,7 @@ const SelectClothType = ({ selectedWashType, getClothTypeAndPrice, value }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [SelectesClothType, setSelectesClothType] = useState("");
+  const blurTimeoutRef = useRef(null);
 
   useEffect(() => {
     if (selectedWashType?.item === "DRY CLEANING") {
@@ -61,22 +62,38 @@ const SelectClothType = ({ selectedWashType, getClothTypeAndPrice, value }) => {
     }
   };
 
+  const handleBlur = () => {
+    blurTimeoutRef.current = setTimeout(() => {
+      setShowSuggestion(false);
+    }, 200);
+  };
+
+  const handleFocus = () => {
+    if (blurTimeoutRef.current) {
+      clearTimeout(blurTimeoutRef.current);
+    }
+    setShowSuggestion(true);
+  };
+
+  const handleSuggestionMouseDown = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div>
       <input
-        onFocus={() => {
-          setShowSuggestion(true);
-        }}
-        onBlur={(()=>{
-          setShowSuggestion(false);
-        })}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         onChange={handleChangeForClothType}
         value={SelectesClothType || value}
         onKeyDown={handleKeyDown}
         className="bg-gray-200 appearance-none border-2 text-center border-gray-200 rounded w-36 h-8 py-2 text-black leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
       />
       {showSuggestion && (
-        <ul className="bg-white w-[210px] space-y-2 ml-8 md:w-[230px] my-2 md:-ml-8 text-base overflow-y-scroll h-32 flex-col border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <ul 
+          onMouseDown={handleSuggestionMouseDown}
+          className="bg-white w-[210px] space-y-2 ml-8 md:w-[230px] my-2 md:-ml-8 text-base overflow-y-scroll h-32 flex-col border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
           {cloth?.map((item, index) => {
             return (
               <li
