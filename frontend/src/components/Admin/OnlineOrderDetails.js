@@ -5,6 +5,7 @@ import { BASE_URL } from '../utilities/constant';
 import OnlineOrderList from './OnlineOrderList';
 import useGetsDataFromDB from '../hooks/useGetsDataFromDb.hook';
 import usePostsDataToDb from '../hooks/usePostsDataToDb.hook';
+import toast from 'react-hot-toast';
 
 const OnlineOrderDetails = () => {
     const [orders, setOrders] = useState([]);
@@ -12,15 +13,13 @@ const OnlineOrderDetails = () => {
    const getDataFromDB= useGetsDataFromDB()
     const postDatatoDb= usePostsDataToDb()
 
-
-    console.log(orders)
     useEffect(() => {
         const fetchOrders = async () => {
             try {
                 const response = await getDataFromDB("onlineorder");
                 setOrders(response.orders);
             } catch (error) {
-                console.log(error)
+                toast.error("something went wrong");
             }
         };
 
@@ -30,7 +29,6 @@ const OnlineOrderDetails = () => {
     async function handleDeleteOrder () {
         try {
            const data= await postDatatoDb("deleteolorders",{pickupIds:checkedItem})
-                  console.log("superb",data)
             if(data.statusCode===200){
               setTimeout(()=>{
                 window.location.reload()
@@ -39,8 +37,7 @@ const OnlineOrderDetails = () => {
             }
            
         } catch (error) {
-
-            console.log(error)
+        toast.error("something went wrong")
         }
     }
 

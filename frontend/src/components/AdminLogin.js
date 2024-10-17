@@ -32,14 +32,12 @@ const AdminLogin = () => {
           }
         } catch (err) {
           toast.error(err.message);
-          console.log(">>>>>>",err.message)
         }
       } else {
         toast.error(res.message);
       }
     } catch (err) {
       toast.error(err.message);
-      console.log(">>>>>>",err.message)
 
     }
   };

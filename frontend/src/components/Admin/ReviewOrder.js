@@ -38,7 +38,6 @@ const ReviewOrder = () => {
   const ViewUserHistory = (item) => {
     dispatch(updateOrderHistoryDetails({ ...item, isShowOrderHistory: true }));
   };
-  console.log("orderDetails", orderDetails);
 
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-[10vw]">

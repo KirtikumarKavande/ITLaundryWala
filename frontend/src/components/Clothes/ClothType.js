@@ -72,7 +72,6 @@ const ClothType = (props) => {
     }
   }, [orderHistory.isShowOrderHistory]);
 
-  console.log("clothTypekk", clothType);
   return (
     <div>
       <div className="px-1 md:px-[10vw] relative overflow-x-auto shadow-md sm:rounded-lg mt-7 md:pt-12 rounded-xl">

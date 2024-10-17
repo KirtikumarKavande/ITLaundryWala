@@ -7,7 +7,6 @@ import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const DeliveryDates = (props) => {
   const { totalAmount, selectedWashType, finalAmountOfWashType } = props;
-  console.log("finalAmountOfWashType", finalAmountOfWashType);
   const [isExpressDelivery, setIsExpressDelivery] = useState(false);
 
   const currentDate = new Date();
@@ -51,7 +50,6 @@ const DeliveryDates = (props) => {
   }, [orderHistory.isShowOrderHistory]);
 
   const handleExpressDelivery = (e) => {
-    console.log("checked", e.target.checked);
     if (e.target.checked) {
       dispatch(updateClothDetails({ isExpressDelivery: true }));
       setIsExpressDelivery(true);
@@ -61,7 +59,6 @@ const DeliveryDates = (props) => {
       setIsExpressDelivery(false);
     }
   };
-  console.log("isExpressDelivery", isExpressDelivery);
   return (
     <div>
       <div className="w-full flex pt-3 px-5 md:px-60">
