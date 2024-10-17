@@ -1,13 +1,21 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
-import { useSelector } from "react-redux";
 import { MonthNames } from "../utilities/constant";
 
 function Invoice() {
-  const invoiceData = useSelector((store) => store.clothDetails);
-  const userDetails = useSelector((store) => store.existingUserDetails);
+  const [invoiceData, setInvoiceData] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
   const [loader, setLoader] = useState(false);
-  const actualReceiptRef = useRef(null); // Using useRef for the element reference
+  const actualReceiptRef = useRef(null);
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('invoiceData');
+    if (storedData) {
+      const { clothDetails, customerInfo } = JSON.parse(storedData);
+      setInvoiceData(clothDetails);
+      setUserDetails(customerInfo);
+    }
+  }, []);
 
   const downloadImage = () => {
     const capture = actualReceiptRef.current;
@@ -29,20 +37,24 @@ function Invoice() {
       downloadLink.click();
     });
   };
-  // const date="28-11-2023"
+
+  // Early return if data is not loaded
+  if (!invoiceData || !userDetails) {
+    return <div>Loading...</div>;
+  }
+
   const splittePickupdDate = invoiceData?.pickupDate?.split("-");
   const splitteDeliverydDate = invoiceData?.deliveryDate?.split("-");
 
   return (
-    <div className="wrapper  ">
+    <div className="wrapper">
       <div
-        className="receipt-box tracking-widest w-[900px] ] "
+        className="receipt-box tracking-widest w-[900px]"
         ref={actualReceiptRef}
       >
-        {/* Assign the ref to the actual-receipt div */}
         <div className="actual-receipt mx-auto w-[700px]">
           <div className="h-14 w-full"></div>
-          <div className="container  ">
+          <div className="container">
             <header className="flex justify-between items-center">
               <h1 className="font-extrabold text-4xl">INVOICE</h1>
               <img src="/logo.jpg" className="h-36" alt="LaundryWala Logo" />
@@ -63,14 +75,14 @@ function Invoice() {
                   <p className="mt-2">
                     Cus ID: <span>{userDetails?.customerId}</span>
                   </p>
-                  <p className="mt-2 ">
+                  <p className="mt-2">
                     Name : <span>{userDetails?.name}</span>
                   </p>
                   <p className="mt-2">
                     Mo No: <span>{userDetails?.mobileNumber}</span>
                   </p>
                 </div>
-                <div cla>
+                <div>
                   <div className="flex pb-5">
                     <p className="font-bold">D.O.D:</p>
                     <p>
@@ -95,9 +107,8 @@ function Invoice() {
                     <tr
                       style={{
                         backgroundColor: "#E6E6E8",
-                        // height: "10px",
                       }}
-                      className=" pb-16"
+                      className="pb-16"
                     >
                       <th className="pb-4">Cloth Type</th>
                       <th className="pb-4">Wash Type</th>
@@ -106,7 +117,7 @@ function Invoice() {
                     </tr>
                   </thead>
                   <tbody>
-                    {invoiceData?.clothType.map((item,index) => (
+                    {invoiceData?.clothType.map((item, index) => (
                       <tr className="text-center" key={index}>
                         <td className="px-2 py-1">{item?.cloth}</td>
                         <td className="px-2 py-1">
@@ -119,7 +130,7 @@ function Invoice() {
 
                     {invoiceData.isExpressDelivery &&
                       invoiceData.washType.type === "perKg" && (
-                        <tr className="text-center ">
+                        <tr className="text-center">
                           <td className="px-2 pt-6">Amount</td>
                           <td className="px-2 pt-6">-</td>
                           <td className="px-2 pt-6">-</td>
@@ -132,14 +143,14 @@ function Invoice() {
                       )}
 
                     {invoiceData.isExpressDelivery && (
-                      <tr className="text-center ">
+                      <tr className="text-center">
                         <td
                           className={`px-2 ${
                             invoiceData.isExpressDelivery &&
                             invoiceData.washType.type === "perKg"
                               ? "pt-2"
                               : "pt-6"
-                          } `}
+                          }`}
                         >
                           Express Charges
                         </td>
@@ -149,7 +160,7 @@ function Invoice() {
                             invoiceData.washType.type === "perKg"
                               ? "pt-2"
                               : "pt-6"
-                          } pt-6`}
+                          }`}
                         >
                           -
                         </td>
@@ -159,7 +170,7 @@ function Invoice() {
                             invoiceData.washType.type === "perKg"
                               ? "pt-2"
                               : "pt-6"
-                          } pt-6`}
+                          }`}
                         >
                           -
                         </td>
@@ -169,7 +180,7 @@ function Invoice() {
                             invoiceData.washType.type === "perKg"
                               ? "pt-2"
                               : "pt-6"
-                          } pt-6`}
+                          }`}
                         >
                           {invoiceData?.amountForPerPeice > 0
                             ? invoiceData?.amountForPerPeice / 3
@@ -181,15 +192,15 @@ function Invoice() {
                 </table>
               </div>
 
-              <div className="flex  mt-4 bg-[#E6E6E8] pr-3 justify-end items-center space-x-16 pb-1 ">
-                <div className=" flex items-center pr-8 pb-3">
-                  <h3 className="text-lg font-bold ">Weight:</h3>
+              <div className="flex mt-4 bg-[#E6E6E8] pr-3 justify-end items-center space-x-16 pb-1">
+                <div className="flex items-center pr-8 pb-3">
+                  <h3 className="text-lg font-bold">Weight:</h3>
                   <p>
                     {invoiceData?.weight || "-"}
-                    {invoiceData?.weight ? " kg" : ""}{" "}
+                    {invoiceData?.weight ? " kg" : ""}
                   </p>
                 </div>
-                <div className=" flex items-center pr-10 pb-3 ">
+                <div className="flex items-center pr-10 pb-3">
                   <h3 className="text-lg font-bold pr-1">Total:&nbsp;</h3>
                   <p>
                     {invoiceData?.amountForPerPeice > 0
