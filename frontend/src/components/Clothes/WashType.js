@@ -19,9 +19,9 @@ const WashType = (props) => {
   useEffect(() => {
     if (orderHistory.isShowOrderHistory) {
       setMenu({
-        totalPrice: orderHistory?.amountForPerKg,
+        totalPrice: orderHistory?.amountForPerKg||orderHistory?.amountForPerPeice || 0,
         weight: orderHistory?.weight || 0,
-        selectedmenu: { item: orderHistory?.washType?.item },
+        selectedmenu: { item: orderHistory?.washType?.item,key: orderHistory?.washType?.key },
       });
       dispatch(updateOrderHistoryDetails({ isShowOrderHistory: false }));
     }

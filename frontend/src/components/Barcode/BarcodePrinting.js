@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
  
 const BarcodePrinting = () => {
   const { barcodePrintingData } = useSelector((store) => store.BarcodePrinting);
+  console.log("kirti",barcodePrintingData);
  
   useEffect(() => {
     window.print();

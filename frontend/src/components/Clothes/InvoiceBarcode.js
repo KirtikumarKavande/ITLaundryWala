@@ -8,6 +8,8 @@ const InvoiceBarcode = () => {
   const navigate = useNavigate();
   const postDataToDB = usePostsDataToDb();
   const clothDetails = useSelector((store) => store.clothDetails);
+  console.log("check first",clothDetails)
+
   const customerInfo = useSelector((store) => store.existingUserDetails);
   const dispatch = useDispatch();
 
@@ -27,7 +29,6 @@ const InvoiceBarcode = () => {
 
   const printBarCode = async () => {
     const transformedData = [];
-
     const totalItems = clothDetails.clothType.reduce(
       (total, item) => total + parseInt(item.quantity),
       0
@@ -52,8 +53,10 @@ const InvoiceBarcode = () => {
       W_Type: `${clothDetails?.washType?.key}`,
       Amount: `${clothDetails?.amountForPerPeice > 0 ? clothDetails?.amountForPerPeice : clothDetails?.amountForPerKg}`,
     });
+    console.log(transformedData);
     dispatch(addBarcodePrinting(transformedData));
     navigate('/barcode');
+  
   };
 
   return (
