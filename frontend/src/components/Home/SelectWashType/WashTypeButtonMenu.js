@@ -1,14 +1,14 @@
 export const washTypeButtonMenu = [
   {
     item: "WASH & FOLD",
-    price: "50.0",
+    price: "49.0",
     type: "/kg",
     key: "W & F",
     imgUrl:"https://cdn-icons-png.flaticon.com/512/6553/6553745.png?uid=R131201878&ga=GA1.1.1814783212.1704270810&%22"
   },
   {
     item: "WASH & IRON",
-    price: "60.0",
+    price: "79.0",
     type: "/kg",
     key: "W & I",
     imgUrl:"https://cdn-icons-png.flaticon.com/512/2647/2647321.png?uid=R131201878&ga=GA1.1.1814783212.1704270810&%22"
