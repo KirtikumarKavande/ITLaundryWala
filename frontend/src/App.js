@@ -1,21 +1,55 @@
+import { useEffect } from "react";
+import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Toaster } from "react-hot-toast";
+
+import RootComponent from "./components/RootComponent";
 import ContactUs from "./components/ContactUs";
 import Home from "./components/Home/Home";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import RootComponent from "./components/RootComponent";
 import AdminLogin from "./components/AdminLogin";
 import About from "./components/About";
-import { Toaster } from "react-hot-toast";
 import AdminPannel from "./components/AdminPannel";
-import { useSelector } from "react-redux";
 import AddNewUser from "./components/Admin/AddNewUser";
 import ExistingUser from "./components/Admin/ExistingUser";
 import Invoice from "./components/Invoice/Invoice";
 import BarcodePrinting from "./components/Barcode/BarcodePrinting";
-import CustomerSelfContactDetailProvider from "./context/customerSelfContactDetails/CustomerSelfContactDetailProvider";
 import OnlineOrderDetails from "./components/Admin/OnlineOrderDetails";
+import CustomerSelfContactDetailProvider from "./context/customerSelfContactDetails/CustomerSelfContactDetailProvider";
+
+// PrivateRoute component to protect routes
+const PrivateRoute = ({ element }) => {
+  const user = useSelector((store) => store.user.isLoggedIn);
+  return user === "user" ? element : <Navigate to="/login" replace />;
+};
 
 export default function App() {
   const user = useSelector((store) => store.user.isLoggedIn);
+
+  useEffect(() => {
+    const handlePopState = (event) => {
+      // Prevent back navigation to routes that the user shouldn't access
+      if (!user && window.location.pathname !== "/login") {
+        window.location.replace("/login");
+       
+      }
+      if(window.location.pathname==="/existinguser"){
+        setTimeout(()=>{
+          window.location.reload()
+
+        },100)
+
+      }
+    };
+
+    // Add popstate event listener
+    window.addEventListener("popstate", handlePopState);
+
+    // Cleanup listener when the component unmounts
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [user]);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -23,7 +57,7 @@ export default function App() {
       children: [
         {
           path: "/",
-          element: user === "user" ? <AddNewUser/> : <Home />,
+          element: user === "user" ? <AddNewUser /> : <Home />,
         },
         {
           path: "/contact",
@@ -31,7 +65,7 @@ export default function App() {
         },
         {
           path: "/login",
-          element: user === "user" ? <AddNewUser/> : <AdminLogin />,
+          element: user ? <Navigate to="/" /> : <AdminLogin />,
         },
         {
           path: "/about",
@@ -39,27 +73,27 @@ export default function App() {
         },
         {
           path: "/admin",
-          element: user === "user" ? <AdminPannel /> : <AdminLogin />,
+          element: <PrivateRoute element={<AdminPannel />} />,
         },
         {
           path: "/adduser",
-          element: user === "user" ? <AddNewUser /> : <Home />,
+          element: <PrivateRoute element={<AddNewUser />} />,
         },
         {
           path: "/existinguser",
-          element: user === "user" ? <ExistingUser /> : <Home />,
+          element: <PrivateRoute element={<ExistingUser />} />,
         },
         {
           path: "/invoice",
-          element: user === "user" ? <Invoice /> : <Home />,
+          element: <PrivateRoute element={<Invoice />} />,
         },
         {
           path: "/barcode",
-          element:  user === "user" ? <BarcodePrinting /> : <Home />,
+          element: <PrivateRoute element={<BarcodePrinting />} />,
         },
         {
           path: "/request",
-          element: user === "user" ? <OnlineOrderDetails /> : <Home />,
+          element: <PrivateRoute element={<OnlineOrderDetails />} />,
         },
       ],
     },

@@ -15,6 +15,27 @@ function Invoice() {
       setInvoiceData(clothDetails);
       setUserDetails(customerInfo);
     }
+    
+  
+  }, []);
+
+  useEffect(() => {
+    const handlePopState = (event) => {
+      console.log("Popstate event triggered!");
+      // Here, you can handle what happens when the user presses the back button
+      // For instance, you could reset the state or navigate to a different part of your app
+      alert('You pressed the back button! You will be redirected.');
+      // You can redirect to a different page or handle custom logic here
+      // Example: Redirect to home
+      window.location.href = '/';
+    };
+
+    // Attach popstate listener
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   const downloadImage = () => {

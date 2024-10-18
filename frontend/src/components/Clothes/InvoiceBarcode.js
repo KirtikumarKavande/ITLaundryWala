@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addBarcodePrinting } from "../../store/barcodePrintingData";
 import usePostsDataToDb from "../hooks/usePostsDataToDb.hook";
+import { updateOrderHistoryDetails } from "../../store/orderHistorySlice";
 
 const InvoiceBarcode = () => {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ const InvoiceBarcode = () => {
     console.log(transformedData);
     dispatch(addBarcodePrinting(transformedData));
     navigate('/barcode');
+
   
   };
 
